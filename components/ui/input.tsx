@@ -15,6 +15,7 @@ export interface InputProps
   leftAdornment?: React.ReactNode;
   rightAdornment?: React.ReactNode;
   adornmentClickable?: boolean;
+  type?: React.InputHTMLAttributes<HTMLInputElement>["type"];
 }
 
 const variantMap = {
@@ -89,7 +90,12 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
     const isFloating = labelAnimate && (focused || value);
 
-    const inputType = type === "password" && showPassword ? "text" : type;
+    const inputType = React.useMemo(() => {
+      if (type === "password") {
+        return showPassword ? "text" : "password";
+      }
+      return type || "text"; // Default to text if type is not specified
+    }, [type, showPassword]);
 
     const currentRightAdornment =
       type === "password" ? (

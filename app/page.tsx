@@ -1,3 +1,5 @@
+"use client";
+import DraggableResizableGrid from "@/components/grid/draggable-resizeable-grid";
 import Button from "@/components/ui/button";
 import Input from "@/components/ui/input";
 import Text from "@/components/ui/text";
@@ -6,33 +8,21 @@ import { CheckCheckIcon, Icon, PiIcon } from "lucide-react";
 export default function Home() {
   return (
     <>
-      <Text
-        animation="cascadeUp"
-        as="h1"
-        color="teal"
-        size="2xl"
-        className="text-center"
-        staggerMs={12}
-      >
-        custom component :D
-      </Text>
-      <div className="flex flex-col items-center gap-6 p-24">
-        <Input
-          label="Email"
-          variant="default"
-          type="email"
-          labelAnimate
-        />
-        <Input
-          label="Password"
-          type="password"
-          variant="default"
-          labelAnimate
-        />
-        <Button variant="default" animate leftIcon={<CheckCheckIcon name="submit" />} glow size="default">
-          Submit
-        </Button>
-      </div>
+      <DraggableResizableGrid
+        storageKey="my-grid-layout"
+        initialLayout={[
+          { i: "a", x: 0, y: 0, w: 2, h: 2 },
+          { i: "b", x: 2, y: 0, w: 2, h: 2 },
+          { i: "c", x: 4, y: 0, w: 2, h: 2 },
+        ]}
+        renderItem={(id) => (
+          <div className="p-4">
+            <Text as="h3" size="lg">
+              {id}
+            </Text>
+          </div>
+        )}
+      />
     </>
   );
 }
