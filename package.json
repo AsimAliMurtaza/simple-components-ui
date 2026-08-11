@@ -1,6 +1,6 @@
 {
   "name": "@simple-components-ui/components",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A sleek UI component library using Tailwind, ShadCN, and Framer Motion.",
   "main": "dist/index.js",
   "module": "dist/index.js",
