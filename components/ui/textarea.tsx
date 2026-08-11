@@ -3,12 +3,11 @@
 import * as React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { Eye, EyeOff, X, CheckCircle2, AlertCircle, AlertTriangle } from "lucide-react";
 import { useFormField } from "./form";
 
-export interface InputProps
+export interface TextareaProps
   extends Omit<
-    React.InputHTMLAttributes<HTMLInputElement>,
+    React.TextareaHTMLAttributes<HTMLTextAreaElement>,
     "size" | "onDrag" | "onDragStart" | "onDragEnd" | "onAnimationStart"
   > {
   label?: string;
@@ -17,12 +16,10 @@ export interface InputProps
   variant?: "default" | "underline" | "bordered" | "glass" | "ghost";
   size?: "sm" | "default" | "lg";
   status?: "default" | "error" | "success" | "warning";
-  labelAnimate?: boolean;
+  autoResize?: boolean;
+  showCount?: boolean;
   leftAdornment?: React.ReactNode;
   rightAdornment?: React.ReactNode;
-  adornmentClickable?: boolean;
-  clearable?: boolean;
-  onClear?: () => void;
 }
 
 const variantStyles = {
@@ -39,12 +36,12 @@ const variantStyles = {
 };
 
 const sizeStyles = {
-  sm: "h-8 text-xs px-2.5",
-  default: "h-10 text-sm px-3.5",
-  lg: "h-12 text-base px-4",
+  sm: "text-xs p-2 min-h-[60px]",
+  default: "text-sm p-3 min-h-[90px]",
+  lg: "text-base p-4 min-h-[120px]",
 };
 
-const Input = React.forwardRef<HTMLInputElement, InputProps>(
+const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
   (
     {
       label,
@@ -54,20 +51,17 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       variant = "default",
       size: propSize,
       status,
-      labelAnimate = false,
+      autoResize = false,
+      showCount = false,
       leftAdornment,
       rightAdornment,
-      adornmentClickable = false,
-      clearable = false,
-      onClear,
-      type = "text",
+      maxLength,
       id: propId,
       disabled: propDisabled,
       value: propValue,
       defaultValue,
       onChange,
-      onFocus,
-      onBlur,
+      rows = 3,
       ...props
     },
     ref
@@ -78,43 +72,32 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const errorText = propErrorText || formField.errorText;
     const size = propSize || formField.size || "default";
 
-    const [focused, setFocused] = React.useState(false);
+    const internalRef = React.useRef<HTMLTextAreaElement | null>(null);
+    React.useImperativeHandle(ref, () => internalRef.current!);
+
     const [uncontrolledValue, setUncontrolledValue] = React.useState(
       defaultValue ?? ""
     );
-    const [showPassword, setShowPassword] = React.useState(false);
-
     const isControlled = propValue !== undefined;
     const currentValue = isControlled ? propValue : uncontrolledValue;
 
-    const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
-      setFocused(true);
-      onFocus?.(e);
-    };
+    const charCount = String(currentValue ?? "").length;
 
-    const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-      setFocused(false);
-      onBlur?.(e);
-    };
+    // Handle auto-resize
+    React.useEffect(() => {
+      if (autoResize && internalRef.current) {
+        internalRef.current.style.height = "auto";
+        internalRef.current.style.height = `${internalRef.current.scrollHeight}px`;
+      }
+    }, [autoResize, currentValue]);
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
       if (!isControlled) {
         setUncontrolledValue(e.target.value);
       }
       onChange?.(e);
     };
 
-    const handleClear = () => {
-      if (!isControlled) {
-        setUncontrolledValue("");
-      }
-      onClear?.();
-    };
-
-    const isFloating = labelAnimate && (focused || Boolean(currentValue));
-    const inputType = type === "password" ? (showPassword ? "text" : "password") : type;
-
-    // Status logic
     const currentStatus = errorText ? "error" : status || "default";
     const statusStyles = {
       default: "",
@@ -123,68 +106,20 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       warning: "!border-amber-500 dark:!border-amber-500 focus-within:!ring-amber-500/20",
     };
 
-    const renderRightAdornment = () => {
-      if (type === "password") {
-        return (
-          <button
-            type="button"
-            tabIndex={-1}
-            onClick={() => setShowPassword((prev) => !prev)}
-            onMouseDown={(e) => e.preventDefault()}
-            className="text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 transition-colors"
-          >
-            {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
-          </button>
-        );
-      }
-
-      if (clearable && Boolean(currentValue) && !disabled) {
-        return (
-          <button
-            type="button"
-            tabIndex={-1}
-            onClick={handleClear}
-            className="text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 transition-colors"
-          >
-            <X size={16} />
-          </button>
-        );
-      }
-
-      if (currentStatus === "success") {
-        return <CheckCircle2 size={16} className="text-emerald-500" />;
-      }
-      if (currentStatus === "warning") {
-        return <AlertTriangle size={16} className="text-amber-500" />;
-      }
-      if (currentStatus === "error") {
-        return <AlertCircle size={16} className="text-red-500" />;
-      }
-
-      return rightAdornment;
-    };
-
-    const finalRightAdornment = renderRightAdornment();
-
     return (
       <div className="w-full flex flex-col gap-1 relative">
         {label && !formField.id && (
-          <motion.label
+          <label
             htmlFor={id}
-            className={cn(
-              "text-sm font-medium text-zinc-900 dark:text-zinc-100 select-none",
-              labelAnimate && "absolute left-3 transition-all duration-200 pointer-events-none z-10",
-              labelAnimate && !isFloating && "top-1/2 -translate-y-1/2 text-zinc-500",
-              labelAnimate && isFloating && "-top-5 left-1 text-xs text-blue-600 dark:text-blue-400"
-            )}
+            className="text-sm font-medium text-zinc-900 dark:text-zinc-100 select-none"
           >
             {label}
-          </motion.label>
+          </label>
         )}
 
         <div
           className={cn(
-            "flex items-center w-full transition-all duration-200 relative overflow-hidden",
+            "flex flex-col w-full transition-all duration-200 relative overflow-hidden",
             variantStyles[variant],
             sizeStyles[size],
             statusStyles[currentStatus],
@@ -192,42 +127,42 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             className
           )}
         >
-          {leftAdornment && (
-            <div
-              className={cn(
-                "flex items-center justify-center mr-2 text-zinc-400 dark:text-zinc-500 shrink-0",
-                adornmentClickable && "cursor-pointer"
-              )}
-            >
-              {leftAdornment}
-            </div>
-          )}
-
-          <motion.input
-            ref={ref}
-            id={id}
-            type={inputType}
-            disabled={disabled}
-            value={currentValue}
-            onChange={handleChange}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
-            className={cn(
-              "w-full h-full bg-transparent outline-none border-none text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-500",
-              variant === "underline" && "px-0"
+          <div className="flex w-full h-full gap-2 items-start">
+            {leftAdornment && (
+              <div className="pt-1 text-zinc-400 dark:text-zinc-500 shrink-0">
+                {leftAdornment}
+              </div>
             )}
-            whileFocus={{ scale: 1.002 }}
-            {...props}
-          />
 
-          {finalRightAdornment && (
-            <div
+            <motion.textarea
+              ref={internalRef}
+              id={id}
+              rows={rows}
+              disabled={disabled}
+              maxLength={maxLength}
+              value={currentValue}
+              onChange={handleChange}
               className={cn(
-                "flex items-center justify-center ml-2 text-zinc-400 dark:text-zinc-500 shrink-0",
-                adornmentClickable && "cursor-pointer"
+                "w-full h-full bg-transparent outline-none border-none resize-none text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-500",
+                autoResize && "overflow-hidden"
               )}
-            >
-              {finalRightAdornment}
+              whileFocus={{ scale: 1.001 }}
+              {...props}
+            />
+
+            {rightAdornment && (
+              <div className="pt-1 text-zinc-400 dark:text-zinc-500 shrink-0">
+                {rightAdornment}
+              </div>
+            )}
+          </div>
+
+          {showCount && (
+            <div className="flex justify-end pt-1">
+              <span className="text-[10px] text-zinc-400 dark:text-zinc-500 font-mono">
+                {charCount}
+                {maxLength ? ` / ${maxLength}` : ""}
+              </span>
             </div>
           )}
         </div>
@@ -262,6 +197,6 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
   }
 );
 
-Input.displayName = "Input";
+Textarea.displayName = "Textarea";
 
-export default Input;
+export default Textarea;
