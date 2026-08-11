@@ -37,6 +37,20 @@ import {
   ContextMenuItem,
   ContextMenuLabel,
   ContextMenuSeparator,
+  DataTable,
+  ColumnDef,
+  Badge,
+  Avatar,
+  AvatarGroup,
+  Timeline,
+  TimelineItem,
+  TimelineConnector,
+  TimelineHeader,
+  TimelineIcon,
+  TimelineBody,
+  TimelineTitle,
+  TimelineTime,
+  Search,
 } from "@/index";
 import {
   Moon,
@@ -58,7 +72,78 @@ import {
   Trash2,
   Copy,
   Share2,
+  Database,
+  CheckCircle,
+  AlertCircle,
+  Edit,
 } from "lucide-react";
+
+interface UserRecord {
+  id: string;
+  name: string;
+  email: string;
+  role: string;
+  status: "active" | "pending" | "suspended";
+  avatar: string;
+  lastActive: string;
+}
+
+const mockUsers: UserRecord[] = [
+  {
+    id: "usr-1",
+    name: "Jane Doe",
+    email: "jane.doe@example.com",
+    role: "Senior Lead Developer",
+    status: "active",
+    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150",
+    lastActive: "2 mins ago",
+  },
+  {
+    id: "usr-2",
+    name: "Alex Rivera",
+    email: "alex.r@example.com",
+    role: "UI/UX Product Designer",
+    status: "active",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150",
+    lastActive: "1 hour ago",
+  },
+  {
+    id: "usr-3",
+    name: "Sarah Chen",
+    email: "sarah.c@example.com",
+    role: "Frontend Engineer",
+    status: "pending",
+    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150",
+    lastActive: "Yesterday",
+  },
+  {
+    id: "usr-4",
+    name: "Michael Scott",
+    email: "michael.s@example.com",
+    role: "Regional Manager",
+    status: "suspended",
+    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150",
+    lastActive: "3 days ago",
+  },
+  {
+    id: "usr-5",
+    name: "Elena Rostova",
+    email: "elena.r@example.com",
+    role: "DevOps Architect",
+    status: "active",
+    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150",
+    lastActive: "Just now",
+  },
+  {
+    id: "usr-6",
+    name: "David Kim",
+    email: "david.k@example.com",
+    role: "QA Automation Lead",
+    status: "pending",
+    avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150",
+    lastActive: "4 hours ago",
+  },
+];
 
 function PageShowcase() {
   const [snackbarOpen, setSnackbarOpen] = React.useState(false);
@@ -67,6 +152,8 @@ function PageShowcase() {
   const [progressVal, setProgressVal] = React.useState(65);
   const [stepVal, setStepVal] = React.useState(2);
   const [isLoadingSkeleton, setIsLoadingSkeleton] = React.useState(false);
+  const [tableLoading, setTableLoading] = React.useState(false);
+  const [searchVal, setSearchVal] = React.useState("");
 
   const [formData, setFormData] = React.useState({
     fullName: "Jane Doe",
@@ -132,9 +219,220 @@ function PageShowcase() {
     }
   };
 
+  // DataTable Column definitions
+  const userColumns: ColumnDef<UserRecord>[] = [
+    {
+      id: "user",
+      header: "User",
+      sortable: true,
+      accessorKey: "name",
+      cell: (row) => (
+        <div className="flex items-center gap-3">
+          <Avatar src={row.avatar} name={row.name} size="sm" status={row.status === "active" ? "online" : "away"} />
+          <div>
+            <div className="font-semibold text-zinc-900 dark:text-zinc-100">{row.name}</div>
+            <div className="text-xs text-zinc-500 dark:text-zinc-400">{row.email}</div>
+          </div>
+        </div>
+      ),
+    },
+    {
+      id: "role",
+      header: "Role",
+      sortable: true,
+      accessorKey: "role",
+    },
+    {
+      id: "status",
+      header: "Status",
+      sortable: true,
+      filterable: true,
+      filterOptions: [
+        { label: "Active", value: "active" },
+        { label: "Pending", value: "pending" },
+        { label: "Suspended", value: "suspended" },
+      ],
+      accessorKey: "status",
+      cell: (row) => {
+        const intent =
+          row.status === "active"
+            ? "success"
+            : row.status === "pending"
+            ? "warning"
+            : "danger";
+
+        return (
+          <Badge intent={intent} variant="soft" size="sm">
+            {row.status.toUpperCase()}
+          </Badge>
+        );
+      },
+    },
+    {
+      id: "lastActive",
+      header: "Last Active",
+      sortable: true,
+      accessorKey: "lastActive",
+    },
+  ];
+
   return (
     <div className="space-y-12">
-      {/* 1. Form Suite Section */}
+      {/* 1. Data Component Suite Section */}
+      <section className="space-y-6">
+        <div className="flex items-center gap-2 pb-3 border-b border-zinc-200 dark:border-zinc-800">
+          <Database className="h-5 w-5 text-emerald-500" />
+          <h2 className="text-xl font-bold tracking-tight">Data Component Suite</h2>
+        </div>
+
+        {/* DataTable Showcase */}
+        <div className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-lg space-y-4">
+          <div className="flex items-center justify-between pb-3 border-b border-zinc-100 dark:border-zinc-800">
+            <div>
+              <h3 className="text-base font-semibold">Interactive DataTable Showcase</h3>
+              <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                Supports Multi-Column Sorting, Searching, Filtering, Column Visibility, Row Selection & Pagination
+              </p>
+            </div>
+
+            <Button
+              size="sm"
+              variant="outline"
+              onClick={() => {
+                setTableLoading(true);
+                setTimeout(() => setTableLoading(false), 1500);
+              }}
+              leftIcon={<RefreshCw size={14} className={tableLoading ? "animate-spin" : ""} />}
+            >
+              Simulate Loading
+            </Button>
+          </div>
+
+          <DataTable
+            data={mockUsers}
+            columns={userColumns}
+            loading={tableLoading}
+            pageSize={4}
+            variant="default"
+            getRowId={(r) => r.id}
+            onRowClick={(r) => toast.info(`Selected ${r.name}`)}
+            rowActions={(r) => (
+              <>
+                <DropdownItem icon={<Edit size={14} />} onClick={() => toast.info(`Editing ${r.name}`)}>
+                  Edit User
+                </DropdownItem>
+                <DropdownSeparator />
+                <DropdownItem icon={<Trash2 size={14} />} destructive onClick={() => toast.danger(`Removed ${r.name}`)}>
+                  Delete
+                </DropdownItem>
+              </>
+            )}
+          />
+        </div>
+
+        {/* AvatarGroup, Badges, Search & Timeline Showcase */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          {/* Avatar & Badges */}
+          <div className="lg:col-span-6 p-6 rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-lg space-y-6">
+            <div className="space-y-3">
+              <h3 className="text-base font-semibold border-b border-zinc-100 dark:border-zinc-800 pb-2">
+                Avatar & AvatarGroup
+              </h3>
+              <div className="flex items-center gap-4">
+                <Avatar name="Jane Doe" size="lg" status="online" />
+                <Avatar name="Alex Rivera" size="lg" status="busy" />
+                <Avatar name="Sarah Chen" size="lg" status="away" />
+                <Avatar name="Michael Scott" size="lg" status="offline" />
+              </div>
+
+              <div className="pt-2 flex items-center gap-3">
+                <span className="text-xs font-medium text-zinc-500">Stacked Group:</span>
+                <AvatarGroup max={3} size="md">
+                  <Avatar name="Jane Doe" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150" />
+                  <Avatar name="Alex Rivera" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150" />
+                  <Avatar name="Sarah Chen" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150" />
+                  <Avatar name="Michael Scott" />
+                  <Avatar name="Elena Rostova" />
+                </AvatarGroup>
+              </div>
+            </div>
+
+            <div className="space-y-3">
+              <h3 className="text-base font-semibold border-b border-zinc-100 dark:border-zinc-800 pb-2">
+                Badges & Search Input
+              </h3>
+
+              <div className="flex flex-wrap items-center gap-2">
+                <Badge intent="primary" variant="soft">Primary Soft</Badge>
+                <Badge intent="success" variant="dot">Online Active</Badge>
+                <Badge intent="warning" variant="outline">Warning</Badge>
+                <Badge intent="danger" variant="default">Critical</Badge>
+                <Badge intent="purple" variant="soft" onRemove={() => toast.info("Removed badge")}>Removable</Badge>
+              </div>
+
+              <Search
+                value={searchVal}
+                onChange={setSearchVal}
+                placeholder="Search resources..."
+                variant="default"
+                className="mt-2"
+              />
+            </div>
+          </div>
+
+          {/* Timeline */}
+          <div className="lg:col-span-6 p-6 rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-lg space-y-4">
+            <h3 className="text-base font-semibold border-b border-zinc-100 dark:border-zinc-800 pb-2">
+              Activity Timeline
+            </h3>
+
+            <Timeline lineStyle="solid">
+              <TimelineItem active>
+                <TimelineConnector />
+                <TimelineIcon color="success" icon={<CheckCircle size={14} />} />
+                <TimelineBody>
+                  <TimelineHeader>
+                    <TimelineTitle>Version 2.4 Deployed</TimelineTitle>
+                    <TimelineTime>10 mins ago</TimelineTime>
+                  </TimelineHeader>
+                  <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                    Production bundle compiled and verified on edge servers.
+                  </p>
+                </TimelineBody>
+              </TimelineItem>
+
+              <TimelineItem active>
+                <TimelineConnector />
+                <TimelineIcon color="primary" icon={<User size={14} />} />
+                <TimelineBody>
+                  <TimelineHeader>
+                    <TimelineTitle>New Team Member Joined</TimelineTitle>
+                    <TimelineTime>2 hours ago</TimelineTime>
+                  </TimelineHeader>
+                  <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                    Elena Rostova accepted developer invite.
+                  </p>
+                </TimelineBody>
+              </TimelineItem>
+
+              <TimelineItem active>
+                <TimelineIcon color="warning" icon={<AlertCircle size={14} />} />
+                <TimelineBody>
+                  <TimelineHeader>
+                    <TimelineTitle>Storage Threshold Alert</TimelineTitle>
+                    <TimelineTime>5 hours ago</TimelineTime>
+                  </TimelineHeader>
+                  <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                    Volume disk usage reached 85% capacity.
+                  </p>
+                </TimelineBody>
+              </TimelineItem>
+            </Timeline>
+          </div>
+        </div>
+      </section>
+
+      {/* 2. Form Suite Section */}
       <section className="space-y-6">
         <div className="flex items-center gap-2 pb-3 border-b border-zinc-200 dark:border-zinc-800">
           <Layers className="h-5 w-5 text-blue-500" />
@@ -266,7 +564,7 @@ function PageShowcase() {
         </div>
       </section>
 
-      {/* 2. Feedback Suite Section */}
+      {/* 3. Feedback Suite Section */}
       <section className="space-y-6">
         <div className="flex items-center gap-2 pb-3 border-b border-zinc-200 dark:border-zinc-800">
           <Bell className="h-5 w-5 text-amber-500" />
@@ -457,7 +755,7 @@ function PageShowcase() {
         </div>
       </section>
 
-      {/* 3. Overlay Suite Section */}
+      {/* 4. Overlay Suite Section */}
       <section className="space-y-6">
         <div className="flex items-center gap-2 pb-3 border-b border-zinc-200 dark:border-zinc-800">
           <MousePointer className="h-5 w-5 text-purple-500" />
@@ -623,7 +921,7 @@ export default function Home() {
                   Simple Components UI
                 </h1>
                 <p className="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400">
-                  Form, Feedback & Overlay Component Showcase
+                  Data, Form, Feedback & Overlay Component Suite Showcase
                 </p>
               </div>
             </div>
