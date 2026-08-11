@@ -528,4 +528,175 @@ declare const ContextMenuSeparator: React.FC<{
     className?: string;
 }>;
 
-export { Alert, type AlertProps, Button, type ButtonProps, Checkbox, type CheckboxProps, ContextMenu, ContextMenuContent, ContextMenuItem, type ContextMenuItemProps, ContextMenuLabel, type ContextMenuProps, ContextMenuSeparator, ContextMenuTrigger, DraggableResizableGrid, Drawer, type DrawerProps, Dropdown, DropdownContent, DropdownItem, type DropdownItemProps, DropdownLabel, type DropdownProps, DropdownSeparator, DropdownTrigger, type FileItem, FileUpload, type FileUploadProps, Form, type FormContextValue, FormField, type FormFieldContextValue, type FormFieldProps, type FormProps, type GridItemConfig, type GridProps, Input, type InputProps, Modal, type ModalProps, Popover, type PopoverPlacement, type PopoverProps, Progress, type ProgressProps, RadioGroup, RadioGroupItem, type RadioGroupItemProps, type RadioGroupProps, Select, SelectContent, SelectItem, type SelectOption, type SelectProps, SelectTrigger, SelectValue, Skeleton, type SkeletonProps, Slider, type SliderMark, type SliderProps, Snackbar, type SnackbarProps, Spinner, type SpinnerProps, Switch, type SwitchProps, Text, type TextProps, Textarea, type TextareaProps, type ToastData, type ToastPosition, ToastProvider, type ToastProviderProps, type ToastType, Tooltip, type TooltipPlacement, type TooltipProps, toast, useForm, useFormField, useToast };
+interface TableProps extends React.HTMLAttributes<HTMLTableElement> {
+    variant?: "default" | "bordered" | "striped" | "glass" | "ios-glass";
+    size?: "sm" | "md" | "lg";
+    hoverable?: boolean;
+}
+declare const Table: React.ForwardRefExoticComponent<TableProps & React.RefAttributes<HTMLTableElement>>;
+declare const TableHeader: React.ForwardRefExoticComponent<React.HTMLAttributes<HTMLTableSectionElement> & React.RefAttributes<HTMLTableSectionElement>>;
+declare const TableBody: React.ForwardRefExoticComponent<React.HTMLAttributes<HTMLTableSectionElement> & React.RefAttributes<HTMLTableSectionElement>>;
+declare const TableFooter: React.ForwardRefExoticComponent<React.HTMLAttributes<HTMLTableSectionElement> & React.RefAttributes<HTMLTableSectionElement>>;
+declare const TableRow: React.ForwardRefExoticComponent<React.HTMLAttributes<HTMLTableRowElement> & {
+    selected?: boolean;
+} & React.RefAttributes<HTMLTableRowElement>>;
+declare const TableHead: React.ForwardRefExoticComponent<React.ThHTMLAttributes<HTMLTableCellElement> & React.RefAttributes<HTMLTableCellElement>>;
+declare const TableCell: React.ForwardRefExoticComponent<React.TdHTMLAttributes<HTMLTableCellElement> & React.RefAttributes<HTMLTableCellElement>>;
+declare const TableCaption: React.ForwardRefExoticComponent<React.HTMLAttributes<HTMLTableCaptionElement> & React.RefAttributes<HTMLTableCaptionElement>>;
+
+type SortDirection = "asc" | "desc" | false;
+interface SortableHeaderProps extends React.ThHTMLAttributes<HTMLTableCellElement> {
+    sortDirection?: SortDirection;
+    onSort?: (direction: SortDirection) => void;
+    children: React.ReactNode;
+    className?: string;
+}
+declare const SortableHeader: React.ForwardRefExoticComponent<SortableHeaderProps & React.RefAttributes<HTMLTableCellElement>>;
+
+interface PaginationProps {
+    currentPage: number;
+    totalPages: number;
+    totalItems?: number;
+    pageSize?: number;
+    pageSizeOptions?: number[];
+    onPageChange: (page: number) => void;
+    onPageSizeChange?: (pageSize: number) => void;
+    siblingCount?: number;
+    showFirstLast?: boolean;
+    showPageSizeSelector?: boolean;
+    variant?: "default" | "bordered" | "glass" | "ios-glass";
+    className?: string;
+}
+declare const Pagination: React.FC<PaginationProps>;
+
+interface ActiveFilter {
+    id: string;
+    label: string;
+    value: string;
+}
+interface FilterBarProps {
+    activeFilters?: ActiveFilter[];
+    onRemoveFilter?: (id: string) => void;
+    onClearAll?: () => void;
+    variant?: "default" | "bordered" | "glass" | "ios-glass";
+    className?: string;
+    children?: React.ReactNode;
+}
+declare const FilterBar: React.FC<FilterBarProps>;
+
+interface SearchProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "size" | "onChange"> {
+    value?: string;
+    defaultValue?: string;
+    onChange?: (value: string) => void;
+    onDebouncedChange?: (value: string) => void;
+    debounceTime?: number;
+    loading?: boolean;
+    clearable?: boolean;
+    shortcut?: string;
+    size?: "sm" | "md" | "lg";
+    variant?: "default" | "bordered" | "glass" | "ios-glass";
+    className?: string;
+}
+declare const Search: React.ForwardRefExoticComponent<SearchProps & React.RefAttributes<HTMLInputElement>>;
+
+interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
+    intent?: "primary" | "secondary" | "success" | "warning" | "danger" | "neutral" | "purple";
+    variant?: "default" | "outline" | "soft" | "dot" | "glass" | "ios-glass";
+    size?: "sm" | "md" | "lg";
+    icon?: React.ReactNode;
+    onRemove?: () => void;
+    className?: string;
+    children: React.ReactNode;
+}
+declare const Badge: React.ForwardRefExoticComponent<BadgeProps & React.RefAttributes<HTMLSpanElement>>;
+
+type AvatarSize = "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
+type AvatarStatus = "online" | "offline" | "busy" | "away";
+interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
+    src?: string;
+    alt?: string;
+    name?: string;
+    size?: AvatarSize;
+    shape?: "circle" | "rounded" | "square";
+    status?: AvatarStatus;
+    className?: string;
+}
+declare const Avatar: React.ForwardRefExoticComponent<AvatarProps & React.RefAttributes<HTMLDivElement>>;
+interface AvatarGroupProps {
+    max?: number;
+    size?: AvatarSize;
+    children: React.ReactNode;
+    className?: string;
+}
+declare const AvatarGroup: React.FC<AvatarGroupProps>;
+
+interface TimelineProps extends React.HTMLAttributes<HTMLDivElement> {
+    lineStyle?: "solid" | "dashed" | "dotted";
+    className?: string;
+    children: React.ReactNode;
+}
+declare const Timeline: React.ForwardRefExoticComponent<TimelineProps & React.RefAttributes<HTMLDivElement>>;
+interface TimelineItemProps extends React.HTMLAttributes<HTMLDivElement> {
+    active?: boolean;
+    className?: string;
+    children: React.ReactNode;
+}
+declare const TimelineItem: React.ForwardRefExoticComponent<TimelineItemProps & React.RefAttributes<HTMLDivElement>>;
+interface TimelineIconProps extends React.HTMLAttributes<HTMLDivElement> {
+    color?: "primary" | "success" | "warning" | "danger" | "purple" | "neutral";
+    variant?: "default" | "outline" | "glass" | "ios-glass";
+    icon?: React.ReactNode;
+    className?: string;
+}
+declare const TimelineIcon: React.ForwardRefExoticComponent<TimelineIconProps & React.RefAttributes<HTMLDivElement>>;
+interface TimelineConnectorProps {
+    className?: string;
+}
+declare const TimelineConnector: React.FC<TimelineConnectorProps>;
+declare const TimelineBody: React.ForwardRefExoticComponent<React.HTMLAttributes<HTMLDivElement> & React.RefAttributes<HTMLDivElement>>;
+declare const TimelineHeader: React.ForwardRefExoticComponent<React.HTMLAttributes<HTMLDivElement> & React.RefAttributes<HTMLDivElement>>;
+declare const TimelineTitle: React.ForwardRefExoticComponent<React.HTMLAttributes<HTMLHeadingElement> & React.RefAttributes<HTMLHeadingElement>>;
+declare const TimelineTime: React.ForwardRefExoticComponent<React.HTMLAttributes<HTMLSpanElement> & React.RefAttributes<HTMLSpanElement>>;
+
+interface EmptyStateProps {
+    icon?: React.ReactNode;
+    title?: React.ReactNode;
+    description?: React.ReactNode;
+    action?: React.ReactNode;
+    secondaryAction?: React.ReactNode;
+    variant?: "default" | "bordered" | "dashed" | "glass" | "ios-glass";
+    className?: string;
+    children?: React.ReactNode;
+}
+declare const EmptyState: React.ForwardRefExoticComponent<EmptyStateProps & React.RefAttributes<HTMLDivElement>>;
+
+interface ColumnDef<T> {
+    id: string;
+    header: React.ReactNode;
+    accessorKey?: keyof T;
+    cell?: (row: T, index: number) => React.ReactNode;
+    sortable?: boolean;
+    filterable?: boolean;
+    filterOptions?: {
+        label: string;
+        value: string;
+    }[];
+    hidden?: boolean;
+}
+interface DataTableProps<T> {
+    data: T[];
+    columns: ColumnDef<T>[];
+    getRowId?: (row: T, index: number) => string;
+    searchable?: boolean;
+    searchPlaceholder?: string;
+    loading?: boolean;
+    pageSize?: number;
+    pageSizeOptions?: number[];
+    variant?: "default" | "bordered" | "striped" | "glass" | "ios-glass";
+    onRowClick?: (row: T) => void;
+    rowActions?: (row: T) => React.ReactNode;
+    className?: string;
+}
+declare function DataTable<T extends Record<string, any>>({ data, columns: initialColumns, getRowId, searchable, searchPlaceholder, loading, pageSize: initialPageSize, pageSizeOptions, variant, onRowClick, rowActions, className, }: DataTableProps<T>): React.JSX.Element;
+
+export { type ActiveFilter, Alert, type AlertProps, Avatar, AvatarGroup, type AvatarGroupProps, type AvatarProps, type AvatarSize, type AvatarStatus, Badge, type BadgeProps, Button, type ButtonProps, Checkbox, type CheckboxProps, type ColumnDef, ContextMenu, ContextMenuContent, ContextMenuItem, type ContextMenuItemProps, ContextMenuLabel, type ContextMenuProps, ContextMenuSeparator, ContextMenuTrigger, DataTable, type DataTableProps, DraggableResizableGrid, Drawer, type DrawerProps, Dropdown, DropdownContent, DropdownItem, type DropdownItemProps, DropdownLabel, type DropdownProps, DropdownSeparator, DropdownTrigger, EmptyState, type EmptyStateProps, type FileItem, FileUpload, type FileUploadProps, FilterBar, type FilterBarProps, Form, type FormContextValue, FormField, type FormFieldContextValue, type FormFieldProps, type FormProps, type GridItemConfig, type GridProps, Input, type InputProps, Modal, type ModalProps, Pagination, type PaginationProps, Popover, type PopoverPlacement, type PopoverProps, Progress, type ProgressProps, RadioGroup, RadioGroupItem, type RadioGroupItemProps, type RadioGroupProps, Search, type SearchProps, Select, SelectContent, SelectItem, type SelectOption, type SelectProps, SelectTrigger, SelectValue, Skeleton, type SkeletonProps, Slider, type SliderMark, type SliderProps, Snackbar, type SnackbarProps, type SortDirection, SortableHeader, type SortableHeaderProps, Spinner, type SpinnerProps, Switch, type SwitchProps, Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, type TableProps, TableRow, Text, type TextProps, Textarea, type TextareaProps, Timeline, TimelineBody, TimelineConnector, type TimelineConnectorProps, TimelineHeader, TimelineIcon, type TimelineIconProps, TimelineItem, type TimelineItemProps, type TimelineProps, TimelineTime, TimelineTitle, type ToastData, type ToastPosition, ToastProvider, type ToastProviderProps, type ToastType, Tooltip, type TooltipPlacement, type TooltipProps, toast, useForm, useFormField, useToast };

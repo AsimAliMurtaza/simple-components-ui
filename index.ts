@@ -94,3 +94,57 @@ export {
   ContextMenuSeparator,
 } from "./components/overlay/context-menu";
 export type { ContextMenuProps, ContextMenuItemProps } from "./components/overlay/context-menu";
+
+// Data Component Suite
+export {
+  default as Table,
+  TableHeader,
+  TableBody,
+  TableFooter,
+  TableRow,
+  TableHead,
+  TableCell,
+  TableCaption,
+} from "./components/data/table";
+export type { TableProps } from "./components/data/table";
+
+export { default as SortableHeader } from "./components/data/sortable-header";
+export type { SortableHeaderProps, SortDirection } from "./components/data/sortable-header";
+
+export { default as Pagination } from "./components/data/pagination";
+export type { PaginationProps } from "./components/data/pagination";
+
+export { default as FilterBar } from "./components/data/filter-bar";
+export type { FilterBarProps, ActiveFilter } from "./components/data/filter-bar";
+
+export { default as Search } from "./components/data/search";
+export type { SearchProps } from "./components/data/search";
+
+export { default as Badge } from "./components/data/badge";
+export type { BadgeProps } from "./components/data/badge";
+
+export { default as Avatar, AvatarGroup } from "./components/data/avatar";
+export type { AvatarProps, AvatarGroupProps, AvatarSize, AvatarStatus } from "./components/data/avatar";
+
+export {
+  default as Timeline,
+  TimelineItem,
+  TimelineConnector,
+  TimelineHeader,
+  TimelineIcon,
+  TimelineBody,
+  TimelineTitle,
+  TimelineTime,
+} from "./components/data/timeline";
+export type {
+  TimelineProps,
+  TimelineItemProps,
+  TimelineIconProps,
+  TimelineConnectorProps,
+} from "./components/data/timeline";
+
+export { default as EmptyState } from "./components/data/empty-state";
+export type { EmptyStateProps } from "./components/data/empty-state";
+
+export { default as DataTable } from "./components/data/data-table";
+export type { DataTableProps, ColumnDef } from "./components/data/data-table";
