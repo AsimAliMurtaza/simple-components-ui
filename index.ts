@@ -1,9 +1,13 @@
-// Base Components
+// Base UI Components
 export { default as Button } from "./components/ui/button";
 export type { ButtonProps } from "./components/ui/button";
 
 export { default as Text } from "./components/ui/text";
 export type { TextProps } from "./components/ui/text";
+
+// Grid Components
+export { default as DraggableResizableGrid } from "./components/grid/draggable-resizeable-grid";
+export type { GridProps, GridItemConfig } from "./components/grid/draggable-resizeable-grid";
 
 // Form Component Suite
 export { default as Form, FormField, useForm, useFormField } from "./components/ui/form";
@@ -57,3 +61,36 @@ export type { SpinnerProps } from "./components/ui/spinner";
 
 export { default as Skeleton } from "./components/ui/skeleton";
 export type { SkeletonProps } from "./components/ui/skeleton";
+
+// Overlay Component Suite
+export { default as Modal } from "./components/overlay/modal";
+export type { ModalProps } from "./components/overlay/modal";
+
+export { default as Drawer } from "./components/overlay/drawer";
+export type { DrawerProps } from "./components/overlay/drawer";
+
+export { default as Popover } from "./components/overlay/popover";
+export type { PopoverProps, PopoverPlacement } from "./components/overlay/popover";
+
+export { default as Tooltip } from "./components/overlay/tooltip";
+export type { TooltipProps, TooltipPlacement } from "./components/overlay/tooltip";
+
+export {
+  default as Dropdown,
+  DropdownTrigger,
+  DropdownContent,
+  DropdownItem,
+  DropdownLabel,
+  DropdownSeparator,
+} from "./components/overlay/dropdown";
+export type { DropdownProps, DropdownItemProps } from "./components/overlay/dropdown";
+
+export {
+  default as ContextMenu,
+  ContextMenuTrigger,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuLabel,
+  ContextMenuSeparator,
+} from "./components/overlay/context-menu";
+export type { ContextMenuProps, ContextMenuItemProps } from "./components/overlay/context-menu";

@@ -21,6 +21,22 @@ import {
   Progress,
   Spinner,
   Skeleton,
+  Modal,
+  Drawer,
+  Popover,
+  Tooltip,
+  Dropdown,
+  DropdownTrigger,
+  DropdownContent,
+  DropdownItem,
+  DropdownLabel,
+  DropdownSeparator,
+  ContextMenu,
+  ContextMenuTrigger,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuLabel,
+  ContextMenuSeparator,
 } from "@/index";
 import {
   Moon,
@@ -29,286 +45,29 @@ import {
   User,
   Sparkles,
   Send,
-  CheckCircle,
-  Sliders,
   Layers,
   Bell,
   RefreshCw,
   Zap,
+  CheckCircle2,
+  Maximize2,
+  PanelRight,
+  MoreVertical,
+  MousePointer,
+  Info,
+  Trash2,
+  Copy,
+  Share2,
 } from "lucide-react";
 
-function FeedbackDemo() {
+function PageShowcase() {
   const [snackbarOpen, setSnackbarOpen] = React.useState(false);
+  const [modalOpen, setModalOpen] = React.useState(false);
+  const [drawerOpen, setDrawerOpen] = React.useState(false);
   const [progressVal, setProgressVal] = React.useState(65);
   const [stepVal, setStepVal] = React.useState(2);
   const [isLoadingSkeleton, setIsLoadingSkeleton] = React.useState(false);
 
-  const triggerToast = (type: "info" | "success" | "warning" | "danger" | "promise") => {
-    if (type === "success") {
-      toast.success("Changes saved successfully!", {
-        description: "Your preference settings have been synchronized to cloud.",
-        variant: "ios-glass",
-      });
-    } else if (type === "danger") {
-      toast.danger("Connection lost!", {
-        description: "Please check your network settings and try again.",
-        variant: "ios-glass",
-      });
-    } else if (type === "warning") {
-      toast.warning("Storage limit almost full", {
-        description: "You have used 92% of your monthly allocation.",
-        variant: "ios-glass",
-      });
-    } else if (type === "promise") {
-      toast.promise(
-        new Promise((resolve) => setTimeout(resolve, 2000)),
-        {
-          loading: "Processing payment details...",
-          success: "Transaction completed successfully!",
-          error: "Payment declined by issuing bank.",
-        },
-        { variant: "ios-glass" }
-      );
-    } else {
-      toast.info("New update available", {
-        description: "Version 2.4 contains critical security patches.",
-        variant: "ios-glass",
-      });
-    }
-  };
-
-  return (
-    <div className="space-y-8">
-      {/* Alert Component Showcase */}
-      <div className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-xl space-y-4">
-        <div className="flex items-center justify-between pb-3 border-b border-zinc-100 dark:border-zinc-800">
-          <div className="flex items-center gap-2">
-            <Bell className="h-5 w-5 text-blue-500" />
-            <h2 className="text-lg font-semibold">Alert Banners</h2>
-          </div>
-          <span className="text-xs font-medium px-2.5 py-1 rounded-full bg-blue-50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400">
-            iOS Glassmorphism & Status Intents
-          </span>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <Alert
-            variant="ios-glass"
-            intent="info"
-            title="System Maintenance Scheduled"
-            description="Our server cluster will undergo maintenance tonight at 02:00 UTC."
-            dismissible
-          />
-
-          <Alert
-            variant="ios-glass"
-            intent="success"
-            title="Deployment Successful"
-            description="Your changes are now live on production."
-            action={
-              <Button size="sm" variant="outline">
-                View Logs
-              </Button>
-            }
-          />
-
-          <Alert
-            variant="bordered"
-            intent="warning"
-            title="Low Disk Space Warning"
-            description="Less than 1GB remaining on main storage volume."
-            dismissible
-          />
-
-          <Alert
-            variant="filled"
-            intent="danger"
-            title="Security Alert"
-            description="Multiple failed login attempts detected from IP 192.168.1.45"
-            dismissible
-          />
-        </div>
-      </div>
-
-      {/* Toast & Snackbar Interactive Triggers */}
-      <div className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-xl space-y-4">
-        <div className="flex items-center justify-between pb-3 border-b border-zinc-100 dark:border-zinc-800">
-          <div className="flex items-center gap-2">
-            <Zap className="h-5 w-5 text-amber-500" />
-            <h2 className="text-lg font-semibold">Toast & Snackbar Triggers</h2>
-          </div>
-        </div>
-
-        <div className="flex flex-wrap items-center gap-3">
-          <Button size="sm" variant="default" onClick={() => triggerToast("success")}>
-            Success Toast
-          </Button>
-          <Button size="sm" variant="destructive" onClick={() => triggerToast("danger")}>
-            Danger Toast
-          </Button>
-          <Button size="sm" variant="secondary" onClick={() => triggerToast("info")}>
-            Info Toast
-          </Button>
-          <Button size="sm" variant="outline" onClick={() => triggerToast("warning")}>
-            Warning Toast
-          </Button>
-          <Button size="sm" variant="gradient" onClick={() => triggerToast("promise")}>
-            Promise Toast
-          </Button>
-
-          <Button
-            size="sm"
-            variant="neon"
-            onClick={() => setSnackbarOpen(true)}
-            leftIcon={<RefreshCw size={14} />}
-          >
-            Trigger Action Snackbar
-          </Button>
-        </div>
-
-        <Snackbar
-          open={snackbarOpen}
-          message="Item archived to your cloud workspace."
-          actionLabel="Undo"
-          onAction={() => {
-            setSnackbarOpen(false);
-            toast.info("Archive action undone");
-          }}
-          onClose={() => setSnackbarOpen(false)}
-          variant="ios-glass"
-        />
-      </div>
-
-      {/* Progress & Spinner Showcase */}
-      <div className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-xl grid grid-cols-1 md:grid-cols-2 gap-8">
-        {/* Progress Bar & Circle */}
-        <div className="space-y-4">
-          <h3 className="text-base font-semibold border-b border-zinc-100 dark:border-zinc-800 pb-2">
-            Progress Indicators
-          </h3>
-
-          <Progress
-            value={progressVal}
-            label="Linear Glass Progress"
-            showValue
-            variant="ios-glass"
-            color="primary"
-          />
-
-          <Progress
-            type="circle"
-            value={progressVal}
-            size="lg"
-            showValue
-            color="purple"
-            label="Circular Ring"
-          />
-
-          <Progress
-            steps={4}
-            currentStep={stepVal}
-            label="Multi-step Progress"
-            showValue
-            color="success"
-          />
-
-          <div className="flex items-center gap-2 pt-2">
-            <Button
-              size="sm"
-              variant="outline"
-              onClick={() => setProgressVal((p) => Math.max(0, p - 15))}
-            >
-              - 15%
-            </Button>
-            <Button
-              size="sm"
-              variant="outline"
-              onClick={() => setProgressVal((p) => Math.min(100, p + 15))}
-            >
-              + 15%
-            </Button>
-            <Button
-              size="sm"
-              variant="secondary"
-              onClick={() => setStepVal((s) => (s % 4) + 1)}
-            >
-              Next Step ({stepVal}/4)
-            </Button>
-          </div>
-        </div>
-
-        {/* Spinners */}
-        <div className="space-y-4">
-          <h3 className="text-base font-semibold border-b border-zinc-100 dark:border-zinc-800 pb-2">
-            Spinner Activity Styles
-          </h3>
-
-          <div className="grid grid-cols-2 gap-4">
-            <div className="p-4 rounded-2xl bg-zinc-100 dark:bg-zinc-800/40 flex items-center justify-between">
-              <span className="text-xs font-mono">iOS Segmented</span>
-              <Spinner variant="ios" size="lg" color="primary" />
-            </div>
-
-            <div className="p-4 rounded-2xl bg-zinc-100 dark:bg-zinc-800/40 flex items-center justify-between">
-              <span className="text-xs font-mono">Pulse Glow</span>
-              <Spinner variant="pulse" size="md" color="purple" />
-            </div>
-
-            <div className="p-4 rounded-2xl bg-zinc-100 dark:bg-zinc-800/40 flex items-center justify-between">
-              <span className="text-xs font-mono">Wave Dots</span>
-              <Spinner variant="dots" size="md" color="success" />
-            </div>
-
-            <div className="p-4 rounded-2xl bg-zinc-100 dark:bg-zinc-800/40 flex items-center justify-between">
-              <span className="text-xs font-mono">Ring Spin</span>
-              <Spinner variant="ring" size="md" color="danger" />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Skeleton Showcase */}
-      <div className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-xl space-y-4">
-        <div className="flex items-center justify-between pb-3 border-b border-zinc-100 dark:border-zinc-800">
-          <h2 className="text-lg font-semibold">Skeleton Wave Loaders</h2>
-          <Button
-            size="sm"
-            variant="outline"
-            onClick={() => setIsLoadingSkeleton((prev) => !prev)}
-          >
-            {isLoadingSkeleton ? "Show Content" : "Toggle Skeleton"}
-          </Button>
-        </div>
-
-        {isLoadingSkeleton ? (
-          <div className="p-4 rounded-2xl border border-zinc-200 dark:border-zinc-800 space-y-4">
-            <div className="flex items-center gap-3">
-              <Skeleton variant="avatar" />
-              <div className="space-y-1.5 flex-1">
-                <Skeleton variant="text" width="40%" />
-                <Skeleton variant="text" width="60%" />
-              </div>
-            </div>
-            <Skeleton variant="card" height={120} />
-          </div>
-        ) : (
-          <div className="p-4 rounded-2xl border border-zinc-200 dark:border-zinc-800 flex items-center gap-4">
-            <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold">
-              JD
-            </div>
-            <div>
-              <h4 className="text-sm font-semibold">Jane Doe</h4>
-              <p className="text-xs text-zinc-500">Full-stack Software Engineer</p>
-            </div>
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
-
-export default function Home() {
-  const [darkMode, setDarkMode] = React.useState(true);
   const [formData, setFormData] = React.useState({
     fullName: "Jane Doe",
     email: "jane.doe@example.com",
@@ -324,39 +83,530 @@ export default function Home() {
   const [formErrors, setFormErrors] = React.useState<Record<string, string>>({});
   const [submittedData, setSubmittedData] = React.useState<Record<string, unknown> | null>(null);
 
-  const toggleDarkMode = () => {
-    setDarkMode((prev) => !prev);
-  };
-
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const errors: Record<string, string> = {};
 
     if (!formData.fullName) errors.fullName = "Full name is required";
     if (!formData.email || !formData.email.includes("@")) errors.email = "Valid email address is required";
-    if (!formData.bio) errors.bio = "Please write a short bio";
 
     setFormErrors(errors);
 
     if (Object.keys(errors).length === 0) {
       setSubmittedData(formData);
+      toast.success("Profile updated successfully!");
     }
   };
 
-  const selectRoleOptions = [
-    { value: "developer", label: "Software Developer", description: "Frontend, Backend, or Fullstack" },
-    { value: "designer", label: "UI/UX Designer", description: "Product & Graphic Design" },
-    { value: "pm", label: "Product Manager", description: "Strategy & Roadmap Planning" },
-    { value: "devops", label: "DevOps Engineer", description: "Infrastructure & CI/CD Pipelines" },
-  ];
+  const triggerToast = (type: "info" | "success" | "warning" | "danger" | "promise") => {
+    if (type === "success") {
+      toast.success("Changes saved successfully!", {
+        description: "Your preference settings have been synchronized.",
+        variant: "default",
+      });
+    } else if (type === "danger") {
+      toast.danger("Connection lost!", {
+        description: "Please check your network settings.",
+        variant: "default",
+      });
+    } else if (type === "warning") {
+      toast.warning("Storage limit almost full", {
+        description: "You have used 92% of your allocation.",
+        variant: "default",
+      });
+    } else if (type === "promise") {
+      toast.promise(
+        new Promise((resolve) => setTimeout(resolve, 2000)),
+        {
+          loading: "Processing payment details...",
+          success: "Transaction completed successfully!",
+          error: "Payment declined.",
+        },
+        { variant: "default" }
+      );
+    } else {
+      toast.info("New update available", {
+        description: "Version 2.4 contains security patches.",
+        variant: "default",
+      });
+    }
+  };
 
-  const selectTechOptions = [
-    { value: "react", label: "React / Next.js" },
-    { value: "typescript", label: "TypeScript" },
-    { value: "tailwind", label: "Tailwind CSS" },
-    { value: "framer", label: "Framer Motion" },
-    { value: "graphql", label: "GraphQL" },
-  ];
+  return (
+    <div className="space-y-12">
+      {/* 1. Form Suite Section */}
+      <section className="space-y-6">
+        <div className="flex items-center gap-2 pb-3 border-b border-zinc-200 dark:border-zinc-800">
+          <Layers className="h-5 w-5 text-blue-500" />
+          <h2 className="text-xl font-bold tracking-tight">Form Component Suite</h2>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <div className="lg:col-span-7 p-6 sm:p-8 rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-lg space-y-6">
+            <Form onSubmit={handleFormSubmit} errors={formErrors} className="space-y-4">
+              <FormField name="fullName" label="Full Name" required tooltip="Legal first and last name">
+                <Input
+                  placeholder="e.g. Alex Morgan"
+                  leftAdornment={<User size={18} />}
+                  value={formData.fullName}
+                  onChange={(e) =>
+                    setFormData((prev) => ({ ...prev, fullName: e.target.value }))
+                  }
+                  clearable
+                />
+              </FormField>
+
+              <FormField name="email" label="Email Address" required>
+                <Input
+                  type="email"
+                  placeholder="alex@company.com"
+                  leftAdornment={<Mail size={18} />}
+                  value={formData.email}
+                  onChange={(e) =>
+                    setFormData((prev) => ({ ...prev, email: e.target.value }))
+                  }
+                />
+              </FormField>
+
+              <FormField name="role" label="Role">
+                <Select
+                  options={[
+                    { value: "developer", label: "Software Developer" },
+                    { value: "designer", label: "UI/UX Designer" },
+                    { value: "pm", label: "Product Manager" },
+                  ]}
+                  value={formData.role}
+                  onChange={(val) =>
+                    setFormData((prev) => ({ ...prev, role: val as string }))
+                  }
+                />
+              </FormField>
+
+              <FormField name="bio" label="About Yourself">
+                <Textarea
+                  placeholder="Short background bio..."
+                  rows={3}
+                  autoResize
+                  showCount
+                  maxLength={160}
+                  value={formData.bio}
+                  onChange={(e) =>
+                    setFormData((prev) => ({ ...prev, bio: e.target.value }))
+                  }
+                />
+              </FormField>
+
+              <FormField name="experienceLevel" label="Experience Level">
+                <RadioGroup
+                  value={formData.experienceLevel}
+                  onValueChange={(val) =>
+                    setFormData((prev) => ({ ...prev, experienceLevel: val }))
+                  }
+                  variant="card"
+                  orientation="horizontal"
+                >
+                  <RadioGroupItem value="junior" label="Junior" description="0-2 yrs" />
+                  <RadioGroupItem value="mid" label="Mid-Level" description="2-5 yrs" />
+                  <RadioGroupItem value="senior" label="Senior" description="5+ yrs" />
+                </RadioGroup>
+              </FormField>
+
+              <FormField name="satisfaction" label="Productivity Score">
+                <Slider
+                  value={formData.satisfaction}
+                  onValueChange={(val) =>
+                    setFormData((prev) => ({ ...prev, satisfaction: val as number }))
+                  }
+                  min={0}
+                  max={100}
+                />
+              </FormField>
+
+              <FormField name="notifications" label="Settings">
+                <Switch
+                  label="Receive weekly digest notifications"
+                  checked={formData.notifications}
+                  onCheckedChange={(checked) =>
+                    setFormData((prev) => ({ ...prev, notifications: checked }))
+                  }
+                />
+              </FormField>
+
+              <FormField name="resume" label="File Attachment">
+                <FileUpload
+                  accept="application/pdf, image/*"
+                  maxSize={5 * 1024 * 1024}
+                  multiple
+                />
+              </FormField>
+
+              <Checkbox
+                label="I agree to Terms & Conditions"
+                defaultChecked
+                variant="card"
+              />
+
+              <Button type="submit" variant="default" size="lg" leftIcon={<Send size={18} />} glow className="w-full">
+                Submit Profile
+              </Button>
+            </Form>
+          </div>
+
+          <div className="lg:col-span-5 flex flex-col gap-6">
+            <div className="p-6 rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-lg space-y-4">
+              <div className="flex items-center gap-2 pb-3 border-b border-zinc-100 dark:border-zinc-800">
+                <CheckCircle2 className="h-5 w-5 text-emerald-500" />
+                <h3 className="text-base font-semibold">Live Form State</h3>
+              </div>
+              <pre className="text-xs font-mono bg-zinc-100 dark:bg-zinc-950 p-4 rounded-xl overflow-x-auto text-zinc-800 dark:text-zinc-300 border border-zinc-200/50 dark:border-zinc-800/80">
+                {JSON.stringify(submittedData || formData, null, 2)}
+              </pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 2. Feedback Suite Section */}
+      <section className="space-y-6">
+        <div className="flex items-center gap-2 pb-3 border-b border-zinc-200 dark:border-zinc-800">
+          <Bell className="h-5 w-5 text-amber-500" />
+          <h2 className="text-xl font-bold tracking-tight">Feedback Component Suite</h2>
+        </div>
+
+        {/* Alert Banners */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <Alert
+            variant="default"
+            intent="info"
+            title="System Maintenance Scheduled"
+            description="Our server cluster will undergo maintenance tonight at 02:00 UTC."
+            dismissible
+          />
+          <Alert
+            variant="default"
+            intent="success"
+            title="Deployment Successful"
+            description="Your changes are now live on production."
+            action={
+              <Button size="sm" variant="outline">
+                View Logs
+              </Button>
+            }
+          />
+          <Alert
+            variant="bordered"
+            intent="warning"
+            title="Low Storage Warning"
+            description="Less than 1GB remaining on main storage volume."
+            dismissible
+          />
+          <Alert
+            variant="filled"
+            intent="danger"
+            title="Security Alert"
+            description="Multiple failed login attempts detected."
+            dismissible
+          />
+        </div>
+
+        {/* Toast & Snackbar Buttons */}
+        <div className="p-6 rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-lg space-y-4">
+          <div className="flex items-center gap-2 pb-3 border-b border-zinc-100 dark:border-zinc-800">
+            <Zap className="h-5 w-5 text-blue-500" />
+            <h3 className="text-base font-semibold">Toast & Snackbar Notification Triggers</h3>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-3">
+            <Button size="sm" variant="default" onClick={() => triggerToast("success")}>
+              Success Toast
+            </Button>
+            <Button size="sm" variant="destructive" onClick={() => triggerToast("danger")}>
+              Danger Toast
+            </Button>
+            <Button size="sm" variant="secondary" onClick={() => triggerToast("info")}>
+              Info Toast
+            </Button>
+            <Button size="sm" variant="outline" onClick={() => triggerToast("warning")}>
+              Warning Toast
+            </Button>
+            <Button size="sm" variant="gradient" onClick={() => triggerToast("promise")}>
+              Promise Toast
+            </Button>
+            <Button
+              size="sm"
+              variant="neon"
+              onClick={() => setSnackbarOpen(true)}
+              leftIcon={<RefreshCw size={14} />}
+            >
+              Trigger Snackbar
+            </Button>
+          </div>
+
+          <Snackbar
+            open={snackbarOpen}
+            message="Item moved to workspace trash."
+            actionLabel="Undo"
+            onAction={() => {
+              setSnackbarOpen(false);
+              toast.info("Action undone!");
+            }}
+            onClose={() => setSnackbarOpen(false)}
+            variant="default"
+          />
+        </div>
+
+        {/* Progress & Spinners */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="p-6 rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-lg space-y-4">
+            <h3 className="text-base font-semibold border-b border-zinc-100 dark:border-zinc-800 pb-2">
+              Progress Bar & Ring
+            </h3>
+
+            <Progress
+              value={progressVal}
+              label="Linear Progress"
+              showValue
+              variant="default"
+              color="primary"
+            />
+
+            <Progress
+              type="circle"
+              value={progressVal}
+              size="lg"
+              showValue
+              color="purple"
+              label="Circular Ring"
+            />
+
+            <Progress
+              steps={4}
+              currentStep={stepVal}
+              label="Multi-step Progress"
+              showValue
+              color="success"
+            />
+
+            <div className="flex items-center gap-2 pt-2">
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={() => setProgressVal((p) => Math.max(0, p - 15))}
+              >
+                - 15%
+              </Button>
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={() => setProgressVal((p) => Math.min(100, p + 15))}
+              >
+                + 15%
+              </Button>
+              <Button
+                size="sm"
+                variant="secondary"
+                onClick={() => setStepVal((s) => (s % 4) + 1)}
+              >
+                Next Step ({stepVal}/4)
+              </Button>
+            </div>
+          </div>
+
+          <div className="p-6 rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-lg space-y-4">
+            <h3 className="text-base font-semibold border-b border-zinc-100 dark:border-zinc-800 pb-2">
+              Spinners & Skeleton
+            </h3>
+
+            <div className="grid grid-cols-2 gap-4">
+              <div className="p-4 rounded-2xl bg-zinc-100 dark:bg-zinc-800/40 flex items-center justify-between">
+                <span className="text-xs font-mono">iOS Segment</span>
+                <Spinner variant="ios" size="md" color="primary" />
+              </div>
+              <div className="p-4 rounded-2xl bg-zinc-100 dark:bg-zinc-800/40 flex items-center justify-between">
+                <span className="text-xs font-mono">Pulse</span>
+                <Spinner variant="pulse" size="md" color="purple" />
+              </div>
+              <div className="p-4 rounded-2xl bg-zinc-100 dark:bg-zinc-800/40 flex items-center justify-between">
+                <span className="text-xs font-mono">Dots</span>
+                <Spinner variant="dots" size="md" color="success" />
+              </div>
+              <div className="p-4 rounded-2xl bg-zinc-100 dark:bg-zinc-800/40 flex items-center justify-between">
+                <span className="text-xs font-mono">Ring</span>
+                <Spinner variant="ring" size="md" color="danger" />
+              </div>
+            </div>
+
+            <div className="pt-2 border-t border-zinc-100 dark:border-zinc-800 flex items-center justify-between">
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={() => setIsLoadingSkeleton((prev) => !prev)}
+              >
+                {isLoadingSkeleton ? "Show Content" : "Toggle Skeleton"}
+              </Button>
+            </div>
+
+            {isLoadingSkeleton && (
+              <div className="space-y-2 p-3 rounded-2xl border border-zinc-200 dark:border-zinc-800">
+                <Skeleton variant="avatar" />
+                <Skeleton variant="text" width="70%" />
+                <Skeleton variant="rect" height={60} />
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* 3. Overlay Suite Section */}
+      <section className="space-y-6">
+        <div className="flex items-center gap-2 pb-3 border-b border-zinc-200 dark:border-zinc-800">
+          <MousePointer className="h-5 w-5 text-purple-500" />
+          <h2 className="text-xl font-bold tracking-tight">Overlay Component Suite</h2>
+        </div>
+
+        <div className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-lg space-y-6">
+          {/* Right Click Context Menu Zone */}
+          <ContextMenu variant="default">
+            <ContextMenuTrigger className="p-6 rounded-2xl border-2 border-dashed border-zinc-300 dark:border-zinc-700 bg-blue-50/20 dark:bg-blue-950/20 text-center cursor-context-menu">
+              <p className="text-sm font-semibold text-blue-600 dark:text-blue-400">
+                Right-Click anywhere in this box to open Context Menu
+              </p>
+              <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-1">
+                Opens context menu at exact cursor coordinates
+              </p>
+            </ContextMenuTrigger>
+
+            <ContextMenuContent>
+              <ContextMenuLabel>Actions</ContextMenuLabel>
+              <ContextMenuItem icon={<Copy size={14} />} shortcut="⌘C" onClick={() => toast.info("Copied!")}>
+                Copy Link
+              </ContextMenuItem>
+              <ContextMenuItem icon={<Share2 size={14} />} shortcut="⌘S" onClick={() => toast.info("Shared!")}>
+                Share Project
+              </ContextMenuItem>
+              <ContextMenuSeparator />
+              <ContextMenuItem icon={<Trash2 size={14} />} shortcut="Del" destructive onClick={() => toast.danger("Deleted!")}>
+                Remove Item
+              </ContextMenuItem>
+            </ContextMenuContent>
+          </ContextMenu>
+
+          {/* Interactive Trigger Buttons */}
+          <div className="flex flex-wrap items-center gap-3">
+            <Button
+              size="sm"
+              variant="default"
+              leftIcon={<Maximize2 size={16} />}
+              onClick={() => setModalOpen(true)}
+            >
+              Open Modal Dialog
+            </Button>
+
+            <Button
+              size="sm"
+              variant="secondary"
+              leftIcon={<PanelRight size={16} />}
+              onClick={() => setDrawerOpen(true)}
+            >
+              Open Side Drawer
+            </Button>
+
+            {/* Popover */}
+            <Popover
+              variant="default"
+              placement="top"
+              content={
+                <div className="space-y-1 text-xs">
+                  <p className="font-semibold text-zinc-900 dark:text-zinc-100">Floating Popover Card</p>
+                  <p className="text-zinc-500 dark:text-zinc-400">Translucent popover window anchored to trigger.</p>
+                </div>
+              }
+            >
+              <Button size="sm" variant="outline">Popover</Button>
+            </Popover>
+
+            {/* Dropdown Menu */}
+            <Dropdown variant="default">
+              <DropdownTrigger>
+                <Button size="sm" variant="outline" rightIcon={<MoreVertical size={16} />}>
+                  Dropdown Menu
+                </Button>
+              </DropdownTrigger>
+              <DropdownContent>
+                <DropdownLabel>Options</DropdownLabel>
+                <DropdownItem icon={<User size={14} />} onClick={() => toast.info("Profile clicked")}>
+                  User Profile
+                </DropdownItem>
+                <DropdownSeparator />
+                <DropdownItem icon={<Trash2 size={14} />} destructive onClick={() => toast.danger("Deleted item")}>
+                  Delete Item
+                </DropdownItem>
+              </DropdownContent>
+            </Dropdown>
+
+            {/* Tooltip */}
+            <Tooltip content="Custom Tooltip Label" placement="top" variant="default">
+              <Button size="sm" variant="ghost" leftIcon={<Info size={16} />}>
+                Tooltip
+              </Button>
+            </Tooltip>
+          </div>
+
+          {/* Modal */}
+          <Modal
+            open={modalOpen}
+            onClose={() => setModalOpen(false)}
+            title="Modal Dialog Title"
+            description="Accessible dialog overlay with focus trap and scroll lock."
+            variant="default"
+            footer={
+              <>
+                <Button size="sm" variant="outline" onClick={() => setModalOpen(false)}>
+                  Cancel
+                </Button>
+                <Button size="sm" variant="default" onClick={() => setModalOpen(false)}>
+                  Confirm Action
+                </Button>
+              </>
+            }
+          >
+            <div className="space-y-3 text-xs">
+              <p>Modals lock body scrolling, support ESC key dismiss, and adapt to light & dark themes.</p>
+              <Input placeholder="Interactive input inside modal..." variant="bordered" />
+            </div>
+          </Modal>
+
+          {/* Drawer */}
+          <Drawer
+            open={drawerOpen}
+            onClose={() => setDrawerOpen(false)}
+            anchor="right"
+            title="Side Drawer Navigation"
+            description="Slide-out drawer panel with swipe-to-dismiss support."
+            variant="default"
+            footer={
+              <Button size="sm" variant="default" className="w-full" onClick={() => setDrawerOpen(false)}>
+                Close Drawer
+              </Button>
+            }
+          >
+            <div className="space-y-4 text-xs">
+              <Alert variant="default" intent="info" title="Drawer Navigation" description="Supports left, right, top, or bottom anchors." />
+              <Progress value={78} label="Storage usage" showValue variant="default" />
+            </div>
+          </Drawer>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+export default function Home() {
+  const [darkMode, setDarkMode] = React.useState(true);
+
+  const toggleDarkMode = () => {
+    setDarkMode((prev) => !prev);
+  };
 
   return (
     <ToastProvider position="top-right">
@@ -373,7 +623,7 @@ export default function Home() {
                   Simple Components UI
                 </h1>
                 <p className="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400">
-                  Form Suite & iOS Glassmorphism Feedback Components
+                  Form, Feedback & Overlay Component Showcase
                 </p>
               </div>
             </div>
@@ -390,305 +640,9 @@ export default function Home() {
             </div>
           </header>
 
-          {/* Main Body Grid */}
-          <main className="max-w-6xl mx-auto py-10 space-y-12">
-            {/* Section 1: Feedback Components Showcase */}
-            <FeedbackDemo />
-
-            {/* Section 2: Form Components Suite */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-              {/* Left Column: Interactive Form */}
-              <section className="lg:col-span-7 flex flex-col gap-6">
-                <div className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-xl shadow-zinc-200/50 dark:shadow-none">
-                  <div className="flex items-center justify-between mb-6 pb-4 border-b border-zinc-100 dark:border-zinc-800">
-                    <div className="flex items-center gap-2">
-                      <Layers className="h-5 w-5 text-blue-500" />
-                      <h2 className="text-lg font-semibold">User Onboarding Form</h2>
-                    </div>
-                    <span className="text-xs font-medium px-2.5 py-1 rounded-full bg-blue-50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-800">
-                      Compound Form Context
-                    </span>
-                  </div>
-
-                  <Form onSubmit={handleFormSubmit} errors={formErrors} className="space-y-6">
-                    {/* Input Component */}
-                    <FormField
-                      name="fullName"
-                      label="Full Name"
-                      required
-                      tooltip="Enter your legal first and last name"
-                    >
-                      <Input
-                        placeholder="e.g. Alex Morgan"
-                        leftAdornment={<User size={18} />}
-                        value={formData.fullName}
-                        onChange={(e) =>
-                          setFormData((prev) => ({
-                            ...prev,
-                            fullName: e.target.value,
-                          }))
-                        }
-                        clearable
-                      />
-                    </FormField>
-
-                    {/* Input with Password / Email */}
-                    <FormField
-                      name="email"
-                      label="Email Address"
-                      required
-                      helperText="We will send your verification link to this email."
-                    >
-                      <Input
-                        type="email"
-                        placeholder="alex@company.com"
-                        leftAdornment={<Mail size={18} />}
-                        value={formData.email}
-                        onChange={(e) =>
-                          setFormData((prev) => ({
-                            ...prev,
-                            email: e.target.value,
-                          }))
-                        }
-                      />
-                    </FormField>
-
-                    {/* Select Component */}
-                    <FormField
-                      name="role"
-                      label="Primary Role"
-                      helperText="Select the option that best describes your daily responsibilities."
-                    >
-                      <Select
-                        options={selectRoleOptions}
-                        value={formData.role}
-                        onChange={(val) =>
-                          setFormData((prev) => ({ ...prev, role: val as string }))
-                        }
-                        searchable
-                      />
-                    </FormField>
-
-                    {/* Multi-Select Select */}
-                    <FormField
-                      name="techStack"
-                      label="Technologies & Frameworks"
-                      helperText="Multi-select dropdown"
-                    >
-                      <Select
-                        options={selectTechOptions}
-                        value={formData.techStack}
-                        onChange={(val) =>
-                          setFormData((prev) => ({
-                            ...prev,
-                            techStack: val as string[],
-                          }))
-                        }
-                        multiple
-                        clearable
-                      />
-                    </FormField>
-
-                    {/* Textarea Component */}
-                    <FormField name="bio" label="About Yourself" required>
-                      <Textarea
-                        placeholder="Tell us a few words about your background and recent projects..."
-                        rows={3}
-                        autoResize
-                        showCount
-                        maxLength={200}
-                        value={formData.bio}
-                        onChange={(e) =>
-                          setFormData((prev) => ({ ...prev, bio: e.target.value }))
-                        }
-                      />
-                    </FormField>
-
-                    {/* RadioGroup Component */}
-                    <FormField name="experienceLevel" label="Experience Level">
-                      <RadioGroup
-                        value={formData.experienceLevel}
-                        onValueChange={(val) =>
-                          setFormData((prev) => ({ ...prev, experienceLevel: val }))
-                        }
-                        variant="card"
-                        orientation="horizontal"
-                      >
-                        <RadioGroupItem
-                          value="junior"
-                          label="Junior"
-                          description="0 - 2 years"
-                        />
-                        <RadioGroupItem
-                          value="mid"
-                          label="Mid-Level"
-                          description="2 - 5 years"
-                        />
-                        <RadioGroupItem
-                          value="senior"
-                          label="Senior"
-                          description="5+ years"
-                        />
-                      </RadioGroup>
-                    </FormField>
-
-                    {/* Switch Component */}
-                    <FormField name="notifications" label="Notification Settings">
-                      <Switch
-                        label="Receive weekly product updates"
-                        description="Get concise digest notifications right to your inbox."
-                        checked={formData.notifications}
-                        onCheckedChange={(checked) =>
-                          setFormData((prev) => ({
-                            ...prev,
-                            notifications: checked,
-                          }))
-                        }
-                      />
-                    </FormField>
-
-                    {/* Slider Component */}
-                    <FormField name="satisfaction" label="Productivity Score">
-                      <Slider
-                        value={formData.satisfaction}
-                        onValueChange={(val) =>
-                          setFormData((prev) => ({
-                            ...prev,
-                            satisfaction: val as number,
-                          }))
-                        }
-                        min={0}
-                        max={100}
-                        step={5}
-                        marks={[
-                          { value: 0, label: "0%" },
-                          { value: 50, label: "50%" },
-                          { value: 100, label: "100%" },
-                        ]}
-                      />
-                    </FormField>
-
-                    {/* Range Slider Component */}
-                    <FormField
-                      name="budgetRange"
-                      label="Estimated Project Budget ($)"
-                    >
-                      <Slider
-                        value={formData.budgetRange}
-                        onValueChange={(val) =>
-                          setFormData((prev) => ({
-                            ...prev,
-                            budgetRange: val as [number, number],
-                          }))
-                        }
-                        min={500}
-                        max={10000}
-                        step={500}
-                        color="purple"
-                        formatTooltip={(v) => `$${v}`}
-                      />
-                    </FormField>
-
-                    {/* FileUpload Component */}
-                    <FormField name="resume" label="Resume / Portfolio Document">
-                      <FileUpload
-                        accept="application/pdf, image/*"
-                        maxSize={5 * 1024 * 1024}
-                        multiple
-                        dragAndDropText="Drag & drop your PDF resume or avatar image"
-                      />
-                    </FormField>
-
-                    {/* Checkbox Component */}
-                    <Checkbox
-                      label="I agree to the Terms of Service and Privacy Policy"
-                      description="By submitting, you agree to receive essential system alerts."
-                      defaultChecked
-                      variant="card"
-                      color="primary"
-                    />
-
-                    <Button
-                      type="submit"
-                      variant="default"
-                      size="lg"
-                      leftIcon={<Send size={18} />}
-                      glow
-                      className="w-full"
-                    >
-                      Submit Form
-                    </Button>
-                  </Form>
-                </div>
-              </section>
-
-              {/* Right Column: Live State & Component Gallery */}
-              <section className="lg:col-span-5 flex flex-col gap-6">
-                {/* Submitted Form State */}
-                <div className="p-6 rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-lg">
-                  <div className="flex items-center gap-2 mb-4 pb-3 border-b border-zinc-100 dark:border-zinc-800">
-                    <CheckCircle className="h-5 w-5 text-emerald-500" />
-                    <h3 className="text-base font-semibold">Live Form State</h3>
-                  </div>
-
-                  <pre className="text-xs font-mono bg-zinc-100 dark:bg-zinc-950 p-4 rounded-xl overflow-x-auto text-zinc-800 dark:text-zinc-300 border border-zinc-200/50 dark:border-zinc-800/80">
-                    {JSON.stringify(submittedData || formData, null, 2)}
-                  </pre>
-                </div>
-
-                {/* Component Variants Showcase */}
-                <div className="p-6 rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-lg space-y-6">
-                  <div className="flex items-center gap-2 pb-3 border-b border-zinc-100 dark:border-zinc-800">
-                    <Sliders className="h-5 w-5 text-purple-500" />
-                    <h3 className="text-base font-semibold">
-                      Variant & Style Showcase
-                    </h3>
-                  </div>
-
-                  {/* Input Variants */}
-                  <div className="space-y-3">
-                    <span className="text-xs font-bold uppercase tracking-wider text-zinc-400">
-                      Input Variants
-                    </span>
-                    <Input variant="bordered" placeholder="Bordered variant" />
-                    <Input variant="underline" placeholder="Underline variant" />
-                    <Input variant="glass" placeholder="Glassmorphism variant" />
-                    <Input
-                      status="error"
-                      errorText="Validation error state"
-                      defaultValue="Invalid value"
-                    />
-                    <Input status="success" defaultValue="Valid value confirmed" />
-                  </div>
-
-                  {/* Checkbox Colors */}
-                  <div className="space-y-3 pt-2">
-                    <span className="text-xs font-bold uppercase tracking-wider text-zinc-400">
-                      Checkbox Accent Colors
-                    </span>
-                    <div className="grid grid-cols-2 gap-2">
-                      <Checkbox label="Primary" color="primary" defaultChecked />
-                      <Checkbox label="Success" color="success" defaultChecked />
-                      <Checkbox label="Danger" color="danger" defaultChecked />
-                      <Checkbox label="Warning" color="warning" defaultChecked />
-                    </div>
-                  </div>
-
-                  {/* Switches Sizes */}
-                  <div className="space-y-3 pt-2">
-                    <span className="text-xs font-bold uppercase tracking-wider text-zinc-400">
-                      Switch Sizes & Loading
-                    </span>
-                    <div className="flex items-center gap-4">
-                      <Switch size="sm" defaultChecked />
-                      <Switch size="md" defaultChecked color="success" />
-                      <Switch size="lg" defaultChecked color="purple" />
-                      <Switch size="md" loading />
-                    </div>
-                  </div>
-                </div>
-              </section>
-            </div>
+          {/* Main Showcase Section */}
+          <main className="max-w-6xl mx-auto py-8">
+            <PageShowcase />
           </main>
         </div>
       </div>
