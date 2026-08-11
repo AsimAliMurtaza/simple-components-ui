@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { HTMLMotionProps } from 'framer-motion';
+import { Layout } from 'react-grid-layout';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     variant?: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link" | "glass" | "gradient" | "neon";
@@ -23,6 +24,48 @@ interface TextProps extends HTMLMotionProps<"p"> {
     staggerMs?: number;
 }
 declare const Text: React.ForwardRefExoticComponent<Omit<TextProps, "ref"> & React.RefAttributes<HTMLElement>>;
+
+interface GridItemConfig extends Layout {
+    title?: string;
+    icon?: React.ReactNode;
+}
+interface GridProps {
+    /** Unique key for localStorage persistence */
+    storageKey: string;
+    /** Default grid layout if none is saved */
+    initialLayout: Layout[];
+    /** Function that renders each grid item */
+    renderItem: (id: string) => React.ReactNode;
+    /** Optional item titles map or renderer */
+    getItemTitle?: (id: string) => {
+        title?: string;
+        icon?: React.ReactNode;
+    };
+    /** Optional: Responsive breakpoints */
+    breakpoints?: Record<string, number>;
+    /** Optional: Columns per breakpoint */
+    cols?: Record<string, number>;
+    /** Optional: Custom className */
+    className?: string;
+    /** Optional: Grid row height */
+    rowHeight?: number;
+    /** Optional: Spacing between items [x, y] */
+    margin?: [number, number];
+    /** Disable dragging/resizing if needed */
+    isDraggable?: boolean;
+    isResizable?: boolean;
+    /** Custom drag handle CSS class */
+    draggableHandle?: string;
+    /** Show layout reset button header */
+    showReset?: boolean;
+    /** Card visual variant */
+    variant?: "default" | "bordered" | "glass" | "ios-glass";
+}
+/**
+ * DraggableResizableGrid — A responsive, persistent, and animated layout component
+ * built with react-grid-layout, Tailwind, and drag handle controls.
+ */
+declare const DraggableResizableGrid: React.FC<GridProps>;
 
 interface FormContextValue {
     disabled?: boolean;
@@ -357,4 +400,132 @@ interface SkeletonProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 declare const Skeleton: React.ForwardRefExoticComponent<SkeletonProps & React.RefAttributes<HTMLDivElement>>;
 
-export { Alert, type AlertProps, Button, type ButtonProps, Checkbox, type CheckboxProps, type FileItem, FileUpload, type FileUploadProps, Form, type FormContextValue, FormField, type FormFieldContextValue, type FormFieldProps, type FormProps, Input, type InputProps, Progress, type ProgressProps, RadioGroup, RadioGroupItem, type RadioGroupItemProps, type RadioGroupProps, Select, SelectContent, SelectItem, type SelectOption, type SelectProps, SelectTrigger, SelectValue, Skeleton, type SkeletonProps, Slider, type SliderMark, type SliderProps, Snackbar, type SnackbarProps, Spinner, type SpinnerProps, Switch, type SwitchProps, Text, type TextProps, Textarea, type TextareaProps, type ToastData, type ToastPosition, ToastProvider, type ToastProviderProps, type ToastType, toast, useForm, useFormField, useToast };
+interface ModalProps {
+    open?: boolean;
+    onClose?: () => void;
+    title?: React.ReactNode;
+    description?: React.ReactNode;
+    size?: "sm" | "md" | "lg" | "xl" | "full";
+    variant?: "default" | "bordered" | "glass" | "ios-glass";
+    animation?: "scaleUp" | "slideUp" | "fade";
+    closeOnOverlayClick?: boolean;
+    closeOnEsc?: boolean;
+    hideCloseButton?: boolean;
+    footer?: React.ReactNode;
+    className?: string;
+    bodyClassName?: string;
+    children?: React.ReactNode;
+}
+declare const Modal: React.ForwardRefExoticComponent<ModalProps & React.RefAttributes<HTMLDivElement>>;
+
+interface DrawerProps {
+    open?: boolean;
+    onClose?: () => void;
+    anchor?: "right" | "left" | "top" | "bottom";
+    title?: React.ReactNode;
+    description?: React.ReactNode;
+    variant?: "default" | "bordered" | "glass" | "ios-glass";
+    size?: "sm" | "md" | "lg" | "full";
+    closeOnOverlayClick?: boolean;
+    closeOnEsc?: boolean;
+    hideCloseButton?: boolean;
+    footer?: React.ReactNode;
+    className?: string;
+    children?: React.ReactNode;
+}
+declare const Drawer: React.ForwardRefExoticComponent<DrawerProps & React.RefAttributes<HTMLDivElement>>;
+
+type PopoverPlacement = "top" | "bottom" | "left" | "right";
+interface PopoverProps {
+    content: React.ReactNode;
+    placement?: PopoverPlacement;
+    trigger?: "click" | "hover";
+    variant?: "default" | "bordered" | "glass" | "ios-glass";
+    showArrow?: boolean;
+    open?: boolean;
+    onOpenChange?: (open: boolean) => void;
+    className?: string;
+    children: React.ReactNode;
+}
+declare const Popover: React.ForwardRefExoticComponent<PopoverProps & React.RefAttributes<HTMLDivElement>>;
+
+type TooltipPlacement = "top" | "bottom" | "left" | "right";
+interface TooltipProps {
+    content: React.ReactNode;
+    placement?: TooltipPlacement;
+    delay?: number;
+    variant?: "default" | "glass" | "ios-glass";
+    showArrow?: boolean;
+    className?: string;
+    children: React.ReactNode;
+}
+declare const Tooltip: React.FC<TooltipProps>;
+
+interface DropdownProps {
+    variant?: "default" | "bordered" | "glass" | "ios-glass";
+    align?: "left" | "right";
+    open?: boolean;
+    onOpenChange?: (open: boolean) => void;
+    children: React.ReactNode;
+    className?: string;
+}
+declare const Dropdown: React.FC<DropdownProps>;
+declare const DropdownTrigger: React.FC<{
+    children: React.ReactNode;
+    className?: string;
+}>;
+declare const DropdownContent: React.FC<{
+    children: React.ReactNode;
+    className?: string;
+}>;
+interface DropdownItemProps {
+    onClick?: () => void;
+    icon?: React.ReactNode;
+    shortcut?: string;
+    disabled?: boolean;
+    destructive?: boolean;
+    children: React.ReactNode;
+    className?: string;
+}
+declare const DropdownItem: React.FC<DropdownItemProps>;
+declare const DropdownLabel: React.FC<{
+    children: React.ReactNode;
+    className?: string;
+}>;
+declare const DropdownSeparator: React.FC<{
+    className?: string;
+}>;
+
+interface ContextMenuProps {
+    variant?: "default" | "glass" | "ios-glass";
+    children: React.ReactNode;
+    className?: string;
+}
+declare const ContextMenu: React.FC<ContextMenuProps>;
+declare const ContextMenuTrigger: React.FC<{
+    children: React.ReactNode;
+    className?: string;
+}>;
+declare const ContextMenuContent: React.FC<{
+    children: React.ReactNode;
+    className?: string;
+}>;
+interface ContextMenuItemProps {
+    onClick?: () => void;
+    icon?: React.ReactNode;
+    shortcut?: string;
+    disabled?: boolean;
+    destructive?: boolean;
+    children: React.ReactNode;
+    className?: string;
+}
+declare const ContextMenuItem: React.FC<ContextMenuItemProps>;
+declare const ContextMenuLabel: React.FC<{
+    children: React.ReactNode;
+    className?: string;
+}>;
+declare const ContextMenuSeparator: React.FC<{
+    className?: string;
+}>;
+
+export { Alert, type AlertProps, Button, type ButtonProps, Checkbox, type CheckboxProps, ContextMenu, ContextMenuContent, ContextMenuItem, type ContextMenuItemProps, ContextMenuLabel, type ContextMenuProps, ContextMenuSeparator, ContextMenuTrigger, DraggableResizableGrid, Drawer, type DrawerProps, Dropdown, DropdownContent, DropdownItem, type DropdownItemProps, DropdownLabel, type DropdownProps, DropdownSeparator, DropdownTrigger, type FileItem, FileUpload, type FileUploadProps, Form, type FormContextValue, FormField, type FormFieldContextValue, type FormFieldProps, type FormProps, type GridItemConfig, type GridProps, Input, type InputProps, Modal, type ModalProps, Popover, type PopoverPlacement, type PopoverProps, Progress, type ProgressProps, RadioGroup, RadioGroupItem, type RadioGroupItemProps, type RadioGroupProps, Select, SelectContent, SelectItem, type SelectOption, type SelectProps, SelectTrigger, SelectValue, Skeleton, type SkeletonProps, Slider, type SliderMark, type SliderProps, Snackbar, type SnackbarProps, Spinner, type SpinnerProps, Switch, type SwitchProps, Text, type TextProps, Textarea, type TextareaProps, type ToastData, type ToastPosition, ToastProvider, type ToastProviderProps, type ToastType, Tooltip, type TooltipPlacement, type TooltipProps, toast, useForm, useFormField, useToast };
