@@ -42,10 +42,45 @@ export const docsConfig: { nav: NavCategory[]; components: Record<string, Compon
       ],
     },
     {
+      title: "Typography Suite",
+      items: [
+        { title: "Heading", href: "/docs/components/heading" },
+        { title: "Text", href: "/docs/components/text" },
+        { title: "Typewriter", href: "/docs/components/typewriter", badge: "Animated" },
+        { title: "Text Scramble", href: "/docs/components/text-scramble", badge: "Cyberpunk" },
+        { title: "Gradient Text", href: "/docs/components/gradient-text" },
+        { title: "Highlight Text", href: "/docs/components/highlight-text" },
+      ],
+    },
+    {
+      title: "Media & Carousel Suite",
+      items: [
+        { title: "Carousel", href: "/docs/components/carousel", badge: "Interactive" },
+        { title: "Image Card", href: "/docs/components/image-card" },
+        { title: "Comparison Slider", href: "/docs/components/comparison-slider", badge: "Interactive" },
+        { title: "Image Stack", href: "/docs/components/image-stack" },
+        { title: "Image Gallery", href: "/docs/components/image-gallery", badge: "Lightbox" },
+      ],
+    },
+    {
+      title: "Productivity Utilities",
+      items: [
+        { title: "Command Palette", href: "/docs/components/command-palette", badge: "⌘K" },
+        { title: "Hover Card", href: "/docs/components/hover-card" },
+        { title: "Input OTP", href: "/docs/components/input-otp" },
+        { title: "Copy Button", href: "/docs/components/copy-button" },
+        { title: "Tag Input", href: "/docs/components/tag-input" },
+        { title: "Stat Card", href: "/docs/components/stat-card" },
+        { title: "Marquee", href: "/docs/components/marquee", badge: "Infinite" },
+        { title: "Animated Number", href: "/docs/components/animated-number" },
+        { title: "Spotlight Card", href: "/docs/components/spotlight-card", badge: "Glow" },
+        { title: "Keyboard Shortcut", href: "/docs/components/kbd" },
+      ],
+    },
+    {
       title: "General & Base UI",
       items: [
         { title: "Button", href: "/docs/components/button" },
-        { title: "Text", href: "/docs/components/text" },
       ],
     },
     {
@@ -162,18 +197,503 @@ export default function Example() {
 
 export default function Example() {
   return (
-    <Text as="h2" size="2xl" weight="bold" variant="gradient">
-      Headline Title
+    <Text as="p" size="base" variant="muted">
+      Polished paragraph text component.
     </Text>
   );
 }`,
       props: [
-        { name: "as", type: '"p" | "span" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "div" | "label"', default: '"p"', description: "Underlying HTML element tag to render." },
+        { name: "as", type: '"p" | "span" | "div" | "label"', default: '"p"', description: "Underlying HTML element tag to render." },
         { name: "size", type: '"xs" | "sm" | "base" | "lg" | "xl" | "2xl" | "3xl" | "4xl"', default: '"base"', description: "Font size scale." },
         { name: "weight", type: '"normal" | "medium" | "semibold" | "bold" | "extrabold"', default: '"normal"', description: "Typography font weight." },
         { name: "variant", type: '"default" | "muted" | "subtle" | "accent" | "gradient" | "success" | "danger" | "warning"', default: '"default"', description: "Color theme variant." },
         { name: "align", type: '"left" | "center" | "right" | "justify"', default: '"left"', description: "Text alignment." },
         { name: "truncate", type: "boolean", default: "false", description: "Truncates single line text with ellipsis." },
+      ],
+    },
+
+    heading: {
+      slug: "heading",
+      title: "Heading",
+      description: "Semantic heading component (h1..h6) with rich visual themes (hero, gradient, neon, glowing) and Framer Motion entrance animations.",
+      category: "General",
+      usageCode: `import { Heading } from "@simple-components-ui/components";
+
+export default function Example() {
+  return (
+    <Heading level="h1" variant="hero" animation="fadeUp">
+      Build Stunning Applications
+    </Heading>
+  );
+}`,
+      props: [
+        { name: "level", type: '"h1" | "h2" | "h3" | "h4" | "h5" | "h6"', default: '"h2"', description: "Semantic heading HTML tag." },
+        { name: "variant", type: '"default" | "gradient" | "hero" | "subtle" | "accent" | "neon" | "glowing"', default: '"default"', description: "Heading visual style theme." },
+        { name: "animation", type: '"none" | "fadeUp" | "scaleUp" | "slideRight" | "trackingExpand"', default: '"none"', description: "Framer Motion entrance animation." },
+        { name: "size", type: '"sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "6xl"', description: "Font size override scale." },
+        { name: "weight", type: '"medium" | "semibold" | "bold" | "extrabold" | "black"', default: '"bold"', description: "Font weight." },
+        { name: "align", type: '"left" | "center" | "right"', default: '"left"', description: "Text alignment." },
+      ],
+    },
+
+    typewriter: {
+      slug: "typewriter",
+      title: "Typewriter",
+      description: "Animated typewriter effect component supporting single or multi-phrase looping text, custom typing speeds, and blinking cursors.",
+      category: "General",
+      usageCode: `import { Typewriter } from "@simple-components-ui/components";
+
+export default function Example() {
+  return (
+    <Typewriter
+      text={["Build faster web apps.", "Design beautiful interfaces.", "Ship with confidence."]}
+      speed={60}
+      deleteSpeed={40}
+      variant="gradient"
+    />
+  );
+}`,
+      props: [
+        { name: "text", type: "string | string[]", required: true, description: "Text string or array of phrases to type out in sequence." },
+        { name: "speed", type: "number", default: "60", description: "Typing speed delay in milliseconds per character." },
+        { name: "deleteSpeed", type: "number", default: "35", description: "Backspacing speed delay in milliseconds." },
+        { name: "delay", type: "number", default: "1500", description: "Pause delay in ms before backspacing completed phrase." },
+        { name: "loop", type: "boolean", default: "true", description: "Loops endlessly through text array." },
+        { name: "cursor", type: "boolean | React.ReactNode", default: "true", description: "Shows blinking typewriter cursor indicator." },
+        { name: "cursorStyle", type: '"pipe" | "underscore" | "block"', default: '"pipe"', description: "Cursor indicator character style." },
+        { name: "variant", type: '"default" | "teal" | "gradient" | "neon" | "muted"', default: '"default"', description: "Text color variant style." },
+      ],
+    },
+
+    "text-scramble": {
+      slug: "text-scramble",
+      title: "Text Scramble",
+      description: "Cyberpunk / futuristic matrix scramble text reveal animation that cycles through random characters before resolving.",
+      category: "General",
+      usageCode: `import { TextScramble } from "@simple-components-ui/components";
+
+export default function Example() {
+  return <TextScramble text="CYBERPUNK MATRIX" variant="matrix" triggerOnHover />;
+}`,
+      props: [
+        { name: "text", type: "string", required: true, description: "Target text string to reveal." },
+        { name: "speed", type: "number", default: "30", description: "Scramble tick delay in milliseconds." },
+        { name: "characterSet", type: "string", description: "Character set pool used during scramble animation." },
+        { name: "triggerOnHover", type: "boolean", default: "true", description: "Re-triggers scramble effect on hover." },
+        { name: "autostart", type: "boolean", default: "true", description: "Triggers scramble animation automatically on mount." },
+        { name: "variant", type: '"default" | "teal" | "matrix" | "gradient"', default: '"matrix"', description: "Scramble visual theme." },
+      ],
+    },
+
+    "gradient-text": {
+      slug: "gradient-text",
+      title: "Gradient Text",
+      description: "Animated fluid gradient text component with shimmer animation, customizable color palettes, and glow effects.",
+      category: "General",
+      usageCode: `import { GradientText } from "@simple-components-ui/components";
+
+export default function Example() {
+  return <GradientText variant="teal" glow animate>Stunning Gradient Text</GradientText>;
+}`,
+      props: [
+        { name: "variant", type: '"teal" | "ocean" | "sunset" | "neon" | "purple" | "gold"', default: '"teal"', description: "Gradient color preset palette." },
+        { name: "animate", type: "boolean", default: "true", description: "Enables smooth background gradient shimmer movement." },
+        { name: "glow", type: "boolean", default: "false", description: "Adds subtle glowing drop-shadow under text." },
+      ],
+    },
+
+    "highlight-text": {
+      slug: "highlight-text",
+      title: "Highlight Text",
+      description: "Marker highlight text component for highlighting search query terms or featuring key words with translucent marker cards.",
+      category: "General",
+      usageCode: `import { HighlightText } from "@simple-components-ui/components";
+
+export default function Example() {
+  return (
+    <HighlightText query="React" color="teal" variant="marker">
+      Simple Components UI built for React applications.
+    </HighlightText>
+  );
+}`,
+      props: [
+        { name: "children", type: "string", required: true, description: "Full text content string." },
+        { name: "query", type: "string", description: "Search query or word to highlight automatically." },
+        { name: "variant", type: '"marker" | "underline" | "glass"', default: '"marker"', description: "Highlight visual style." },
+        { name: "color", type: '"teal" | "yellow" | "emerald" | "purple" | "rose"', default: '"teal"', description: "Highlight marker color accent." },
+      ],
+    },
+
+    carousel: {
+      slug: "carousel",
+      title: "Carousel",
+      description: "Sleek minimal carousel slider component supporting Framer Motion spring transitions, auto-play, drag swiping, and glassmorphism styling.",
+      category: "General",
+      usageCode: `import { Carousel } from "@simple-components-ui/components";
+
+const slides = [
+  { id: "1", image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe", title: "Minimal Abstract Art", description: "Modern UI slide." },
+  { id: "2", image: "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119", title: "Digital Creativity", description: "Sleek aesthetic visual." },
+];
+
+export default function Example() {
+  return <Carousel slides={slides} variant="ios-glass" autoPlay aspectRatio="video" />;
+}`,
+      props: [
+        { name: "slides", type: "CarouselSlide[]", required: true, description: "Array of slide objects with image, title, and description." },
+        { name: "autoPlay", type: "boolean", default: "false", description: "Enables automatic slide transition timer." },
+        { name: "interval", type: "number", default: "4000", description: "Auto-play slide duration in milliseconds." },
+        { name: "showIndicators", type: "boolean", default: "true", description: "Shows bottom dot pagination indicators." },
+        { name: "showControls", type: "boolean", default: "true", description: "Shows side chevron navigation buttons." },
+        { name: "loop", type: "boolean", default: "true", description: "Loops endlessly through slides array." },
+        { name: "variant", type: '"default" | "card" | "glass" | "ios-glass"', default: '"ios-glass"', description: "Container visual surface style." },
+        { name: "aspectRatio", type: '"video" | "square" | "wide" | "auto"', default: '"video"', description: "Carousel aspect ratio preset." },
+      ],
+    },
+
+    "image-card": {
+      slug: "image-card",
+      title: "Image Card",
+      description: "Minimal modern image card component with hover zoom effects, glassmorphism title overlay cards, and badge slots.",
+      category: "General",
+      usageCode: `import { ImageCard, Badge } from "@simple-components-ui/components";
+
+export default function Example() {
+  return (
+    <ImageCard
+      src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe"
+      title="Sleek Architecture"
+      subtitle="Designed for modern applications"
+      badge={<Badge intent="purple">Featured</Badge>}
+      variant="ios-glass"
+    />
+  );
+}`,
+      props: [
+        { name: "src", type: "string", required: true, description: "Image source URL." },
+        { name: "alt", type: "string", description: "Accessible image description." },
+        { name: "title", type: "React.ReactNode", description: "Card title header element." },
+        { name: "subtitle", type: "React.ReactNode", description: "Card subtitle text." },
+        { name: "badge", type: "React.ReactNode", description: "Top right badge slot element." },
+        { name: "aspectRatio", type: '"video" | "square" | "portrait" | "wide"', default: '"portrait"', description: "Image aspect ratio constraint." },
+        { name: "variant", type: '"default" | "bordered" | "glass" | "ios-glass"', default: '"ios-glass"', description: "Card border & backdrop variant." },
+        { name: "hoverEffect", type: '"zoom" | "lift" | "glow" | "none"', default: '"zoom"', description: "Hover animation interaction type." },
+      ],
+    },
+
+    "comparison-slider": {
+      slug: "comparison-slider",
+      title: "Comparison Slider",
+      description: "Interactive before/after image comparison slider component supporting mouse and touch drag handle gestures.",
+      category: "General",
+      usageCode: `import { ComparisonSlider } from "@simple-components-ui/components";
+
+export default function Example() {
+  return (
+    <ComparisonSlider
+      beforeImage="https://images.unsplash.com/photo-1579783900882-c0d3dad7b119"
+      afterImage="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe"
+      beforeLabel="Original"
+      afterLabel="Retouched"
+      variant="ios-glass"
+    />
+  );
+}`,
+      props: [
+        { name: "beforeImage", type: "string", required: true, description: "URL of the before / left image." },
+        { name: "afterImage", type: "string", required: true, description: "URL of the after / right image." },
+        { name: "beforeLabel", type: "string", default: '"Before"', description: "Badge text label for before image." },
+        { name: "afterLabel", type: "string", default: '"After"', description: "Badge text label for after image." },
+        { name: "defaultPosition", type: "number", default: "50", description: "Initial split position percentage (0..100)." },
+        { name: "variant", type: '"default" | "bordered" | "glass" | "ios-glass"', default: '"ios-glass"', description: "Container surface styling." },
+        { name: "aspectRatio", type: '"video" | "square" | "wide" | "auto"', default: '"video"', description: "Container aspect ratio." },
+      ],
+    },
+
+    "image-stack": {
+      slug: "image-stack",
+      title: "Image Stack",
+      description: "Overlapping image avatar stack component with Framer Motion fan-out hover animation physics and excess items badge.",
+      category: "General",
+      usageCode: `import { ImageStack } from "@simple-components-ui/components";
+
+const images = [
+  { id: "1", src: "https://images.unsplash.com/photo-1534528741775-53994a69daeb", title: "Alex" },
+  { id: "2", src: "https://images.unsplash.com/photo-1517841905240-472988babdf9", title: "Sarah" },
+];
+
+export default function Example() {
+  return <ImageStack images={images} max={3} variant="rounded" size="md" />;
+}`,
+      props: [
+        { name: "images", type: "ImageStackItem[]", required: true, description: "Array of image objects with src and title." },
+        { name: "max", type: "number", default: "4", description: "Maximum images displayed before counter badge." },
+        { name: "size", type: '"sm" | "md" | "lg"', default: '"md"', description: "Item size scale." },
+        { name: "variant", type: '"circle" | "rounded" | "card"', default: '"rounded"', description: "Image corner shape style." },
+      ],
+    },
+
+    "image-gallery": {
+      slug: "image-gallery",
+      title: "Image Gallery",
+      description: "Grid image gallery component featuring hover scale card animations and a full-screen Lightbox Modal preview with image navigation controls.",
+      category: "General",
+      usageCode: `import { ImageGallery } from "@simple-components-ui/components";
+
+const items = [
+  { id: "1", src: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe", title: "Abstract 1" },
+  { id: "2", src: "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119", title: "Abstract 2" },
+];
+
+export default function Example() {
+  return <ImageGallery items={items} cols={3} gap={4} enableLightbox />;
+}`,
+      props: [
+        { name: "items", type: "GalleryItem[]", required: true, description: "Array of gallery image items ({ id, src, title })." },
+        { name: "cols", type: "2 | 3 | 4", default: "3", description: "Grid column count." },
+        { name: "gap", type: "2 | 3 | 4 | 6", default: "4", description: "Grid gap spacing." },
+        { name: "aspectRatio", type: '"square" | "video" | "portrait" | "auto"', default: '"portrait"', description: "Grid item aspect ratio." },
+        { name: "enableLightbox", type: "boolean", default: "true", description: "Opens full-screen lightbox modal on item click." },
+      ],
+    },
+
+    "command-palette": {
+      slug: "command-palette",
+      title: "Command Palette",
+      description: "Keyboard-driven command menu modal supporting search filtering, arrow key navigation, and custom action callbacks.",
+      category: "General",
+      usageCode: `import { CommandPalette, Button } from "@simple-components-ui/components";
+
+export default function Example() {
+  const [open, setOpen] = useState(false);
+  return (
+    <>
+      <Button onClick={() => setOpen(true)}>Open Command Palette (⌘K)</Button>
+      <CommandPalette
+        open={open}
+        onClose={() => setOpen(false)}
+        items={[
+          { id: "1", title: "Go to Dashboard", shortcut: "⌘D" },
+          { id: "2", title: "Settings", shortcut: "⌘S" },
+        ]}
+      />
+    </>
+  );
+}`,
+      props: [
+        { name: "open", type: "boolean", required: true, description: "Controls visibility of the command modal." },
+        { name: "onClose", type: "() => void", required: true, description: "Callback fired when modal requests closing." },
+        { name: "items", type: "CommandItemDef[]", required: true, description: "Array of command item objects with title, icon, and onSelect." },
+        { name: "placeholder", type: "string", default: '"Type a command..."', description: "Input placeholder text." },
+        { name: "variant", type: '"default" | "glass" | "ios-glass"', default: '"ios-glass"', description: "Modal surface backdrop styling." },
+      ],
+    },
+
+    "hover-card": {
+      slug: "hover-card",
+      title: "Hover Card",
+      description: "Rich popover card triggered on hover with customizable open/close delay, placement, and spring entrance physics.",
+      category: "General",
+      usageCode: `import { HoverCard, Avatar } from "@simple-components-ui/components";
+
+export default function Example() {
+  return (
+    <HoverCard
+      content={
+        <div className="flex items-center gap-3">
+          <Avatar src="https://images.unsplash.com/photo-1534528741775-53994a69daeb" />
+          <div>
+            <h4 className="font-bold text-sm">Alex Johnson</h4>
+            <p className="text-xs text-zinc-500">Product Designer @ Acme</p>
+          </div>
+        </div>
+      }
+    >
+      <span className="font-semibold text-teal-600 underline cursor-pointer">@alexjohnson</span>
+    </HoverCard>
+  );
+}`,
+      props: [
+        { name: "children", type: "React.ReactNode", required: true, description: "Trigger element." },
+        { name: "content", type: "React.ReactNode", required: true, description: "Popover card content element." },
+        { name: "placement", type: '"top" | "bottom" | "left" | "right"', default: '"top"', description: "Card anchor position." },
+        { name: "openDelay", type: "number", default: "150", description: "Hover delay before opening (ms)." },
+        { name: "variant", type: '"default" | "glass" | "ios-glass"', default: '"ios-glass"', description: "Card visual backdrop style." },
+      ],
+    },
+
+    "input-otp": {
+      slug: "input-otp",
+      title: "Input OTP",
+      description: "Accessible PIN code or one-time password verification input with auto-focus movement and paste handling.",
+      category: "General",
+      usageCode: `import { InputOTP } from "@simple-components-ui/components";
+
+export default function Example() {
+  return <InputOTP length={6} onComplete={(code) => alert(code)} variant="ios-glass" />;
+}`,
+      props: [
+        { name: "length", type: "number", default: "6", description: "Number of OTP digit input boxes." },
+        { name: "value", type: "string", description: "Controlled input value string." },
+        { name: "onChange", type: "(val: string) => void", description: "Callback fired on digit changes." },
+        { name: "onComplete", type: "(val: string) => void", description: "Callback fired when all digits are filled." },
+        { name: "mask", type: "boolean", default: "false", description: "Masks numbers with password dots." },
+        { name: "variant", type: '"default" | "bordered" | "glass" | "ios-glass"', default: '"ios-glass"', description: "Input box visual variant." },
+      ],
+    },
+
+    "copy-button": {
+      slug: "copy-button",
+      title: "Copy Button",
+      description: "One-click copy to clipboard button and copyable field component with checkmark feedback animations.",
+      category: "General",
+      usageCode: `import { CopyButton, CopyableField } from "@simple-components-ui/components";
+
+export default function Example() {
+  return (
+    <div className="space-y-4">
+      <CopyButton value="npm i @simple-components-ui/components" />
+      <CopyableField label="API Secret Key" value="sk_live_51M0x..." />
+    </div>
+  );
+}`,
+      props: [
+        { name: "value", type: "string", required: true, description: "Text content to copy to clipboard." },
+        { name: "onCopy", type: "() => void", description: "Callback fired after successful copy." },
+        { name: "copiedDuration", type: "number", default: "2000", description: "Duration in ms to display checkmark feedback." },
+      ],
+    },
+
+    "tag-input": {
+      slug: "tag-input",
+      title: "Tag Input",
+      description: "Interactive chip tag input allowing users to type, press Enter/comma to add tags, and hit backspace or X to remove tags.",
+      category: "General",
+      usageCode: `import { TagInput } from "@simple-components-ui/components";
+
+export default function Example() {
+  return <TagInput defaultTags={["React", "TypeScript", "Tailwind"]} maxTags={8} variant="ios-glass" />;
+}`,
+      props: [
+        { name: "tags", type: "string[]", description: "Controlled tags array." },
+        { name: "defaultTags", type: "string[]", default: "[]", description: "Initial uncontrolled tags array." },
+        { name: "onChange", type: "(tags: string[]) => void", description: "Callback fired on tags array updates." },
+        { name: "maxTags", type: "number", default: "10", description: "Maximum allowed tag chips." },
+        { name: "variant", type: '"default" | "bordered" | "glass" | "ios-glass"', default: '"ios-glass"', description: "Input surface style." },
+      ],
+    },
+
+    "stat-card": {
+      slug: "stat-card",
+      title: "Stat Card",
+      description: "Dashboard metric card component with metric value, title, icon slot, trend badge, and optional progress bar.",
+      category: "General",
+      usageCode: `import { StatCard } from "@simple-components-ui/components";
+
+export default function Example() {
+  return (
+    <StatCard
+      title="Total Revenue"
+      value="$48,290"
+      trend={{ value: "+12.4%", direction: "up" }}
+      progress={78}
+      variant="ios-glass"
+    />
+  );
+}`,
+      props: [
+        { name: "title", type: "string", required: true, description: "Metric title label." },
+        { name: "value", type: "React.ReactNode", required: true, description: "Main metric value content." },
+        { name: "icon", type: "React.ReactNode", description: "Top right icon element." },
+        { name: "trend", type: "{ value: string, direction: 'up'|'down'|'neutral' }", description: "Trend percentage badge." },
+        { name: "progress", type: "number", description: "Progress bar percentage (0..100)." },
+        { name: "variant", type: '"default" | "bordered" | "glass" | "ios-glass"', default: '"ios-glass"', description: "Card backdrop style." },
+      ],
+    },
+
+    marquee: {
+      slug: "marquee",
+      title: "Marquee",
+      description: "Infinite scrolling marquee track component with smooth continuous loop animation and pause-on-hover interaction.",
+      category: "General",
+      usageCode: `import { Marquee } from "@simple-components-ui/components";
+
+export default function Example() {
+  return (
+    <Marquee speed={30} pauseOnHover>
+      <span className="font-bold text-lg px-4">React</span>
+      <span className="font-bold text-lg px-4">Next.js</span>
+      <span className="font-bold text-lg px-4">Tailwind</span>
+    </Marquee>
+  );
+}`,
+      props: [
+        { name: "children", type: "React.ReactNode", required: true, description: "Elements to scroll infinitely." },
+        { name: "direction", type: '"left" | "right"', default: '"left"', description: "Scroll movement direction." },
+        { name: "speed", type: "number", default: "25", description: "Loop animation duration in seconds." },
+        { name: "pauseOnHover", type: "boolean", default: "true", description: "Pauses scrolling when user hovers over marquee track." },
+      ],
+    },
+
+    "animated-number": {
+      slug: "animated-number",
+      title: "Animated Number",
+      description: "Smooth spring physics number counter component with currency prefix, percentage suffix, and decimal precision formatting.",
+      category: "General",
+      usageCode: `import { AnimatedNumber } from "@simple-components-ui/components";
+
+export default function Example() {
+  return <AnimatedNumber value={48290} prefix="$" decimals={2} duration={2} />;
+}`,
+      props: [
+        { name: "value", type: "number", required: true, description: "Target number value to count up to." },
+        { name: "prefix", type: "string", description: "Leading currency symbol or prefix string." },
+        { name: "suffix", type: "string", description: "Trailing suffix string (e.g. %, k)." },
+        { name: "decimals", type: "number", default: "0", description: "Decimal digits formatting." },
+        { name: "duration", type: "number", default: "1.5", description: "Animation duration in seconds." },
+      ],
+    },
+
+    "spotlight-card": {
+      slug: "spotlight-card",
+      title: "Spotlight Card",
+      description: "Interactive card component featuring a radial spotlight glow effect that follows the user's cursor.",
+      category: "General",
+      usageCode: `import { SpotlightCard } from "@simple-components-ui/components";
+
+export default function Example() {
+  return (
+    <SpotlightCard variant="ios-glass">
+      <h3 className="text-xl font-bold">Spotlight Feature</h3>
+      <p className="text-sm text-zinc-400">Move your cursor across this card.</p>
+    </SpotlightCard>
+  );
+}`,
+      props: [
+        { name: "children", type: "React.ReactNode", required: true, description: "Card inner contents." },
+        { name: "spotlightColor", type: "string", default: '"rgba(20, 184, 166, 0.18)"', description: "Radial glow color CSS string." },
+        { name: "variant", type: '"default" | "bordered" | "glass" | "ios-glass"', default: '"ios-glass"', description: "Card visual surface style." },
+      ],
+    },
+
+    kbd: {
+      slug: "kbd",
+      title: "Keyboard Shortcut",
+      description: "Sleek keyboard shortcut key badge primitive for rendering key combinations (⌘K, Shift, Enter, Esc).",
+      category: "General",
+      usageCode: `import { Kbd } from "@simple-components-ui/components";
+
+export default function Example() {
+  return (
+    <div className="flex items-center gap-1">
+      <Kbd>⌘</Kbd>
+      <Kbd>K</Kbd>
+    </div>
+  );
+}`,
+      props: [
+        { name: "children", type: "React.ReactNode", required: true, description: "Key character or icon." },
+        { name: "size", type: '"sm" | "md" | "lg"', default: '"md"', description: "Badge size scale." },
       ],
     },
 

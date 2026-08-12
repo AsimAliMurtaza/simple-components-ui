@@ -9,6 +9,27 @@ import { docsConfig } from "@/config/docs";
 import {
   Button,
   Text,
+  Heading,
+  Typewriter,
+  TextScramble,
+  GradientText,
+  HighlightText,
+  Carousel,
+  ImageCard,
+  ComparisonSlider,
+  ImageStack,
+  ImageGallery,
+  CommandPalette,
+  HoverCard,
+  InputOTP,
+  CopyButton,
+  CopyableField,
+  TagInput,
+  StatCard,
+  Marquee,
+  AnimatedNumber,
+  SpotlightCard,
+  Kbd,
   Input,
   Textarea,
   Select,
@@ -97,6 +118,7 @@ import {
 export default function ComponentPage() {
   const params = useParams();
   const slug = params?.slug as string;
+  const [isCmdOpen, setIsCmdOpen] = React.useState(false);
 
   const doc = docsConfig.components[slug];
   const navItem = docsConfig.nav
@@ -147,19 +169,437 @@ export default function ComponentPage() {
       case "text":
         return (
           <div className="space-y-3 max-w-md w-full">
-            <Text as="h3" size="2xl" weight="bold" variant="default">
-              Heading Title
+            <Text as="p" size="lg" weight="semibold" variant="default">
+              Standard Paragraph Text
             </Text>
-            <Text as="p" size="base" variant="accent">
-              Accent styled subheader text.
-            </Text>
-            <Text as="p" size="sm" variant="muted">
+
+            <Text as="p" size="base" variant="muted">
               Polished typography component supporting semantic HTML tags, size
               scale, font weights, and text truncation.
             </Text>
-            <Text as="p" size="sm" variant="gradient">
-              Gradient text variant effect.
+            <Text as="p" size="sm" variant="accent">
+              Accent styled highlight text label.
             </Text>
+          </div>
+        );
+
+      case "heading":
+        return (
+          <div className="space-y-4 max-w-lg w-full text-center sm:text-left">
+            <Heading level="h1" variant="hero" animation="fadeUp">
+              Hero Gradient Heading
+            </Heading>
+            <Heading level="h2" variant="glowing" size="2xl">
+              Glowing Accent Heading
+            </Heading>
+            <Heading level="h3" variant="neon" size="xl">
+              Neon Matrix Title
+            </Heading>
+            <Heading level="h4" variant="subtle" size="lg">
+              Subtle Subtitle Headline
+            </Heading>
+          </div>
+        );
+
+      case "typewriter":
+        return (
+          <div className="p-6 border border-zinc-200 dark:border-zinc-800 rounded-2xl bg-white dark:bg-zinc-900 shadow-sm max-w-md w-full text-center">
+            <p className="text-xs text-zinc-500 mb-2">
+              Looping Typewriter Effect:
+            </p>
+            <Typewriter
+              text={[
+                "Build modern React applications.",
+                "Design high performance UIs.",
+                "Deploy with confidence.",
+              ]}
+              speed={60}
+              deleteSpeed={35}
+              cursorStyle="underscore"
+              variant="neon"
+              className="text-lg sm:text-xl font-bold"
+            />
+          </div>
+        );
+
+      case "text-scramble":
+        return (
+          <div className="p-6 border border-zinc-800 rounded-2xl bg-zinc-950 text-center max-w-md w-full">
+            <p className="text-xs text-zinc-400 mb-3">
+              Hover or click to trigger matrix scramble:
+            </p>
+            <TextScramble
+              text="CYBERPUNK MATRIX"
+              variant="matrix"
+              className="text-2xl font-black"
+            />
+          </div>
+        );
+
+      case "gradient-text":
+        return (
+          <div className="flex flex-col items-center gap-3 text-center">
+            <GradientText
+              variant="teal"
+              className="text-3xl sm:text-4xl"
+              glow
+              animate
+            >
+              Teal Fluid Gradient
+            </GradientText>
+            <GradientText
+              variant="sunset"
+              className="text-2xl sm:text-3xl"
+              animate
+            >
+              Sunset Warm Palette
+            </GradientText>
+            <GradientText
+              variant="purple"
+              className="text-xl sm:text-2xl"
+              animate
+            >
+              Purple Cosmic Shimmer
+            </GradientText>
+          </div>
+        );
+
+      case "highlight-text":
+        return (
+          <div className="space-y-4 max-w-md w-full">
+            <p className="text-sm">
+              <HighlightText variant="marker" color="teal">
+                Translucent Marker Highlight
+              </HighlightText>
+            </p>
+            <p className="text-sm">
+              <HighlightText variant="glass" color="emerald">
+                Glassmorphism Highlight Chip
+              </HighlightText>
+            </p>
+            <p className="text-sm">
+              <HighlightText variant="underline" color="yellow">
+                Styled Underline Accent
+              </HighlightText>
+            </p>
+          </div>
+        );
+
+      case "carousel":
+        return (
+          <div className="w-full max-w-lg">
+            <Carousel
+              slides={[
+                {
+                  id: "1",
+                  image:
+                    "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80",
+                  title: "Abstract Fluid Geometry",
+                  description:
+                    "Modern minimalist UI component carousel slider.",
+                },
+                {
+                  id: "2",
+                  image:
+                    "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=800&q=80",
+                  title: "Digital Canvas Artwork",
+                  description:
+                    "Framer Motion animated spring physics transitions.",
+                },
+              ]}
+              variant="ios-glass"
+              aspectRatio="video"
+              autoPlay
+            />
+          </div>
+        );
+
+      case "image-card":
+        return (
+          <div className="w-full max-w-xs">
+            <ImageCard
+              src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80"
+              title="Architectural Curves"
+              subtitle="Minimal sleek photo card component"
+              badge={<Badge intent="purple">Featured</Badge>}
+              variant="ios-glass"
+              aspectRatio="portrait"
+            />
+          </div>
+        );
+
+      case "comparison-slider":
+        return (
+          <div className="w-full max-w-lg">
+            <ComparisonSlider
+              beforeImage="https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=800&q=80"
+              afterImage="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80"
+              beforeLabel="Original"
+              afterLabel="Graded"
+              variant="ios-glass"
+              aspectRatio="video"
+            />
+          </div>
+        );
+
+      case "image-stack":
+        return (
+          <div className="flex flex-col items-center gap-4">
+            <ImageStack
+              images={[
+                {
+                  id: "1",
+                  src: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80",
+                  title: "Alex",
+                },
+                {
+                  id: "2",
+                  src: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=200&q=80",
+                  title: "Sarah",
+                },
+                {
+                  id: "3",
+                  src: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=200&q=80",
+                  title: "Michael",
+                },
+                {
+                  id: "4",
+                  src: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80",
+                  title: "David",
+                },
+                {
+                  id: "5",
+                  src: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80",
+                  title: "Emily",
+                },
+              ]}
+              max={3}
+              variant="rounded"
+              size="md"
+            />
+          </div>
+        );
+
+      case "image-gallery":
+        return (
+          <div className="w-full max-w-xl">
+            <ImageGallery
+              items={[
+                {
+                  id: "1",
+                  src: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80",
+                  title: "Fluid Gradient",
+                  category: "Abstract",
+                },
+                {
+                  id: "2",
+                  src: "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=600&q=80",
+                  title: "Digital Geometry",
+                  category: "Design",
+                },
+                {
+                  id: "3",
+                  src: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&w=600&q=80",
+                  title: "Neon Spectrum",
+                  category: "Vibrant",
+                },
+              ]}
+              cols={3}
+              gap={3}
+              aspectRatio="square"
+              enableLightbox
+            />
+          </div>
+        );
+
+      case "command-palette":
+        return (
+          <div className="flex flex-col items-center gap-3">
+            <Button onClick={() => setIsCmdOpen(true)} variant="neon" glow>
+              Open Command Palette (Press ⌘K)
+            </Button>
+            <CommandPalette
+              open={isCmdOpen}
+              onClose={() => setIsCmdOpen(false)}
+              items={[
+                {
+                  id: "1",
+                  title: "Go to Overview",
+                  shortcut: "⌘H",
+                  icon: <Home size={16} />,
+                },
+                {
+                  id: "2",
+                  title: "View Team Members",
+                  shortcut: "⌘U",
+                  icon: <Users size={16} />,
+                },
+                {
+                  id: "3",
+                  title: "System Preferences",
+                  shortcut: "⌘S",
+                  icon: <Settings size={16} />,
+                },
+                {
+                  id: "4",
+                  title: "Notifications",
+                  shortcut: "⌘N",
+                  icon: <Bell size={16} />,
+                },
+              ]}
+            />
+          </div>
+        );
+
+      case "hover-card":
+        return (
+          <div className="p-8 text-center">
+            <p className="text-sm">
+              Hover over{" "}
+              <HoverCard
+                content={
+                  <div className="flex items-center gap-3">
+                    <Avatar
+                      src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80"
+                      status="online"
+                    />
+                    <div>
+                      <h4 className="font-bold text-sm">Alex Johnson</h4>
+                      <p className="text-xs text-zinc-500">Lead UI Architect</p>
+                    </div>
+                  </div>
+                }
+              >
+                <span className="font-bold text-teal-600 dark:text-teal-400 underline decoration-teal-500/50 cursor-pointer">
+                  @alexjohnson
+                </span>
+              </HoverCard>{" "}
+              to preview profile.
+            </p>
+          </div>
+        );
+
+      case "input-otp":
+        return (
+          <div className="flex flex-col items-center gap-3">
+            <p className="text-xs text-zinc-500">
+              Enter 6-digit verification code:
+            </p>
+            <InputOTP length={6} variant="ios-glass" />
+          </div>
+        );
+
+      case "copy-button":
+        return (
+          <div className="space-y-4 max-w-sm w-full">
+            <div className="flex items-center gap-3 justify-center">
+              <CopyButton
+                value="npm i @simple-components-ui/components"
+                variant="default"
+              >
+                Copy Install Command
+              </CopyButton>
+            </div>
+            <CopyableField
+              label="API Publishable Secret"
+              value="pk_live_51M0x92J8zkL901xK...9a"
+              variant="ios-glass"
+            />
+          </div>
+        );
+
+      case "tag-input":
+        return (
+          <div className="w-full max-w-sm">
+            <p className="text-xs text-zinc-500 mb-1.5 font-medium">
+              Type and press Enter or comma:
+            </p>
+            <TagInput
+              defaultTags={["React", "TypeScript", "Tailwind"]}
+              maxTags={8}
+              variant="ios-glass"
+            />
+          </div>
+        );
+
+      case "stat-card":
+        return (
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-lg">
+            <StatCard
+              title="Total Revenue"
+              value="$48,290"
+              trend={{ value: "+12.4%", direction: "up" }}
+              progress={78}
+              variant="ios-glass"
+            />
+            <StatCard
+              title="Active Users"
+              value="14,820"
+              trend={{ value: "+8.1%", direction: "up" }}
+              progress={62}
+              variant="ios-glass"
+            />
+          </div>
+        );
+
+      case "marquee":
+        return (
+          <div className="w-full max-w-xl p-4 border border-zinc-200 dark:border-zinc-800 rounded-3xl bg-white/40 dark:bg-zinc-900/40 backdrop-blur-xl">
+            <Marquee speed={20} pauseOnHover>
+              <span className="font-bold text-sm px-4 text-teal-600 dark:text-teal-400">
+                ⚡ React 19
+              </span>
+              <span className="font-bold text-sm px-4 text-indigo-600 dark:text-indigo-400">
+                🚀 Next.js 15
+              </span>
+              <span className="font-bold text-sm px-4 text-emerald-600 dark:text-emerald-400">
+                🎨 Tailwind CSS
+              </span>
+              <span className="font-bold text-sm px-4 text-purple-600 dark:text-purple-400">
+                ✨ Framer Motion
+              </span>
+            </Marquee>
+          </div>
+        );
+
+      case "animated-number":
+        return (
+          <div className="flex flex-col items-center gap-2 p-6 border border-zinc-200 dark:border-zinc-800 rounded-3xl bg-white/40 dark:bg-zinc-900/40 backdrop-blur-xl">
+            <p className="text-xs text-zinc-500">Live Spring Counter:</p>
+            <AnimatedNumber
+              value={84920}
+              prefix="$"
+              decimals={2}
+              duration={2}
+              className="text-3xl sm:text-4xl text-teal-600 dark:text-teal-400"
+            />
+          </div>
+        );
+
+      case "spotlight-card":
+        return (
+          <div className="w-full max-w-md">
+            <SpotlightCard variant="ios-glass">
+              <h3 className="text-lg font-bold text-zinc-900 dark:text-white">
+                Spotlight Cursor Glow
+              </h3>
+              <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-1">
+                Move your cursor across this card to see the interactive radial
+                gradient glow.
+              </p>
+            </SpotlightCard>
+          </div>
+        );
+
+      case "kbd":
+        return (
+          <div className="flex items-center gap-2">
+            <span className="text-xs text-zinc-500">Press</span>
+            <Kbd>⌘</Kbd>
+            <Kbd>K</Kbd>
+            <span className="text-xs text-zinc-500">
+              to trigger command palette
+            </span>
           </div>
         );
 

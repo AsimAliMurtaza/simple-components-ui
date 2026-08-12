@@ -5,6 +5,68 @@ export type { ButtonProps } from "./components/ui/button";
 export { default as Text } from "./components/ui/text";
 export type { TextProps } from "./components/ui/text";
 
+export { default as Heading } from "./components/ui/heading";
+export type { HeadingProps, HeadingLevel, HeadingVariant, HeadingAnimation } from "./components/ui/heading";
+
+export { default as Typewriter } from "./components/ui/typewriter";
+export type { TypewriterProps } from "./components/ui/typewriter";
+
+export { default as TextScramble } from "./components/ui/text-scramble";
+export type { TextScrambleProps } from "./components/ui/text-scramble";
+
+export { default as GradientText } from "./components/ui/gradient-text";
+export type { GradientTextProps } from "./components/ui/gradient-text";
+
+export { default as HighlightText } from "./components/ui/highlight-text";
+export type { HighlightTextProps } from "./components/ui/highlight-text";
+
+// Productivity Utilities Suite
+export { default as CommandPalette } from "./components/ui/command-palette";
+export type { CommandPaletteProps, CommandItemDef } from "./components/ui/command-palette";
+
+export { default as HoverCard } from "./components/ui/hover-card";
+export type { HoverCardProps } from "./components/ui/hover-card";
+
+export { default as InputOTP } from "./components/ui/input-otp";
+export type { InputOTPProps } from "./components/ui/input-otp";
+
+export { default as CopyButton, CopyableField } from "./components/ui/copy-button";
+export type { CopyButtonProps, CopyableFieldProps } from "./components/ui/copy-button";
+
+export { default as TagInput } from "./components/ui/tag-input";
+export type { TagInputProps } from "./components/ui/tag-input";
+
+export { default as StatCard } from "./components/data/stat-card";
+export type { StatCardProps } from "./components/data/stat-card";
+
+export { default as Marquee } from "./components/ui/marquee";
+export type { MarqueeProps } from "./components/ui/marquee";
+
+export { default as AnimatedNumber } from "./components/ui/animated-number";
+export type { AnimatedNumberProps } from "./components/ui/animated-number";
+
+export { default as SpotlightCard } from "./components/ui/spotlight-card";
+export type { SpotlightCardProps } from "./components/ui/spotlight-card";
+
+export { default as Kbd } from "./components/ui/kbd";
+export type { KbdProps } from "./components/ui/kbd";
+
+// Media & Carousel Suite
+export { default as Carousel } from "./components/media/carousel";
+export type { CarouselProps, CarouselSlide } from "./components/media/carousel";
+
+export { default as ImageCard } from "./components/media/image-card";
+export type { ImageCardProps } from "./components/media/image-card";
+
+export { default as ComparisonSlider } from "./components/media/comparison-slider";
+export type { ComparisonSliderProps } from "./components/media/comparison-slider";
+
+export { default as ImageStack } from "./components/media/image-stack";
+export type { ImageStackProps, ImageStackItem } from "./components/media/image-stack";
+
+export { default as ImageGallery } from "./components/media/image-gallery";
+export type { ImageGalleryProps, GalleryItem } from "./components/media/image-gallery";
+
 // Grid Components
 export { default as DraggableResizableGrid } from "./components/grid/draggable-resizeable-grid";
 export type { GridProps, GridItemConfig } from "./components/grid/draggable-resizeable-grid";

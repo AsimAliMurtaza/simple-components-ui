@@ -27,6 +27,256 @@ interface TextProps extends HTMLMotionProps<"p"> {
 }
 declare const Text: React.ForwardRefExoticComponent<Omit<TextProps, "ref"> & React.RefAttributes<HTMLElement>>;
 
+type HeadingLevel = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+type HeadingVariant = "default" | "gradient" | "hero" | "subtle" | "accent" | "neon" | "glowing";
+type HeadingAnimation = "none" | "fadeUp" | "scaleUp" | "slideRight" | "trackingExpand";
+interface HeadingProps extends Omit<HTMLMotionProps<"h1">, "level" | "children"> {
+    level?: HeadingLevel;
+    variant?: HeadingVariant;
+    animation?: HeadingAnimation;
+    size?: "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "6xl";
+    align?: "left" | "center" | "right";
+    weight?: "medium" | "semibold" | "bold" | "extrabold" | "black";
+    children: React.ReactNode;
+    className?: string;
+}
+declare const Heading: React.ForwardRefExoticComponent<Omit<HeadingProps, "ref"> & React.RefAttributes<HTMLHeadingElement>>;
+
+interface TypewriterProps extends React.HTMLAttributes<HTMLSpanElement> {
+    text: string | string[];
+    speed?: number;
+    deleteSpeed?: number;
+    delay?: number;
+    loop?: boolean;
+    cursor?: boolean | React.ReactNode;
+    cursorStyle?: "pipe" | "underscore" | "block";
+    variant?: "default" | "teal" | "gradient" | "neon" | "muted";
+    onFinish?: () => void;
+    className?: string;
+}
+declare const Typewriter: React.ForwardRefExoticComponent<TypewriterProps & React.RefAttributes<HTMLSpanElement>>;
+
+interface TextScrambleProps extends React.HTMLAttributes<HTMLSpanElement> {
+    text: string;
+    speed?: number;
+    characterSet?: string;
+    triggerOnHover?: boolean;
+    autostart?: boolean;
+    variant?: "default" | "teal" | "matrix" | "gradient";
+    className?: string;
+}
+declare const TextScramble: React.ForwardRefExoticComponent<TextScrambleProps & React.RefAttributes<HTMLSpanElement>>;
+
+interface GradientTextProps extends React.HTMLAttributes<HTMLSpanElement> {
+    children: React.ReactNode;
+    variant?: "teal" | "ocean" | "sunset" | "neon" | "purple" | "gold";
+    animate?: boolean;
+    glow?: boolean;
+    className?: string;
+}
+declare const GradientText: React.ForwardRefExoticComponent<GradientTextProps & React.RefAttributes<HTMLSpanElement>>;
+
+interface HighlightTextProps extends React.HTMLAttributes<HTMLSpanElement> {
+    children: string;
+    query?: string;
+    variant?: "marker" | "underline" | "glass";
+    color?: "teal" | "yellow" | "emerald" | "purple" | "rose";
+    className?: string;
+}
+declare const HighlightText: React.ForwardRefExoticComponent<HighlightTextProps & React.RefAttributes<HTMLSpanElement>>;
+
+interface CommandItemDef {
+    id: string;
+    title: string;
+    description?: string;
+    category?: string;
+    icon?: React.ReactNode;
+    shortcut?: string;
+    onSelect?: () => void;
+}
+interface CommandPaletteProps {
+    open: boolean;
+    onClose: () => void;
+    items: CommandItemDef[];
+    placeholder?: string;
+    variant?: "default" | "glass" | "ios-glass";
+}
+declare const CommandPalette: React.FC<CommandPaletteProps>;
+
+interface HoverCardProps {
+    children: React.ReactNode;
+    content: React.ReactNode;
+    placement?: "top" | "bottom" | "left" | "right";
+    openDelay?: number;
+    closeDelay?: number;
+    variant?: "default" | "glass" | "ios-glass";
+    className?: string;
+}
+declare const HoverCard: React.FC<HoverCardProps>;
+
+interface InputOTPProps {
+    length?: number;
+    value?: string;
+    onChange?: (value: string) => void;
+    onComplete?: (value: string) => void;
+    variant?: "default" | "bordered" | "glass" | "ios-glass";
+    mask?: boolean;
+    disabled?: boolean;
+    className?: string;
+}
+declare const InputOTP: React.ForwardRefExoticComponent<InputOTPProps & React.RefAttributes<HTMLDivElement>>;
+
+interface CopyButtonProps extends ButtonProps {
+    value: string;
+    onCopy?: () => void;
+    copiedDuration?: number;
+}
+declare const CopyButton: React.FC<CopyButtonProps>;
+interface CopyableFieldProps extends React.HTMLAttributes<HTMLDivElement> {
+    value: string;
+    label?: string;
+    readOnly?: boolean;
+    variant?: "default" | "bordered" | "glass" | "ios-glass";
+    className?: string;
+}
+declare const CopyableField: React.FC<CopyableFieldProps>;
+
+interface TagInputProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "onChange"> {
+    tags?: string[];
+    defaultTags?: string[];
+    onChange?: (tags: string[]) => void;
+    placeholder?: string;
+    maxTags?: number;
+    variant?: "default" | "bordered" | "glass" | "ios-glass";
+    disabled?: boolean;
+    className?: string;
+}
+declare const TagInput: React.ForwardRefExoticComponent<TagInputProps & React.RefAttributes<HTMLDivElement>>;
+
+interface StatCardProps extends HTMLMotionProps<"div"> {
+    title: string;
+    value: React.ReactNode;
+    icon?: React.ReactNode;
+    trend?: {
+        value: string;
+        direction: "up" | "down" | "neutral";
+        label?: string;
+    };
+    progress?: number;
+    variant?: "default" | "bordered" | "glass" | "ios-glass";
+    className?: string;
+}
+declare const StatCard: React.ForwardRefExoticComponent<Omit<StatCardProps, "ref"> & React.RefAttributes<HTMLDivElement>>;
+
+interface MarqueeProps extends React.HTMLAttributes<HTMLDivElement> {
+    children: React.ReactNode;
+    direction?: "left" | "right";
+    speed?: number;
+    pauseOnHover?: boolean;
+    className?: string;
+}
+declare const Marquee: React.FC<MarqueeProps>;
+
+interface AnimatedNumberProps extends React.HTMLAttributes<HTMLSpanElement> {
+    value: number;
+    prefix?: string;
+    suffix?: string;
+    decimals?: number;
+    duration?: number;
+    className?: string;
+}
+declare const AnimatedNumber: React.FC<AnimatedNumberProps>;
+
+interface SpotlightCardProps extends React.HTMLAttributes<HTMLDivElement> {
+    children: React.ReactNode;
+    spotlightColor?: string;
+    variant?: "default" | "bordered" | "glass" | "ios-glass";
+    className?: string;
+}
+declare const SpotlightCard: React.ForwardRefExoticComponent<SpotlightCardProps & React.RefAttributes<HTMLDivElement>>;
+
+interface KbdProps extends React.HTMLAttributes<HTMLElement> {
+    children: React.ReactNode;
+    size?: "sm" | "md" | "lg";
+    className?: string;
+}
+declare const Kbd: React.ForwardRefExoticComponent<KbdProps & React.RefAttributes<HTMLElement>>;
+
+interface CarouselSlide {
+    id: string;
+    image?: string;
+    title?: React.ReactNode;
+    description?: React.ReactNode;
+    content?: React.ReactNode;
+}
+interface CarouselProps extends React.HTMLAttributes<HTMLDivElement> {
+    slides: CarouselSlide[];
+    autoPlay?: boolean;
+    interval?: number;
+    showIndicators?: boolean;
+    showControls?: boolean;
+    loop?: boolean;
+    variant?: "default" | "card" | "glass" | "ios-glass";
+    aspectRatio?: "video" | "square" | "wide" | "auto";
+    className?: string;
+}
+declare const Carousel: React.ForwardRefExoticComponent<CarouselProps & React.RefAttributes<HTMLDivElement>>;
+
+interface ImageCardProps extends Omit<HTMLMotionProps<"div">, "title"> {
+    src: string;
+    alt?: string;
+    title?: React.ReactNode;
+    subtitle?: React.ReactNode;
+    badge?: React.ReactNode;
+    aspectRatio?: "video" | "square" | "portrait" | "wide";
+    variant?: "default" | "bordered" | "glass" | "ios-glass";
+    hoverEffect?: "zoom" | "lift" | "glow" | "none";
+    className?: string;
+}
+declare const ImageCard: React.ForwardRefExoticComponent<Omit<ImageCardProps, "ref"> & React.RefAttributes<HTMLDivElement>>;
+
+interface ComparisonSliderProps extends React.HTMLAttributes<HTMLDivElement> {
+    beforeImage: string;
+    afterImage: string;
+    beforeLabel?: string;
+    afterLabel?: string;
+    defaultPosition?: number;
+    variant?: "default" | "bordered" | "glass" | "ios-glass";
+    aspectRatio?: "video" | "square" | "wide" | "auto";
+    className?: string;
+}
+declare const ComparisonSlider: React.ForwardRefExoticComponent<ComparisonSliderProps & React.RefAttributes<HTMLDivElement>>;
+
+interface ImageStackItem {
+    id: string;
+    src: string;
+    title?: string;
+}
+interface ImageStackProps extends React.HTMLAttributes<HTMLDivElement> {
+    images: ImageStackItem[];
+    max?: number;
+    size?: "sm" | "md" | "lg";
+    variant?: "circle" | "rounded" | "card";
+    className?: string;
+}
+declare const ImageStack: React.ForwardRefExoticComponent<ImageStackProps & React.RefAttributes<HTMLDivElement>>;
+
+interface GalleryItem {
+    id: string;
+    src: string;
+    title?: string;
+    category?: string;
+}
+interface ImageGalleryProps extends React.HTMLAttributes<HTMLDivElement> {
+    items: GalleryItem[];
+    cols?: 2 | 3 | 4;
+    gap?: 2 | 3 | 4 | 6;
+    aspectRatio?: "square" | "video" | "portrait" | "auto";
+    enableLightbox?: boolean;
+    className?: string;
+}
+declare const ImageGallery: React.ForwardRefExoticComponent<ImageGalleryProps & React.RefAttributes<HTMLDivElement>>;
+
 interface GridItemConfig extends Layout {
     title?: string;
     icon?: React.ReactNode;
@@ -846,4 +1096,4 @@ interface StepperProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 declare const Stepper: React.ForwardRefExoticComponent<StepperProps & React.RefAttributes<HTMLDivElement>>;
 
-export { type ActiveFilter, Alert, type AlertProps, Avatar, AvatarGroup, type AvatarGroupProps, type AvatarProps, type AvatarSize, type AvatarStatus, Badge, type BadgeProps, Breadcrumb, type BreadcrumbItemDef, type BreadcrumbProps, Button, type ButtonProps, Checkbox, type CheckboxProps, type ColumnDef, Container, type ContainerProps, ContextMenu, ContextMenuContent, ContextMenuItem, type ContextMenuItemProps, ContextMenuLabel, type ContextMenuProps, ContextMenuSeparator, ContextMenuTrigger, DataTable, type DataTableProps, DraggableResizableGrid, Drawer, type DrawerProps, Dropdown, DropdownContent, DropdownItem, type DropdownItemProps, DropdownLabel, type DropdownProps, DropdownSeparator, DropdownTrigger, EmptyState, type EmptyStateProps, type FileItem, FileUpload, type FileUploadProps, FilterBar, type FilterBarProps, Form, type FormContextValue, FormField, type FormFieldContextValue, type FormFieldProps, type FormProps, Grid, type GridCols, type GridItemConfig, type GridProps$1 as GridProps, Input, type InputProps, Modal, type ModalProps, type NavItemDef, Navbar, type NavbarProps, Pagination, type PaginationProps, Popover, type PopoverPlacement, type PopoverProps, Progress, type ProgressProps, RadioGroup, RadioGroupItem, type RadioGroupItemProps, type RadioGroupProps, ResizablePanel, type ResizablePanelProps, ScrollArea, type ScrollAreaProps, Search, type SearchProps, Select, SelectContent, SelectItem, type SelectOption, type SelectProps, SelectTrigger, SelectValue, Sidebar, type SidebarGroupDef, type SidebarItemDef, type SidebarProps, Skeleton, type SkeletonProps, Slider, type SliderMark, type SliderProps, Snackbar, type SnackbarProps, type SortDirection, SortableHeader, type SortableHeaderProps, Spinner, type SpinnerProps, SplitPane, type SplitPaneProps, Stack, type StackProps, type StepDef, Stepper, type StepperProps, Switch, type SwitchProps, type TabItemDef, Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, type TableProps, TableRow, Tabs, type TabsProps, Text, type TextProps, Textarea, type TextareaProps, Timeline, TimelineBody, TimelineConnector, type TimelineConnectorProps, TimelineHeader, TimelineIcon, type TimelineIconProps, TimelineItem, type TimelineItemProps, type TimelineProps, TimelineTime, TimelineTitle, type ToastData, type ToastPosition, ToastProvider, type ToastProviderProps, type ToastType, Tooltip, type TooltipPlacement, type TooltipProps, toast, useForm, useFormField, useToast };
+export { type ActiveFilter, Alert, type AlertProps, AnimatedNumber, type AnimatedNumberProps, Avatar, AvatarGroup, type AvatarGroupProps, type AvatarProps, type AvatarSize, type AvatarStatus, Badge, type BadgeProps, Breadcrumb, type BreadcrumbItemDef, type BreadcrumbProps, Button, type ButtonProps, Carousel, type CarouselProps, type CarouselSlide, Checkbox, type CheckboxProps, type ColumnDef, type CommandItemDef, CommandPalette, type CommandPaletteProps, ComparisonSlider, type ComparisonSliderProps, Container, type ContainerProps, ContextMenu, ContextMenuContent, ContextMenuItem, type ContextMenuItemProps, ContextMenuLabel, type ContextMenuProps, ContextMenuSeparator, ContextMenuTrigger, CopyButton, type CopyButtonProps, CopyableField, type CopyableFieldProps, DataTable, type DataTableProps, DraggableResizableGrid, Drawer, type DrawerProps, Dropdown, DropdownContent, DropdownItem, type DropdownItemProps, DropdownLabel, type DropdownProps, DropdownSeparator, DropdownTrigger, EmptyState, type EmptyStateProps, type FileItem, FileUpload, type FileUploadProps, FilterBar, type FilterBarProps, Form, type FormContextValue, FormField, type FormFieldContextValue, type FormFieldProps, type FormProps, type GalleryItem, GradientText, type GradientTextProps, Grid, type GridCols, type GridItemConfig, type GridProps$1 as GridProps, Heading, type HeadingAnimation, type HeadingLevel, type HeadingProps, type HeadingVariant, HighlightText, type HighlightTextProps, HoverCard, type HoverCardProps, ImageCard, type ImageCardProps, ImageGallery, type ImageGalleryProps, ImageStack, type ImageStackItem, type ImageStackProps, Input, InputOTP, type InputOTPProps, type InputProps, Kbd, type KbdProps, Marquee, type MarqueeProps, Modal, type ModalProps, type NavItemDef, Navbar, type NavbarProps, Pagination, type PaginationProps, Popover, type PopoverPlacement, type PopoverProps, Progress, type ProgressProps, RadioGroup, RadioGroupItem, type RadioGroupItemProps, type RadioGroupProps, ResizablePanel, type ResizablePanelProps, ScrollArea, type ScrollAreaProps, Search, type SearchProps, Select, SelectContent, SelectItem, type SelectOption, type SelectProps, SelectTrigger, SelectValue, Sidebar, type SidebarGroupDef, type SidebarItemDef, type SidebarProps, Skeleton, type SkeletonProps, Slider, type SliderMark, type SliderProps, Snackbar, type SnackbarProps, type SortDirection, SortableHeader, type SortableHeaderProps, Spinner, type SpinnerProps, SplitPane, type SplitPaneProps, SpotlightCard, type SpotlightCardProps, Stack, type StackProps, StatCard, type StatCardProps, type StepDef, Stepper, type StepperProps, Switch, type SwitchProps, type TabItemDef, Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, type TableProps, TableRow, Tabs, type TabsProps, TagInput, type TagInputProps, Text, type TextProps, TextScramble, type TextScrambleProps, Textarea, type TextareaProps, Timeline, TimelineBody, TimelineConnector, type TimelineConnectorProps, TimelineHeader, TimelineIcon, type TimelineIconProps, TimelineItem, type TimelineItemProps, type TimelineProps, TimelineTime, TimelineTitle, type ToastData, type ToastPosition, ToastProvider, type ToastProviderProps, type ToastType, Tooltip, type TooltipPlacement, type TooltipProps, Typewriter, type TypewriterProps, toast, useForm, useFormField, useToast };
