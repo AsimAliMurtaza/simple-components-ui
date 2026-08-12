@@ -18,20 +18,16 @@ import {
   Code2,
   User,
 } from "lucide-react";
-import {
-  Button,
-  Input,
-  Badge,
-  Avatar,
-  AvatarGroup,
-} from "@/index";
+import { Button, Input, Badge, Avatar, AvatarGroup } from "@/index";
 import { DocHeader } from "@/components/docs/doc-header";
 
 export default function LandingPage() {
   const [copied, setCopied] = React.useState(false);
 
   const copyInstall = async () => {
-    await navigator.clipboard.writeText("npm install @simple-components-ui/components");
+    await navigator.clipboard.writeText(
+      "npm install @simple-components-ui/components",
+    );
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -44,7 +40,7 @@ export default function LandingPage() {
       <section className="relative pt-20 pb-16 px-4 sm:px-6 max-w-6xl mx-auto w-full text-center space-y-8">
         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-teal-50 text-teal-700 border border-teal-200 dark:bg-zinc-900 dark:border-zinc-800 dark:text-teal-400 text-xs font-semibold shadow-sm">
           <Sparkles size={14} />
-          <span>v0.3.0 Published on NPM</span>
+          <span>v0.4.0 Published on NPM</span>
         </div>
 
         <div className="space-y-4 max-w-3xl mx-auto">
@@ -52,7 +48,8 @@ export default function LandingPage() {
             Simple Components UI
           </h1>
           <p className="text-lg sm:text-xl text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto leading-relaxed">
-            Reusable React components for building modern, fast, and responsive web applications.
+            Reusable React components for building modern, fast, and responsive
+            web applications.
           </p>
         </div>
 
@@ -79,7 +76,9 @@ export default function LandingPage() {
           <div className="flex items-center justify-between p-3 px-4 rounded-2xl bg-zinc-900 text-zinc-100 font-mono text-xs shadow-xl border border-zinc-800">
             <div className="flex items-center gap-2">
               <Terminal size={14} className="text-teal-400 shrink-0" />
-              <span className="text-zinc-300">npm install @simple-components-ui/components</span>
+              <span className="text-zinc-300">
+                npm install @simple-components-ui/components
+              </span>
             </div>
             <button
               type="button"
@@ -87,7 +86,11 @@ export default function LandingPage() {
               className="p-1 rounded-lg hover:bg-zinc-800 transition-colors text-zinc-400 hover:text-white"
               title="Copy command"
             >
-              {copied ? <Check size={14} className="text-emerald-400" /> : <Copy size={14} />}
+              {copied ? (
+                <Check size={14} className="text-emerald-400" />
+              ) : (
+                <Copy size={14} />
+              )}
             </button>
           </div>
         </div>
@@ -100,7 +103,8 @@ export default function LandingPage() {
             Built for Modern Web Applications
           </h2>
           <p className="text-sm text-zinc-500 dark:text-zinc-400">
-            Over 30+ production-ready components categorized into clean design suites.
+            Over 30+ production-ready components categorized into clean design
+            suites.
           </p>
         </div>
 
@@ -121,11 +125,16 @@ export default function LandingPage() {
             <div>
               <h3 className="text-base font-bold">Form Controls</h3>
               <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-1">
-                Input, Textarea, Select, Checkbox, RadioGroup, Switch, Slider, FileUpload.
+                Input, Textarea, Select, Checkbox, RadioGroup, Switch, Slider,
+                FileUpload.
               </p>
             </div>
             <div className="pt-2 space-y-2 pointer-events-none">
-              <Input placeholder="Enter username..." leftAdornment={<User size={14} />} size="sm" />
+              <Input
+                placeholder="Enter username..."
+                leftAdornment={<User size={14} />}
+                size="sm"
+              />
               <Button size="sm" variant="default" className="w-full">
                 Submit
               </Button>
@@ -152,8 +161,12 @@ export default function LandingPage() {
               </p>
             </div>
             <div className="pt-2 flex items-center justify-center gap-2 pointer-events-none">
-              <Badge intent="purple" variant="soft">Modal Dialog</Badge>
-              <Badge intent="primary" variant="soft">Drawer Panel</Badge>
+              <Badge intent="purple" variant="soft">
+                Modal Dialog
+              </Badge>
+              <Badge intent="primary" variant="soft">
+                Drawer Panel
+              </Badge>
             </div>
           </Link>
 
@@ -173,7 +186,8 @@ export default function LandingPage() {
             <div>
               <h3 className="text-base font-bold">Data Table & Display</h3>
               <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-1">
-                DataTable, Sorting, Searching, Pagination, Badges, Avatar & Group, Timeline.
+                DataTable, Sorting, Searching, Pagination, Badges, Avatar &
+                Group, Timeline.
               </p>
             </div>
             <div className="pt-2 flex items-center justify-between pointer-events-none">
@@ -182,7 +196,9 @@ export default function LandingPage() {
                 <Avatar name="Alex Rivera" />
                 <Avatar name="Sarah Chen" />
               </AvatarGroup>
-              <Badge intent="success" variant="dot">Active</Badge>
+              <Badge intent="success" variant="dot">
+                Active
+              </Badge>
             </div>
           </Link>
         </div>
@@ -196,7 +212,8 @@ export default function LandingPage() {
               Designed for Developer Productivity
             </h2>
             <p className="text-sm text-zinc-500 dark:text-zinc-400">
-              Key characteristics that make Simple Components UI a pleasure to use.
+              Key characteristics that make Simple Components UI a pleasure to
+              use.
             </p>
           </div>
 
@@ -207,7 +224,8 @@ export default function LandingPage() {
               </div>
               <h3 className="text-base font-bold">React + TypeScript</h3>
               <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
-                Written natively in TypeScript with strict prop typing and full autocomplete in IDEs.
+                Written natively in TypeScript with strict prop typing and full
+                autocomplete in IDEs.
               </p>
             </div>
 
@@ -217,7 +235,8 @@ export default function LandingPage() {
               </div>
               <h3 className="text-base font-bold">Tailwind CSS Styling</h3>
               <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
-                Uses Tailwind utility classes and CSS variables with effortless light & dark mode support.
+                Uses Tailwind utility classes and CSS variables with effortless
+                light & dark mode support.
               </p>
             </div>
 
@@ -227,7 +246,8 @@ export default function LandingPage() {
               </div>
               <h3 className="text-base font-bold">Framer Motion Animations</h3>
               <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
-                Smooth micro-interactions, scale entrance physics, and fluid transitions.
+                Smooth micro-interactions, scale entrance physics, and fluid
+                transitions.
               </p>
             </div>
 
@@ -237,7 +257,8 @@ export default function LandingPage() {
               </div>
               <h3 className="text-base font-bold">Accessibility Conscious</h3>
               <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
-                Keyboard ESC key listeners, focus lock on modal overlays, and ARIA dialog attributes.
+                Keyboard ESC key listeners, focus lock on modal overlays, and
+                ARIA dialog attributes.
               </p>
             </div>
 
@@ -247,7 +268,8 @@ export default function LandingPage() {
               </div>
               <h3 className="text-base font-bold">Reusable APIs</h3>
               <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
-                Compound primitives for Menus, ContextMenus, Tables, and FormFields.
+                Compound primitives for Menus, ContextMenus, Tables, and
+                FormFields.
               </p>
             </div>
 
@@ -257,7 +279,8 @@ export default function LandingPage() {
               </div>
               <h3 className="text-base font-bold">Open Source & Free</h3>
               <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
-                Licensed under MIT and available publicly on npm as @simple-components-ui/components.
+                Licensed under MIT and available publicly on npm as
+                @simple-components-ui/components.
               </p>
             </div>
           </div>
@@ -271,7 +294,8 @@ export default function LandingPage() {
             Ready to Build Your Application?
           </h2>
           <p className="text-sm opacity-90 max-w-lg mx-auto">
-            Explore our comprehensive documentation or install the library package directly from npm.
+            Explore our comprehensive documentation or install the library
+            package directly from npm.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-3 pt-2">

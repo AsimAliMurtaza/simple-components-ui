@@ -2,7 +2,16 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { Sparkles, Search, Sun, Moon, Github, Package, Menu, X } from "lucide-react";
+import {
+  Sparkles,
+  Search,
+  Sun,
+  Moon,
+  Github,
+  Package,
+  Menu,
+  X,
+} from "lucide-react";
 import { useTheme } from "./theme-provider";
 import { SearchModal } from "./search-modal";
 
@@ -46,7 +55,7 @@ export function DocHeader({
                   Simple Components UI
                 </span>
                 <span className="text-[10px] font-mono text-zinc-400 dark:text-zinc-500">
-                  v0.3.0
+                  v0.4.0
                 </span>
               </div>
             </Link>
@@ -106,7 +115,11 @@ export function DocHeader({
               className="p-2 rounded-xl text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors cursor-pointer"
               title="Toggle dark/light mode"
             >
-              {resolvedTheme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+              {resolvedTheme === "dark" ? (
+                <Sun size={18} />
+              ) : (
+                <Moon size={18} />
+              )}
             </button>
           </div>
         </div>
