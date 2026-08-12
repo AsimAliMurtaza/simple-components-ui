@@ -224,7 +224,7 @@ export default function ComponentPage() {
 
       case "text-scramble":
         return (
-          <div className="p-6 border border-zinc-800 rounded-2xl bg-zinc-950 text-center max-w-md w-full">
+          <div className="p-6 text-center max-w-md w-full">
             <p className="text-xs text-zinc-400 mb-3">
               Hover or click to trigger matrix scramble:
             </p>
@@ -278,8 +278,8 @@ export default function ComponentPage() {
               </HighlightText>
             </p>
             <p className="text-sm">
-              <HighlightText variant="underline" color="yellow">
-                Styled Underline Accent
+              <HighlightText query="special" variant="marker" color="rose">
+                Highlight special keyword using query prop
               </HighlightText>
             </p>
           </div>
@@ -567,10 +567,10 @@ export default function ComponentPage() {
           <div className="flex flex-col items-center gap-2 p-6 border border-zinc-200 dark:border-zinc-800 rounded-3xl bg-white/40 dark:bg-zinc-900/40 backdrop-blur-xl">
             <p className="text-xs text-zinc-500">Live Spring Counter:</p>
             <AnimatedNumber
-              value={84920}
+              value={56340}
               prefix="$"
               decimals={2}
-              duration={2}
+              duration={3}
               className="text-3xl sm:text-4xl text-teal-600 dark:text-teal-400"
             />
           </div>
@@ -1217,7 +1217,7 @@ export default function ComponentPage() {
             ]}
             onRemoveFilter={() => {}}
             onClearAll={() => {}}
-            variant="default"
+            variant="ios-glass"
             className="w-full max-w-md"
           />
         );
