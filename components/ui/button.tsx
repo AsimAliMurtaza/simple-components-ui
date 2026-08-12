@@ -15,6 +15,7 @@ export interface ButtonProps
     | "ghost"
     | "link"
     | "glass"
+    | "ios-glass"
     | "gradient"
     | "neon";
   size?: "default" | "sm" | "lg" | "xl" | "icon";
@@ -28,20 +29,22 @@ export interface ButtonProps
 
 const variantMap = {
   default:
-    "bg-blue-600 text-white hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600",
+    "bg-teal-600 text-white hover:bg-teal-700 dark:bg-teal-600 dark:hover:bg-teal-700 shadow-sm",
   destructive:
-    "bg-red-600 text-white hover:bg-red-700 dark:bg-red-500 dark:hover:bg-red-600",
+    "bg-red-600 text-white hover:bg-red-700 dark:bg-red-500 dark:hover:bg-red-600 shadow-sm",
   outline:
-    "border border-gray-300 bg-transparent hover:bg-gray-100 dark:border-gray-700 dark:hover:bg-gray-800",
+    "border border-zinc-300 bg-transparent text-zinc-900 hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-100 dark:hover:bg-zinc-800",
   secondary:
-    "bg-gray-200 text-gray-900 hover:bg-gray-300 dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700",
-  ghost: "hover:bg-gray-100 dark:hover:bg-gray-800",
-  link: "text-blue-600 underline-offset-4 hover:underline dark:text-blue-400",
+    "bg-zinc-100 text-zinc-900 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-100 dark:hover:bg-zinc-700",
+  ghost: "hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-700 dark:text-zinc-300",
+  link: "text-teal-600 underline-offset-4 hover:underline dark:text-teal-400",
   glass:
-    "bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20",
+    "bg-white/70 dark:bg-zinc-900/70 backdrop-blur-xl border border-white/40 dark:border-zinc-800 text-zinc-900 dark:text-zinc-100 hover:bg-white/90 dark:hover:bg-zinc-900/90 shadow-md",
+  "ios-glass":
+    "bg-white/40 dark:bg-zinc-900/40 backdrop-blur-2xl border border-white/60 dark:border-zinc-800/80 text-zinc-900 dark:text-white hover:bg-white/60 dark:hover:bg-zinc-900/60 shadow-lg",
   gradient:
-    "bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:from-purple-600 hover:to-pink-600",
-  neon: "bg-black text-green-400 border border-green-400 hover:bg-green-400 hover:text-black",
+    "bg-gradient-to-r from-teal-500 to-indigo-500 text-white hover:from-teal-600 hover:to-indigo-600 shadow-md",
+  neon: "bg-black text-emerald-400 border border-emerald-400 hover:bg-emerald-400 hover:text-black shadow-md",
 };
 
 const sizeMap = {
@@ -117,7 +120,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       <motion.button
         ref={ref}
         className={cn(
-          "inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 relative overflow-hidden",
+          "inline-flex items-center justify-center rounded-xl font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 relative overflow-hidden select-none cursor-pointer",
 
           // Variant styles
           variantMap[variant],
@@ -127,23 +130,25 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
           // Focus ring colors based on variant
           {
-            "focus:ring-blue-500": variant === "default" || variant === "link",
+            "focus:ring-teal-500":
+              variant === "default" ||
+              variant === "link" ||
+              variant === "gradient",
             "focus:ring-red-500": variant === "destructive",
-            "focus:ring-gray-500":
+            "focus:ring-zinc-500":
               variant === "outline" ||
               variant === "secondary" ||
               variant === "ghost",
-            "focus:ring-white/50": variant === "glass",
-            "focus:ring-purple-500": variant === "gradient",
-            "focus:ring-green-400": variant === "neon",
+            "focus:ring-white/50": variant === "glass" || variant === "ios-glass",
+            "focus:ring-emerald-400": variant === "neon",
           },
 
           // Glow effect
           glow && {
-            "shadow-lg shadow-blue-500/25": variant === "default",
-            "shadow-lg shadow-red-500/25": variant === "destructive",
-            "shadow-lg shadow-purple-500/25": variant === "gradient",
-            "shadow-lg shadow-green-400/25": variant === "neon",
+            "shadow-lg shadow-teal-500/30":
+              variant === "default" || variant === "gradient",
+            "shadow-lg shadow-red-500/30": variant === "destructive",
+            "shadow-lg shadow-emerald-400/30": variant === "neon",
           },
 
           // Disabled state
@@ -258,7 +263,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
         {/* Neon glow effect for neon variant */}
         {variant === "neon" && glow && (
-          <div className="absolute inset-0 rounded-md bg-green-400/20 blur-sm -z-10" />
+          <div className="absolute inset-0 rounded-md bg-emerald-400/20 blur-sm -z-10" />
         )}
       </motion.button>
     );

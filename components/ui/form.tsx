@@ -96,6 +96,7 @@ export interface FormFieldProps {
   name?: string;
   label?: React.ReactNode;
   helperText?: string;
+  hint?: string;
   errorText?: string;
   tooltip?: string;
   required?: boolean;
@@ -115,7 +116,8 @@ export const FormField = React.forwardRef<HTMLDivElement, FormFieldProps>(
       id: customId,
       name,
       label,
-      helperText,
+      helperText: propHelperText,
+      hint,
       errorText: propErrorText,
       tooltip,
       required = false,
@@ -138,6 +140,7 @@ export const FormField = React.forwardRef<HTMLDivElement, FormFieldProps>(
     const size = propSize ?? parentForm.size ?? "default";
     const layout = propLayout ?? parentForm.layout ?? "vertical";
     const errorText = propErrorText || (name && parentForm.errors ? parentForm.errors[name] : undefined);
+    const helperText = propHelperText || hint;
 
     const contextValue = React.useMemo(
       () => ({

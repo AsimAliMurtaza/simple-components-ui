@@ -18,6 +18,7 @@ export interface SliderProps {
   step?: number;
   onValueChange?: (value: number | [number, number]) => void;
   showValueTooltip?: boolean;
+  showValue?: boolean;
   formatTooltip?: (val: number) => string;
   marks?: SliderMark[];
   disabled?: boolean;
@@ -30,7 +31,7 @@ export interface SliderProps {
 }
 
 const colorConfig = {
-  primary: "bg-blue-600 dark:bg-blue-500",
+  primary: "bg-teal-600 dark:bg-teal-500",
   success: "bg-emerald-600 dark:bg-emerald-500",
   danger: "bg-red-600 dark:bg-red-500",
   warning: "bg-amber-600 dark:bg-amber-500",
@@ -52,7 +53,8 @@ export const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
       max = 100,
       step = 1,
       onValueChange,
-      showValueTooltip = true,
+      showValueTooltip: propShowValueTooltip,
+      showValue = true,
       formatTooltip = (v) => `${v}`,
       marks = [],
       disabled: propDisabled,
@@ -65,6 +67,7 @@ export const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
     },
     ref
   ) => {
+    const showValueTooltip = propShowValueTooltip ?? showValue;
     const formField = useFormField();
     const disabled = propDisabled ?? formField.disabled ?? false;
     const errorText = propErrorText || formField.errorText;

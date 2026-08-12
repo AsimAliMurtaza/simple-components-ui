@@ -15,7 +15,7 @@ export interface CheckboxProps
   indeterminate?: boolean;
   onCheckedChange?: (checked: boolean) => void;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  variant?: "default" | "card" | "filled";
+  variant?: "default" | "card" | "filled" | "ios-glass";
   size?: "sm" | "md" | "lg";
   color?: "primary" | "success" | "danger" | "warning" | "purple";
   errorText?: string;
@@ -41,7 +41,7 @@ const sizeStyles = {
 };
 
 const colorStyles = {
-  primary: "bg-blue-600 border-blue-600 text-white dark:bg-blue-500 dark:border-blue-500",
+  primary: "bg-teal-600 border-teal-600 text-white dark:bg-teal-500 dark:border-teal-500",
   success: "bg-emerald-600 border-emerald-600 text-white dark:bg-emerald-500 dark:border-emerald-500",
   danger: "bg-red-600 border-red-600 text-white dark:bg-red-500 dark:border-red-500",
   warning: "bg-amber-600 border-amber-600 text-white dark:bg-amber-500 dark:border-amber-500",
@@ -101,7 +101,12 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
             variant === "card" &&
               cn(
                 "p-3.5 border rounded-xl bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800 shadow-sm hover:border-zinc-300 dark:hover:border-zinc-700",
-                isChecked && "border-blue-500 dark:border-blue-500 bg-blue-50/20 dark:bg-blue-950/20"
+                isChecked && "border-teal-500 dark:border-teal-500 bg-teal-50/20 dark:bg-teal-950/20"
+              ),
+            variant === "ios-glass" &&
+              cn(
+                "p-3.5 border rounded-2xl bg-white/40 dark:bg-zinc-900/40 backdrop-blur-2xl border-white/60 dark:border-zinc-800/80 shadow-md text-zinc-900 dark:text-white",
+                isChecked && "border-teal-500 dark:border-teal-500 bg-teal-50/30 dark:bg-teal-950/30"
               ),
             disabled && "opacity-50 cursor-not-allowed",
             className

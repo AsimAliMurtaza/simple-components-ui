@@ -16,12 +16,19 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Simple Components UI — Modern React Component Library",
-    template: "%s — Simple Components UI",
+    default: "Simple Components UI - Modern React Component Library",
+    template: "%s - Simple Components UI",
   },
   description:
     "Reusable, highly customizable, typed, dark/light mode compatible React components powered by Tailwind CSS and Framer Motion.",
-  keywords: ["React", "TypeScript", "Tailwind CSS", "Framer Motion", "UI Library", "Components"],
+  keywords: [
+    "React",
+    "TypeScript",
+    "Tailwind CSS",
+    "Framer Motion",
+    "UI Library",
+    "Components",
+  ],
 };
 
 export default function RootLayout({

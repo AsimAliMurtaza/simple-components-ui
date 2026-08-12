@@ -13,6 +13,7 @@ export interface SwitchProps
   onCheckedChange?: (checked: boolean) => void;
   label?: React.ReactNode;
   description?: React.ReactNode;
+  variant?: "default" | "ios-glass";
   size?: "sm" | "md" | "lg";
   color?: "primary" | "success" | "danger" | "warning" | "purple";
   checkedIcon?: React.ReactNode;
@@ -45,7 +46,7 @@ const sizeConfig = {
 };
 
 const colorConfig = {
-  primary: "bg-blue-600 dark:bg-blue-500",
+  primary: "bg-teal-600 dark:bg-teal-500",
   success: "bg-emerald-600 dark:bg-emerald-500",
   danger: "bg-red-600 dark:bg-red-500",
   warning: "bg-amber-600 dark:bg-amber-500",
@@ -60,6 +61,7 @@ const Switch = React.forwardRef<HTMLButtonElement, SwitchProps>(
       onCheckedChange,
       label,
       description,
+      variant = "default",
       size: propSize = "md",
       color = "primary",
       checkedIcon,
@@ -107,9 +109,10 @@ const Switch = React.forwardRef<HTMLButtonElement, SwitchProps>(
             disabled={disabled || loading}
             onClick={handleToggle}
             className={cn(
-              "relative inline-flex shrink-0 items-center rounded-full transition-colors duration-200 ease-in-out cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/40",
+              "relative inline-flex shrink-0 items-center rounded-full transition-colors duration-200 ease-in-out cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500/40",
               config.track,
               isChecked ? colorConfig[color] : "bg-zinc-200 dark:bg-zinc-700",
+              variant === "ios-glass" && "backdrop-blur-md bg-white/40 dark:bg-zinc-900/40 border border-white/60 dark:border-zinc-800/80 shadow-sm",
               (disabled || loading) && "opacity-50 cursor-not-allowed",
               className
             )}

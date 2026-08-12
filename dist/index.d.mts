@@ -3,7 +3,7 @@ import { HTMLMotionProps } from 'framer-motion';
 import { Layout } from 'react-grid-layout';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-    variant?: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link" | "glass" | "gradient" | "neon";
+    variant?: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link" | "glass" | "ios-glass" | "gradient" | "neon";
     size?: "default" | "sm" | "lg" | "xl" | "icon";
     loading?: boolean;
     leftIcon?: React.ReactNode;
@@ -19,6 +19,8 @@ interface TextProps extends HTMLMotionProps<"p"> {
     animation?: MotionAnimationVariant;
     as?: React.ElementType;
     size?: "xs" | "sm" | "base" | "lg" | "xl" | "2xl" | "3xl" | "4xl";
+    weight?: "normal" | "medium" | "semibold" | "bold" | "extrabold";
+    variant?: "default" | "muted" | "subtle" | "accent" | "gradient" | "success" | "danger" | "warning";
     color?: string;
     children?: React.ReactNode;
     staggerMs?: number;
@@ -29,7 +31,7 @@ interface GridItemConfig extends Layout {
     title?: string;
     icon?: React.ReactNode;
 }
-interface GridProps {
+interface GridProps$1 {
     /** Unique key for localStorage persistence */
     storageKey: string;
     /** Default grid layout if none is saved */
@@ -65,7 +67,7 @@ interface GridProps {
  * DraggableResizableGrid — A responsive, persistent, and animated layout component
  * built with react-grid-layout, Tailwind, and drag handle controls.
  */
-declare const DraggableResizableGrid: React.FC<GridProps>;
+declare const DraggableResizableGrid: React.FC<GridProps$1>;
 
 interface FormContextValue {
     disabled?: boolean;
@@ -100,6 +102,7 @@ interface FormFieldProps {
     name?: string;
     label?: React.ReactNode;
     helperText?: string;
+    hint?: string;
     errorText?: string;
     tooltip?: string;
     required?: boolean;
@@ -118,7 +121,7 @@ interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "
     label?: string;
     helperText?: string;
     errorText?: string;
-    variant?: "default" | "underline" | "bordered" | "glass" | "ghost";
+    variant?: "default" | "underline" | "bordered" | "glass" | "ghost" | "ios-glass";
     size?: "sm" | "default" | "lg";
     status?: "default" | "error" | "success" | "warning";
     labelAnimate?: boolean;
@@ -134,7 +137,7 @@ interface TextareaProps extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaEl
     label?: string;
     helperText?: string;
     errorText?: string;
-    variant?: "default" | "underline" | "bordered" | "glass" | "ghost";
+    variant?: "default" | "underline" | "bordered" | "glass" | "ghost" | "ios-glass";
     size?: "sm" | "default" | "lg";
     status?: "default" | "error" | "success" | "warning";
     autoResize?: boolean;
@@ -164,7 +167,7 @@ interface SelectProps {
     errorText?: string;
     helperText?: string;
     label?: string;
-    variant?: "default" | "bordered" | "glass" | "ghost";
+    variant?: "default" | "bordered" | "glass" | "ghost" | "ios-glass";
     size?: "sm" | "default" | "lg";
     className?: string;
 }
@@ -188,7 +191,7 @@ interface CheckboxProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>
     indeterminate?: boolean;
     onCheckedChange?: (checked: boolean) => void;
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    variant?: "default" | "card" | "filled";
+    variant?: "default" | "card" | "filled" | "ios-glass";
     size?: "sm" | "md" | "lg";
     color?: "primary" | "success" | "danger" | "warning" | "purple";
     errorText?: string;
@@ -226,6 +229,7 @@ interface SwitchProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>
     onCheckedChange?: (checked: boolean) => void;
     label?: React.ReactNode;
     description?: React.ReactNode;
+    variant?: "default" | "ios-glass";
     size?: "sm" | "md" | "lg";
     color?: "primary" | "success" | "danger" | "warning" | "purple";
     checkedIcon?: React.ReactNode;
@@ -249,6 +253,7 @@ interface SliderProps {
     step?: number;
     onValueChange?: (value: number | [number, number]) => void;
     showValueTooltip?: boolean;
+    showValue?: boolean;
     formatTooltip?: (val: number) => string;
     marks?: SliderMark[];
     disabled?: boolean;
@@ -383,7 +388,7 @@ interface ProgressProps {
 declare const Progress: React.ForwardRefExoticComponent<ProgressProps & React.RefAttributes<HTMLDivElement>>;
 
 interface SpinnerProps {
-    variant?: "spin" | "dots" | "pulse" | "ios" | "ring" | "gradient";
+    variant?: "default" | "spin" | "dots" | "pulse" | "ios" | "ring" | "gradient";
     size?: "sm" | "md" | "lg" | "xl";
     color?: "primary" | "success" | "warning" | "danger" | "purple" | "white" | "current";
     label?: React.ReactNode;
@@ -699,4 +704,146 @@ interface DataTableProps<T> {
 }
 declare function DataTable<T extends object>({ data, columns: initialColumns, getRowId, searchable, searchPlaceholder, loading, pageSize: initialPageSize, pageSizeOptions, variant, onRowClick, rowActions, className, }: DataTableProps<T>): React.JSX.Element;
 
-export { type ActiveFilter, Alert, type AlertProps, Avatar, AvatarGroup, type AvatarGroupProps, type AvatarProps, type AvatarSize, type AvatarStatus, Badge, type BadgeProps, Button, type ButtonProps, Checkbox, type CheckboxProps, type ColumnDef, ContextMenu, ContextMenuContent, ContextMenuItem, type ContextMenuItemProps, ContextMenuLabel, type ContextMenuProps, ContextMenuSeparator, ContextMenuTrigger, DataTable, type DataTableProps, DraggableResizableGrid, Drawer, type DrawerProps, Dropdown, DropdownContent, DropdownItem, type DropdownItemProps, DropdownLabel, type DropdownProps, DropdownSeparator, DropdownTrigger, EmptyState, type EmptyStateProps, type FileItem, FileUpload, type FileUploadProps, FilterBar, type FilterBarProps, Form, type FormContextValue, FormField, type FormFieldContextValue, type FormFieldProps, type FormProps, type GridItemConfig, type GridProps, Input, type InputProps, Modal, type ModalProps, Pagination, type PaginationProps, Popover, type PopoverPlacement, type PopoverProps, Progress, type ProgressProps, RadioGroup, RadioGroupItem, type RadioGroupItemProps, type RadioGroupProps, Search, type SearchProps, Select, SelectContent, SelectItem, type SelectOption, type SelectProps, SelectTrigger, SelectValue, Skeleton, type SkeletonProps, Slider, type SliderMark, type SliderProps, Snackbar, type SnackbarProps, type SortDirection, SortableHeader, type SortableHeaderProps, Spinner, type SpinnerProps, Switch, type SwitchProps, Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, type TableProps, TableRow, Text, type TextProps, Textarea, type TextareaProps, Timeline, TimelineBody, TimelineConnector, type TimelineConnectorProps, TimelineHeader, TimelineIcon, type TimelineIconProps, TimelineItem, type TimelineItemProps, type TimelineProps, TimelineTime, TimelineTitle, type ToastData, type ToastPosition, ToastProvider, type ToastProviderProps, type ToastType, Tooltip, type TooltipPlacement, type TooltipProps, toast, useForm, useFormField, useToast };
+interface ContainerProps extends React.HTMLAttributes<HTMLDivElement> {
+    size?: "sm" | "md" | "lg" | "xl" | "2xl" | "7xl" | "full";
+    padding?: "none" | "sm" | "md" | "lg";
+    centered?: boolean;
+    variant?: "default" | "bordered" | "glass" | "ios-glass";
+}
+declare const Container: React.ForwardRefExoticComponent<ContainerProps & React.RefAttributes<HTMLDivElement>>;
+
+interface StackProps extends React.HTMLAttributes<HTMLDivElement> {
+    direction?: "col" | "row";
+    gap?: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 8 | 10 | 12;
+    align?: "start" | "center" | "end" | "stretch" | "baseline";
+    justify?: "start" | "center" | "end" | "between" | "around" | "evenly";
+    wrap?: boolean;
+    divider?: boolean;
+}
+declare const Stack: React.ForwardRefExoticComponent<StackProps & React.RefAttributes<HTMLDivElement>>;
+
+type GridCols = 1 | 2 | 3 | 4 | 5 | 6 | 12;
+interface GridProps extends React.HTMLAttributes<HTMLDivElement> {
+    cols?: GridCols;
+    smCols?: GridCols;
+    mdCols?: GridCols;
+    lgCols?: GridCols;
+    gap?: 0 | 1 | 2 | 3 | 4 | 6 | 8 | 12;
+}
+declare const Grid: React.ForwardRefExoticComponent<GridProps & React.RefAttributes<HTMLDivElement>>;
+
+interface SplitPaneProps extends React.HTMLAttributes<HTMLDivElement> {
+    left: React.ReactNode;
+    right: React.ReactNode;
+    orientation?: "horizontal" | "vertical";
+    defaultSplit?: number;
+    minSplit?: number;
+    maxSplit?: number;
+    variant?: "default" | "bordered" | "glass" | "ios-glass";
+}
+declare const SplitPane: React.ForwardRefExoticComponent<SplitPaneProps & React.RefAttributes<HTMLDivElement>>;
+
+interface ResizablePanelProps extends React.HTMLAttributes<HTMLDivElement> {
+    defaultWidth?: number;
+    minWidth?: number;
+    maxWidth?: number;
+    side?: "left" | "right";
+    collapsible?: boolean;
+    variant?: "default" | "bordered" | "glass" | "ios-glass";
+}
+declare const ResizablePanel: React.ForwardRefExoticComponent<ResizablePanelProps & React.RefAttributes<HTMLDivElement>>;
+
+interface ScrollAreaProps extends React.HTMLAttributes<HTMLDivElement> {
+    maxHeight?: string | number;
+    orientation?: "vertical" | "horizontal" | "both";
+    scrollbarVariant?: "default" | "minimal" | "ios-glass";
+}
+declare const ScrollArea: React.ForwardRefExoticComponent<ScrollAreaProps & React.RefAttributes<HTMLDivElement>>;
+
+interface NavItemDef {
+    label: string;
+    href?: string;
+    icon?: React.ReactNode;
+    active?: boolean;
+    onClick?: () => void;
+}
+interface NavbarProps extends React.HTMLAttributes<HTMLElement> {
+    logo?: React.ReactNode;
+    items?: NavItemDef[];
+    actions?: React.ReactNode;
+    sticky?: boolean;
+    variant?: "default" | "bordered" | "glass" | "ios-glass";
+}
+declare const Navbar: React.ForwardRefExoticComponent<NavbarProps & React.RefAttributes<HTMLElement>>;
+
+interface SidebarItemDef {
+    id: string;
+    label: string;
+    icon?: React.ReactNode;
+    badge?: string | number;
+    active?: boolean;
+    onClick?: () => void;
+}
+interface SidebarGroupDef {
+    title?: string;
+    items: SidebarItemDef[];
+}
+interface SidebarProps extends React.HTMLAttributes<HTMLElement> {
+    header?: React.ReactNode;
+    groups: SidebarGroupDef[];
+    footer?: React.ReactNode;
+    collapsible?: boolean;
+    defaultCollapsed?: boolean;
+    variant?: "default" | "bordered" | "glass" | "ios-glass";
+}
+declare const Sidebar: React.ForwardRefExoticComponent<SidebarProps & React.RefAttributes<HTMLElement>>;
+
+interface TabItemDef {
+    id: string;
+    label: string;
+    icon?: React.ReactNode;
+    badge?: string | number;
+    disabled?: boolean;
+}
+interface TabsProps extends React.HTMLAttributes<HTMLDivElement> {
+    items: TabItemDef[];
+    activeTab?: string;
+    defaultTab?: string;
+    onTabChange?: (id: string) => void;
+    variant?: "pill" | "line" | "card" | "ios-glass";
+    fullWidth?: boolean;
+}
+declare const Tabs: React.ForwardRefExoticComponent<TabsProps & React.RefAttributes<HTMLDivElement>>;
+
+interface BreadcrumbItemDef {
+    label: string;
+    href?: string;
+    icon?: React.ReactNode;
+    current?: boolean;
+}
+interface BreadcrumbProps extends React.HTMLAttributes<HTMLElement> {
+    items: BreadcrumbItemDef[];
+    separator?: "chevron" | "slash" | "arrow" | "dot";
+    showHomeIcon?: boolean;
+    homeHref?: string;
+    maxItems?: number;
+}
+declare const Breadcrumb: React.ForwardRefExoticComponent<BreadcrumbProps & React.RefAttributes<HTMLElement>>;
+
+interface StepDef {
+    id: string | number;
+    title: string;
+    description?: string;
+    icon?: React.ReactNode;
+    status?: "completed" | "active" | "pending" | "error";
+}
+interface StepperProps extends React.HTMLAttributes<HTMLDivElement> {
+    steps: StepDef[];
+    activeStep?: number;
+    orientation?: "horizontal" | "vertical";
+    onStepClick?: (index: number) => void;
+    clickable?: boolean;
+}
+declare const Stepper: React.ForwardRefExoticComponent<StepperProps & React.RefAttributes<HTMLDivElement>>;
+
+export { type ActiveFilter, Alert, type AlertProps, Avatar, AvatarGroup, type AvatarGroupProps, type AvatarProps, type AvatarSize, type AvatarStatus, Badge, type BadgeProps, Breadcrumb, type BreadcrumbItemDef, type BreadcrumbProps, Button, type ButtonProps, Checkbox, type CheckboxProps, type ColumnDef, Container, type ContainerProps, ContextMenu, ContextMenuContent, ContextMenuItem, type ContextMenuItemProps, ContextMenuLabel, type ContextMenuProps, ContextMenuSeparator, ContextMenuTrigger, DataTable, type DataTableProps, DraggableResizableGrid, Drawer, type DrawerProps, Dropdown, DropdownContent, DropdownItem, type DropdownItemProps, DropdownLabel, type DropdownProps, DropdownSeparator, DropdownTrigger, EmptyState, type EmptyStateProps, type FileItem, FileUpload, type FileUploadProps, FilterBar, type FilterBarProps, Form, type FormContextValue, FormField, type FormFieldContextValue, type FormFieldProps, type FormProps, Grid, type GridCols, type GridItemConfig, type GridProps$1 as GridProps, Input, type InputProps, Modal, type ModalProps, type NavItemDef, Navbar, type NavbarProps, Pagination, type PaginationProps, Popover, type PopoverPlacement, type PopoverProps, Progress, type ProgressProps, RadioGroup, RadioGroupItem, type RadioGroupItemProps, type RadioGroupProps, ResizablePanel, type ResizablePanelProps, ScrollArea, type ScrollAreaProps, Search, type SearchProps, Select, SelectContent, SelectItem, type SelectOption, type SelectProps, SelectTrigger, SelectValue, Sidebar, type SidebarGroupDef, type SidebarItemDef, type SidebarProps, Skeleton, type SkeletonProps, Slider, type SliderMark, type SliderProps, Snackbar, type SnackbarProps, type SortDirection, SortableHeader, type SortableHeaderProps, Spinner, type SpinnerProps, SplitPane, type SplitPaneProps, Stack, type StackProps, type StepDef, Stepper, type StepperProps, Switch, type SwitchProps, type TabItemDef, Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, type TableProps, TableRow, Tabs, type TabsProps, Text, type TextProps, Textarea, type TextareaProps, Timeline, TimelineBody, TimelineConnector, type TimelineConnectorProps, TimelineHeader, TimelineIcon, type TimelineIconProps, TimelineItem, type TimelineItemProps, type TimelineProps, TimelineTime, TimelineTitle, type ToastData, type ToastPosition, ToastProvider, type ToastProviderProps, type ToastType, Tooltip, type TooltipPlacement, type TooltipProps, toast, useForm, useFormField, useToast };

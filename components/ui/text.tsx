@@ -22,6 +22,8 @@ export interface TextProps extends HTMLMotionProps<"p"> {
   animation?: MotionAnimationVariant;
   as?: React.ElementType;
   size?: "xs" | "sm" | "base" | "lg" | "xl" | "2xl" | "3xl" | "4xl";
+  weight?: "normal" | "medium" | "semibold" | "bold" | "extrabold";
+  variant?: "default" | "muted" | "subtle" | "accent" | "gradient" | "success" | "danger" | "warning";
   color?: string;
   children?: React.ReactNode;
   staggerMs?: number;
@@ -117,12 +119,33 @@ const sizeMap: Record<NonNullable<TextProps["size"]>, string> = {
   "4xl": "text-4xl",
 };
 
+const weightMap: Record<NonNullable<TextProps["weight"]>, string> = {
+  normal: "font-normal",
+  medium: "font-medium",
+  semibold: "font-semibold",
+  bold: "font-bold",
+  extrabold: "font-extrabold",
+};
+
+const variantMap: Record<NonNullable<TextProps["variant"]>, string> = {
+  default: "text-zinc-900 dark:text-zinc-100",
+  muted: "text-zinc-500 dark:text-zinc-400",
+  subtle: "text-zinc-400 dark:text-zinc-500",
+  accent: "text-teal-600 dark:text-teal-400 font-semibold",
+  gradient: "bg-clip-text text-transparent bg-gradient-to-r from-teal-600 to-indigo-600 dark:from-teal-400 dark:to-indigo-400",
+  success: "text-emerald-600 dark:text-emerald-400 font-semibold",
+  danger: "text-red-600 dark:text-red-400 font-semibold",
+  warning: "text-amber-600 dark:text-amber-400 font-semibold",
+};
+
 const Text = React.forwardRef<HTMLElement, TextProps>(
   (
     {
       className,
       animation = "default",
       size = "base",
+      weight,
+      variant = "default",
       as: Component = "p",
       color,
       children,
@@ -140,8 +163,9 @@ const Text = React.forwardRef<HTMLElement, TextProps>(
     const MotionComponent = motion(Component);
 
     const baseClasses = cn(
-      "text-gray-800 dark:text-gray-200",
+      variantMap[variant],
       sizeMap[size],
+      weight && weightMap[weight],
       className
     );
 

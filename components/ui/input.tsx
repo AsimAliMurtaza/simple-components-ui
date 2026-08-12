@@ -14,7 +14,7 @@ export interface InputProps
   label?: string;
   helperText?: string;
   errorText?: string;
-  variant?: "default" | "underline" | "bordered" | "glass" | "ghost";
+  variant?: "default" | "underline" | "bordered" | "glass" | "ghost" | "ios-glass";
   size?: "sm" | "default" | "lg";
   status?: "default" | "error" | "success" | "warning";
   labelAnimate?: boolean;
@@ -27,15 +27,17 @@ export interface InputProps
 
 const variantStyles = {
   default:
-    "bg-white dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-800 rounded-lg shadow-sm focus-within:border-blue-500 dark:focus-within:border-blue-400 focus-within:ring-2 focus-within:ring-blue-500/20 dark:focus-within:ring-blue-400/20",
+    "bg-white dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-800 rounded-lg shadow-sm focus-within:border-teal-500 dark:focus-within:border-teal-400 focus-within:ring-2 focus-within:ring-teal-500/20",
   underline:
-    "bg-transparent border-b-2 border-zinc-300 dark:border-zinc-700 rounded-none focus-within:border-blue-500 dark:focus-within:border-blue-400 px-0",
+    "bg-transparent border-b-2 border-zinc-300 dark:border-zinc-700 rounded-none focus-within:border-teal-500 dark:focus-within:border-teal-400 px-0",
   bordered:
-    "bg-white dark:bg-zinc-950 border-2 border-zinc-300 dark:border-zinc-800 rounded-xl focus-within:border-blue-600 dark:focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-500/20",
+    "bg-white dark:bg-zinc-950 border-2 border-zinc-300 dark:border-zinc-800 rounded-xl focus-within:border-teal-600 dark:focus-within:border-teal-500 focus-within:ring-2 focus-within:ring-teal-500/20",
   glass:
-    "bg-white/10 dark:bg-zinc-900/30 backdrop-blur-md border border-white/20 dark:border-zinc-800/60 rounded-xl focus-within:border-blue-400 focus-within:ring-2 focus-within:ring-blue-400/30",
+    "bg-white/70 dark:bg-zinc-900/70 backdrop-blur-xl border border-white/40 dark:border-zinc-800 rounded-xl focus-within:border-teal-500 focus-within:ring-2 focus-within:ring-teal-500/20 shadow-md",
   ghost:
     "bg-transparent border-none hover:bg-zinc-100 dark:hover:bg-zinc-800/50 rounded-lg focus-within:bg-zinc-100 dark:focus-within:bg-zinc-800/50",
+  "ios-glass":
+    "bg-white/40 dark:bg-zinc-900/40 backdrop-blur-2xl border border-white/60 dark:border-zinc-800/80 rounded-xl text-zinc-900 dark:text-white shadow-sm focus-within:border-teal-500 focus-within:ring-2 focus-within:ring-teal-500/20",
 };
 
 const sizeStyles = {
