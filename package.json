@@ -9,9 +9,10 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsup index.ts --dts --format esm,cjs --out-dir dist",
-    "prepublishOnly": "npm run build",
-    "dev": "next dev --turbopack"
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "build:package": "tsup index.ts --dts --format esm,cjs --out-dir dist",
+    "prepublishOnly": "npm run build:package"
   },
   "peerDependencies": {
     "@radix-ui/react-slot": "^1.2.3",
