@@ -39,16 +39,22 @@ export function DocLayout({ children }: DocLayoutProps) {
               <Sparkles size={14} />
             </div>
             <span className="font-semibold text-zinc-900 dark:text-zinc-100">
-              Simple Components UI
+              Simple Components
             </span>
             <span>— Open-source React component library.</span>
           </div>
 
           <div className="flex items-center gap-6 font-medium">
-            <Link href="/docs" className="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
+            <Link
+              href="/docs"
+              className="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+            >
               Docs
             </Link>
-            <Link href="/docs/installation" className="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
+            <Link
+              href="/docs/installation"
+              className="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+            >
               Install
             </Link>
             <a

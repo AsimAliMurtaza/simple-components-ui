@@ -6,7 +6,8 @@ import { ArrowLeft, ArrowRight, Moon, Palette } from "lucide-react";
 
 export const metadata = {
   title: "Theming & Styling — Simple Components UI",
-  description: "Learn how to customize themes, dark mode, and iOS glassmorphism variants in Simple Components UI.",
+  description:
+    "Learn how to customize themes, dark mode, and iOS glassmorphism variants in Simple Components UI.",
 };
 
 export default function ThemingPage() {
@@ -19,7 +20,8 @@ export default function ThemingPage() {
           Theming & Styling
         </h1>
         <p className="text-base text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed">
-          Simple Components UI seamlessly adapts to dark and light modes out of the box using Tailwind CSS and CSS variables.
+          Simple Components seamlessly adapts to dark and light modes out of the
+          box using Tailwind CSS and CSS variables.
         </p>
       </div>
 
@@ -30,7 +32,15 @@ export default function ThemingPage() {
           Dark Mode Activation
         </h2>
         <p className="text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">
-          Dark mode is toggled by adding or removing the <code className="text-xs font-mono font-bold bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded">.dark</code> class on the root <code className="text-xs font-mono font-bold bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded">&lt;html&gt;</code> element.
+          Dark mode is toggled by adding or removing the{" "}
+          <code className="text-xs font-mono font-bold bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded">
+            .dark
+          </code>{" "}
+          class on the root{" "}
+          <code className="text-xs font-mono font-bold bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded">
+            &lt;html&gt;
+          </code>{" "}
+          element.
         </p>
 
         <CodeBlock
@@ -49,28 +59,45 @@ function toggleDarkMode() {
           Surface Variants & iOS Glassmorphism
         </h2>
         <p className="text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">
-          Most components support rich surface variants to fit your application&apos;s aesthetic:
+          Most components support rich surface variants to fit your
+          application&apos;s aesthetic:
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
           <div className="p-4 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 space-y-1">
-            <span className="text-xs font-mono font-bold text-teal-700 dark:text-blue-400">variant=&quot;default&quot;</span>
-            <p className="text-xs text-zinc-500 dark:text-zinc-400">Standard crisp background surface with subtle borders.</p>
+            <span className="text-xs font-mono font-bold text-teal-700 dark:text-blue-400">
+              variant=&quot;default&quot;
+            </span>
+            <p className="text-xs text-zinc-500 dark:text-zinc-400">
+              Standard crisp background surface with subtle borders.
+            </p>
           </div>
 
           <div className="p-4 rounded-2xl bg-white dark:bg-zinc-950 border-2 border-zinc-300 dark:border-zinc-800 space-y-1">
-            <span className="text-xs font-mono font-bold text-purple-600 dark:text-purple-400">variant=&quot;bordered&quot;</span>
-            <p className="text-xs text-zinc-500 dark:text-zinc-400">High-contrast solid borders for dense dashboards.</p>
+            <span className="text-xs font-mono font-bold text-purple-600 dark:text-purple-400">
+              variant=&quot;bordered&quot;
+            </span>
+            <p className="text-xs text-zinc-500 dark:text-zinc-400">
+              High-contrast solid borders for dense dashboards.
+            </p>
           </div>
 
           <div className="p-4 rounded-2xl bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl border border-white/40 dark:border-zinc-800 space-y-1">
-            <span className="text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400">variant=&quot;glass&quot;</span>
-            <p className="text-xs text-zinc-500 dark:text-zinc-400">Translucent backdrop blur container.</p>
+            <span className="text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400">
+              variant=&quot;glass&quot;
+            </span>
+            <p className="text-xs text-zinc-500 dark:text-zinc-400">
+              Translucent backdrop blur container.
+            </p>
           </div>
 
           <div className="p-4 rounded-2xl bg-white/40 dark:bg-zinc-900/40 backdrop-blur-2xl border border-white/60 dark:border-zinc-800 space-y-1">
-            <span className="text-xs font-mono font-bold text-amber-600 dark:text-amber-400">variant=&quot;ios-glass&quot;</span>
-            <p className="text-xs text-zinc-500 dark:text-zinc-400">Ultra-smooth iOS frosted glass visual design.</p>
+            <span className="text-xs font-mono font-bold text-amber-600 dark:text-amber-400">
+              variant=&quot;ios-glass&quot;
+            </span>
+            <p className="text-xs text-zinc-500 dark:text-zinc-400">
+              Ultra-smooth iOS frosted glass visual design.
+            </p>
           </div>
         </div>
       </section>

@@ -1,11 +1,19 @@
 import * as React from "react";
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/docs/breadcrumbs";
-import { ArrowLeft, ArrowRight, ShieldCheck, Keyboard, Eye, Monitor } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  ShieldCheck,
+  Keyboard,
+  Eye,
+  Monitor,
+} from "lucide-react";
 
 export const metadata = {
   title: "Accessibility — Simple Components UI",
-  description: "Learn about accessibility features, ARIA roles, and keyboard navigation in Simple Components UI.",
+  description:
+    "Learn about accessibility features, ARIA roles, and keyboard navigation in Simple Components UI.",
 };
 
 export default function AccessibilityPage() {
@@ -18,7 +26,8 @@ export default function AccessibilityPage() {
           Accessibility (a11y)
         </h1>
         <p className="text-base text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed">
-          Simple Components UI is built with WCAG standards and keyboard interaction in mind.
+          Simple Components is built with WCAG standards and keyboard
+          interaction in mind.
         </p>
       </div>
 
@@ -29,10 +38,22 @@ export default function AccessibilityPage() {
           </div>
           <h3 className="text-base font-bold">Keyboard Navigation</h3>
           <ul className="text-xs text-zinc-600 dark:text-zinc-400 space-y-1.5 list-disc list-inside">
-            <li><strong>Escape Key</strong> dismisses Modals, Drawers, ContextMenus, and Popovers.</li>
-            <li><strong>Tab & Shift+Tab</strong> navigate through form controls seamlessly.</li>
-            <li><strong>Arrow Keys</strong> navigate Radio Groups, Select items, and Menus.</li>
-            <li><strong>Enter & Space</strong> toggle Switches, Checkboxes, and Buttons.</li>
+            <li>
+              <strong>Escape Key</strong> dismisses Modals, Drawers,
+              ContextMenus, and Popovers.
+            </li>
+            <li>
+              <strong>Tab & Shift+Tab</strong> navigate through form controls
+              seamlessly.
+            </li>
+            <li>
+              <strong>Arrow Keys</strong> navigate Radio Groups, Select items,
+              and Menus.
+            </li>
+            <li>
+              <strong>Enter & Space</strong> toggle Switches, Checkboxes, and
+              Buttons.
+            </li>
           </ul>
         </div>
 
@@ -42,9 +63,14 @@ export default function AccessibilityPage() {
           </div>
           <h3 className="text-base font-bold">Focus Trap & Scroll Lock</h3>
           <ul className="text-xs text-zinc-600 dark:text-zinc-400 space-y-1.5 list-disc list-inside">
-            <li>Modals and Drawers automatically lock background document scrolling when open.</li>
+            <li>
+              Modals and Drawers automatically lock background document
+              scrolling when open.
+            </li>
             <li>Focus is automatically captured within dialog overlays.</li>
-            <li>Focus returns to the trigger button when overlay is dismissed.</li>
+            <li>
+              Focus returns to the trigger button when overlay is dismissed.
+            </li>
           </ul>
         </div>
 
@@ -54,9 +80,24 @@ export default function AccessibilityPage() {
           </div>
           <h3 className="text-base font-bold">ARIA Attributes</h3>
           <ul className="text-xs text-zinc-600 dark:text-zinc-400 space-y-1.5 list-disc list-inside">
-            <li><code className="font-mono text-blue-600">role=&quot;dialog&quot;</code> and <code className="font-mono text-blue-600">aria-modal=&quot;true&quot;</code> on Modal/Drawer panels.</li>
-            <li><code className="font-mono text-blue-600">htmlFor</code> ID linkage between FormLabels and Inputs.</li>
-            <li><code className="font-mono text-blue-600">aria-expanded</code> on Dropdowns and Select popovers.</li>
+            <li>
+              <code className="font-mono text-blue-600">
+                role=&quot;dialog&quot;
+              </code>{" "}
+              and{" "}
+              <code className="font-mono text-blue-600">
+                aria-modal=&quot;true&quot;
+              </code>{" "}
+              on Modal/Drawer panels.
+            </li>
+            <li>
+              <code className="font-mono text-blue-600">htmlFor</code> ID
+              linkage between FormLabels and Inputs.
+            </li>
+            <li>
+              <code className="font-mono text-blue-600">aria-expanded</code> on
+              Dropdowns and Select popovers.
+            </li>
           </ul>
         </div>
 
@@ -67,7 +108,9 @@ export default function AccessibilityPage() {
           <h3 className="text-base font-bold">Color Contrast</h3>
           <ul className="text-xs text-zinc-600 dark:text-zinc-400 space-y-1.5 list-disc list-inside">
             <li>Accessible contrast ratios in both Light and Dark themes.</li>
-            <li>Status badges use dual-layer background and text color pairs.</li>
+            <li>
+              Status badges use dual-layer background and text color pairs.
+            </li>
             <li>Visible focus ring indicators for keyboard users.</li>
           </ul>
         </div>

@@ -26,7 +26,7 @@ export default function LandingPage() {
 
   const copyInstall = async () => {
     await navigator.clipboard.writeText(
-      "npm install @simple-components-ui/components",
+      "npm install @simple-components-ui/components"
     );
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
@@ -38,14 +38,14 @@ export default function LandingPage() {
 
       {/* Hero Section */}
       <section className="relative pt-20 pb-16 px-4 sm:px-6 max-w-6xl mx-auto w-full text-center space-y-8">
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-teal-50 text-teal-700 border border-teal-200 dark:bg-zinc-900 dark:border-zinc-800 dark:text-teal-400 text-xs font-semibold shadow-sm">
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-teal-50 text-teal-700 border border-teal-200 dark:bg-zinc-900 dark:border-zinc-800 dark:text-teal-400 text-xs font-semibold shadow-xs">
           <Sparkles size={14} />
-          <span>v0.4.0 Published on NPM</span>
+          <span>v0.5.0 Published on NPM</span>
         </div>
 
         <div className="space-y-4 max-w-3xl mx-auto">
           <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-zinc-900 dark:text-white leading-[1.1]">
-            Simple Components UI
+            Simple Components
           </h1>
           <p className="text-lg sm:text-xl text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto leading-relaxed">
             Reusable React components for building modern, fast, and responsive
@@ -83,7 +83,7 @@ export default function LandingPage() {
             <button
               type="button"
               onClick={copyInstall}
-              className="p-1 rounded-lg hover:bg-zinc-800 transition-colors text-zinc-400 hover:text-white"
+              className="p-1 rounded-lg hover:bg-zinc-800 transition-colors text-zinc-400 hover:text-white cursor-pointer"
               title="Copy command"
             >
               {copied ? (

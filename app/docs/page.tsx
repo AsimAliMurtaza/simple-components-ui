@@ -2,11 +2,19 @@ import * as React from "react";
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/docs/breadcrumbs";
 import { CodeBlock } from "@/components/docs/code-block";
-import { Sparkles, ArrowRight, ShieldCheck, Zap, Palette, Layers } from "lucide-react";
+import {
+  Sparkles,
+  ArrowRight,
+  ShieldCheck,
+  Zap,
+  Palette,
+  Layers,
+} from "lucide-react";
 
 export const metadata = {
   title: "Introduction — Simple Components UI",
-  description: "Overview, design principles, and problem solved by Simple Components UI.",
+  description:
+    "Overview, design principles, and problem solved by Simple Components UI.",
 };
 
 export default function IntroductionPage() {
@@ -19,7 +27,9 @@ export default function IntroductionPage() {
           Introduction
         </h1>
         <p className="text-base text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed">
-          Simple Components UI is an open-source React component library built with TypeScript, Tailwind CSS, and Framer Motion for crafting modern, accessible web applications.
+          Simple Components is an open-source React component library built with
+          TypeScript, Tailwind CSS, and Framer Motion for crafting modern,
+          accessible web applications.
         </p>
       </div>
 
@@ -27,21 +37,31 @@ export default function IntroductionPage() {
       <section className="space-y-4">
         <h2 className="text-xl font-bold tracking-tight flex items-center gap-2">
           <Sparkles className="h-5 w-5 text-teal-600 dark:text-blue-500" />
-          What is Simple Components UI?
+          What is Simple Components?
         </h2>
         <p className="text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">
-          Simple Components UI provides production-ready, fully typed UI primitives across 5 core categories: <strong>Form Controls</strong>, <strong>Overlay Dialogs</strong>, <strong>Feedback Notifications</strong>, <strong>Data Displays</strong>, and <strong>Drag & Drop Layouts</strong>.
+          Simple Components provides production-ready, fully typed UI primitives
+          across 5 core categories: <strong>Form Controls</strong>,{" "}
+          <strong>Overlay Dialogs</strong>,{" "}
+          <strong>Feedback Notifications</strong>,{" "}
+          <strong>Data Displays</strong>, and{" "}
+          <strong>Drag & Drop Layouts</strong>.
         </p>
       </section>
 
       {/* Why it exists */}
       <section className="space-y-4">
-        <h2 className="text-xl font-bold tracking-tight">Why Simple Components UI?</h2>
+        <h2 className="text-xl font-bold tracking-tight">
+          Why Simple Components?
+        </h2>
         <p className="text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">
-          Most traditional component libraries force developers into a trade-off between completely unstyled primitives (which require writing hundreds of CSS utility classes from scratch) and overly rigid component frameworks (which are hard to customize).
+          Most traditional component libraries force developers into a trade-off
+          between completely unstyled primitives (which require writing hundreds
+          of CSS utility classes from scratch) and overly rigid component
+          frameworks (which are hard to customize).
         </p>
         <p className="text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">
-          Simple Components UI bridges this gap by offering:
+          Simple Components bridges this gap by offering:
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
@@ -51,7 +71,8 @@ export default function IntroductionPage() {
             </div>
             <h3 className="text-sm font-bold">Plug-and-Play Simplicity</h3>
             <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
-              Import pre-styled, animated components with zero boilerplate setup.
+              Import pre-styled, animated components with zero boilerplate
+              setup.
             </p>
           </div>
 
@@ -61,7 +82,8 @@ export default function IntroductionPage() {
             </div>
             <h3 className="text-sm font-bold">iOS Glassmorphism & Variants</h3>
             <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
-              Built-in frosted glass, bordered, and filled variants for stunning modern visual design.
+              Built-in frosted glass, bordered, and filled variants for stunning
+              modern visual design.
             </p>
           </div>
 
@@ -71,7 +93,8 @@ export default function IntroductionPage() {
             </div>
             <h3 className="text-sm font-bold">100% Type Safe</h3>
             <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
-              Strict TypeScript definitions with full autocompletion for all props and event handlers.
+              Strict TypeScript definitions with full autocompletion for all
+              props and event handlers.
             </p>
           </div>
 
@@ -81,7 +104,8 @@ export default function IntroductionPage() {
             </div>
             <h3 className="text-sm font-bold">Compound API Pattern</h3>
             <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
-              Flexible composition primitives for Menus, ContextMenus, Tables, and FormFields.
+              Flexible composition primitives for Menus, ContextMenus, Tables,
+              and FormFields.
             </p>
           </div>
         </div>
