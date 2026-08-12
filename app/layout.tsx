@@ -3,6 +3,7 @@ import { Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/docs/theme-provider";
 import { ToastProvider } from "@/index";
+import { Analytics } from "@vercel/analytics/next";
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -37,7 +38,11 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
         <link
           href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap"
           rel="stylesheet"
@@ -47,6 +52,7 @@ export default function RootLayout({
         className={`${geistMono.variable} font-sans antialiased min-h-screen bg-background text-foreground`}
       >
         <ThemeProvider>
+          <Analytics />
           <ToastProvider position="top-right">{children}</ToastProvider>
         </ThemeProvider>
       </body>
