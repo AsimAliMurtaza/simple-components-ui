@@ -6,7 +6,8 @@ import { ArrowLeft, ArrowRight, Terminal, Code2 } from "lucide-react";
 
 export const metadata = {
   title: "Contributing — Simple Components UI",
-  description: "Guidelines and instructions for contributing to Simple Components UI.",
+  description:
+    "Guidelines and instructions for contributing to Simple Components UI.",
 };
 
 export default function ContributingPage() {
@@ -19,7 +20,9 @@ export default function ContributingPage() {
           Contributing
         </h1>
         <p className="text-base text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed">
-          Thank you for considering contributing to Simple Components UI! We welcome bug fixes, new component requests, documentation updates, and performance improvements.
+          Thank you for considering contributing to Simple Components! We
+          welcome bug fixes, new component requests, documentation updates, and
+          performance improvements.
         </p>
       </div>
 
@@ -54,7 +57,8 @@ npm install`}
           Building & Testing
         </h2>
         <p className="text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">
-          Before submitting a pull request, ensure the npm package build compiles without TypeScript errors:
+          Before submitting a pull request, ensure the npm package build
+          compiles without TypeScript errors:
         </p>
 
         <CodeBlock code="npm run build" language="bash" />

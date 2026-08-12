@@ -11,7 +11,7 @@ export const metadata = {
 
 export default function ComponentsDirectoryPage() {
   const componentCategories = docsConfig.nav.filter(
-    (c) => c.title !== "Getting Started"
+    (c) => c.title !== "Getting Started",
   );
 
   return (
@@ -23,7 +23,8 @@ export default function ComponentsDirectoryPage() {
           Component Directory
         </h1>
         <p className="text-base text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed">
-          Explore our collection of 30+ production-ready React components categorized by functionality.
+          Explore our collection of 30+ production-ready React components
+          categorized by functionality.
         </p>
       </div>
 
@@ -52,7 +53,10 @@ export default function ComponentsDirectoryPage() {
                       </span>
                     )}
                   </div>
-                  <ChevronRight size={16} className="text-zinc-400 group-hover:text-blue-500 group-hover:translate-x-0.5 transition-all shrink-0" />
+                  <ChevronRight
+                    size={16}
+                    className="text-zinc-400 group-hover:text-blue-500 group-hover:translate-x-0.5 transition-all shrink-0"
+                  />
                 </Link>
               ))}
             </div>

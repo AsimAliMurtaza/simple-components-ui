@@ -1,13 +1,8 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/docs/theme-provider";
 import { ToastProvider } from "@/index";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -28,6 +23,8 @@ export const metadata: Metadata = {
     "Framer Motion",
     "UI Library",
     "Components",
+    "Google Sans",
+    "Noto Serif",
   ],
 };
 
@@ -38,8 +35,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-background text-foreground`}
+        className={`${geistMono.variable} font-sans antialiased min-h-screen bg-background text-foreground`}
       >
         <ThemeProvider>
           <ToastProvider position="top-right">{children}</ToastProvider>

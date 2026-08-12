@@ -52,10 +52,10 @@ export function DocHeader({
               </div>
               <div className="flex flex-col">
                 <span className="text-base font-bold tracking-tight text-zinc-900 dark:text-white">
-                  Simple Components UI
+                  Simple Components
                 </span>
                 <span className="text-[10px] font-mono text-zinc-400 dark:text-zinc-500">
-                  v0.4.0
+                  v0.5.0
                 </span>
               </div>
             </Link>

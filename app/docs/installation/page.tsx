@@ -6,7 +6,8 @@ import { ArrowLeft, ArrowRight, Terminal } from "lucide-react";
 
 export const metadata = {
   title: "Installation — Simple Components UI",
-  description: "How to install and configure @simple-components-ui/components in your React / Next.js project.",
+  description:
+    "How to install and configure @simple-components-ui/components in your React / Next.js project.",
 };
 
 export default function InstallationPage() {
@@ -19,7 +20,7 @@ export default function InstallationPage() {
           Installation
         </h1>
         <p className="text-base text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed">
-          Add Simple Components UI to your project using npm, yarn, or pnpm.
+          Add Simple Components to your project using npm, yarn, or pnpm.
         </p>
       </div>
 
@@ -30,7 +31,8 @@ export default function InstallationPage() {
           1. Install NPM Package
         </h2>
         <p className="text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">
-          Run the following command in your terminal to install the published library package:
+          Run the following command in your terminal to install the published
+          library package:
         </p>
 
         <CodeBlock
@@ -50,9 +52,13 @@ export default function InstallationPage() {
 
       {/* Step 2: Peer Dependencies */}
       <section className="space-y-4">
-        <h2 className="text-xl font-bold tracking-tight">2. Peer Dependencies</h2>
+        <h2 className="text-xl font-bold tracking-tight">
+          2. Peer Dependencies
+        </h2>
         <p className="text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">
-          Simple Components UI relies on <strong>Framer Motion</strong> for animations and <strong>Lucide React</strong> for icons. Ensure they are installed in your project:
+          Simple Components relies on <strong>Framer Motion</strong> for
+          animations and <strong>Lucide React</strong> for icons. Ensure they
+          are installed in your project:
         </p>
 
         <CodeBlock
@@ -63,9 +69,12 @@ export default function InstallationPage() {
 
       {/* Step 3: Styles & Tailwind Setup */}
       <section className="space-y-4">
-        <h2 className="text-xl font-bold tracking-tight">3. Configure CSS Styles</h2>
+        <h2 className="text-xl font-bold tracking-tight">
+          3. Configure CSS Styles
+        </h2>
         <p className="text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">
-          Import Tailwind CSS in your global stylesheet (`globals.css` or `app/globals.css`).
+          Import Tailwind CSS in your global stylesheet (`globals.css` or
+          `app/globals.css`).
         </p>
 
         <CodeBlock
