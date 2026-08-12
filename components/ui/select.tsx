@@ -27,20 +27,22 @@ export interface SelectProps {
   errorText?: string;
   helperText?: string;
   label?: string;
-  variant?: "default" | "bordered" | "glass" | "ghost";
+  variant?: "default" | "bordered" | "glass" | "ghost" | "ios-glass";
   size?: "sm" | "default" | "lg";
   className?: string;
 }
 
 const variantStyles = {
   default:
-    "bg-white dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-800 rounded-lg shadow-sm focus:border-blue-500 dark:focus:border-blue-400 focus:ring-2 focus:ring-blue-500/20",
+    "bg-white dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-800 rounded-lg shadow-sm focus:border-teal-500 dark:focus:border-teal-400 focus:ring-2 focus:ring-teal-500/20",
   bordered:
-    "bg-white dark:bg-zinc-950 border-2 border-zinc-300 dark:border-zinc-800 rounded-xl focus:border-blue-600 focus:ring-2 focus:ring-blue-500/20",
+    "bg-white dark:bg-zinc-950 border-2 border-zinc-300 dark:border-zinc-800 rounded-xl focus:border-teal-600 focus:ring-2 focus:ring-teal-500/20",
   glass:
-    "bg-white/10 dark:bg-zinc-900/30 backdrop-blur-md border border-white/20 dark:border-zinc-800/60 rounded-xl focus:border-blue-400 focus:ring-2 focus:ring-blue-400/30",
+    "bg-white/70 dark:bg-zinc-900/70 backdrop-blur-xl border border-white/40 dark:border-zinc-800 rounded-xl focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 shadow-md",
   ghost:
     "bg-transparent border-none hover:bg-zinc-100 dark:hover:bg-zinc-800/50 rounded-lg",
+  "ios-glass":
+    "bg-white/40 dark:bg-zinc-900/40 backdrop-blur-2xl border border-white/60 dark:border-zinc-800/80 rounded-xl text-zinc-900 dark:text-white shadow-sm focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20",
 };
 
 const sizeStyles = {
