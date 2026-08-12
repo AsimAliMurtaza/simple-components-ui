@@ -26,7 +26,7 @@ export default function LandingPage() {
 
   const copyInstall = async () => {
     await navigator.clipboard.writeText(
-      "npm install @simple-components-ui/components"
+      "npm install @simple-components-ui/components",
     );
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
@@ -38,7 +38,7 @@ export default function LandingPage() {
 
       {/* Hero Section */}
       <section className="relative pt-20 pb-16 px-4 sm:px-6 max-w-6xl mx-auto w-full text-center space-y-8">
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-teal-50 text-teal-700 border border-teal-200 dark:bg-zinc-900 dark:border-zinc-800 dark:text-teal-400 text-xs font-semibold shadow-xs">
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-sky-50 text-sky-700 border border-sky-200 dark:bg-zinc-900 dark:border-zinc-800 dark:text-sky-400 text-xs font-semibold shadow-xs">
           <Sparkles size={14} />
           <span>v0.5.0 Published on NPM</span>
         </div>
@@ -57,7 +57,7 @@ export default function LandingPage() {
         <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
           <Link
             href="/docs/getting-started"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-teal-600 hover:bg-teal-700 dark:bg-teal-600 dark:hover:bg-teal-700 text-white font-semibold text-sm transition-colors shadow-lg shadow-teal-500/20 cursor-pointer"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-sky-500 hover:bg-sky-600 dark:bg-sky-600 dark:hover:bg-sky-700 text-white font-semibold text-sm transition-colors shadow-lg shadow-sky-500/20 cursor-pointer"
           >
             <span>Get Started</span>
             <ArrowRight size={16} />
@@ -75,7 +75,7 @@ export default function LandingPage() {
         <div className="pt-4 max-w-md mx-auto">
           <div className="flex items-center justify-between p-3 px-4 rounded-2xl bg-zinc-900 text-zinc-100 font-mono text-xs shadow-xl border border-zinc-800">
             <div className="flex items-center gap-2">
-              <Terminal size={14} className="text-teal-400 shrink-0" />
+              <Terminal size={14} className="text-sky-400 shrink-0" />
               <span className="text-zinc-300">
                 npm install @simple-components-ui/components
               </span>
@@ -112,13 +112,13 @@ export default function LandingPage() {
           {/* Card 1: Form Suite */}
           <Link
             href="/docs/components/input"
-            className="p-6 rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 hover:border-teal-500 dark:hover:border-teal-500/50 shadow-md space-y-4 group transition-all"
+            className="p-6 rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 hover:border-sky-500 dark:hover:border-sky-500/50 shadow-md space-y-4 group transition-all"
           >
             <div className="flex items-center justify-between">
-              <div className="p-2.5 rounded-2xl bg-teal-50 dark:bg-zinc-800 text-teal-600 dark:text-teal-400">
+              <div className="p-2.5 rounded-2xl bg-sky-50 dark:bg-zinc-800 text-sky-600 dark:text-sky-400">
                 <Layers size={20} />
               </div>
-              <span className="text-xs font-mono text-zinc-400 group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">
+              <span className="text-xs font-mono text-zinc-400 group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors">
                 Form Suite →
               </span>
             </div>
@@ -219,7 +219,7 @@ export default function LandingPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="space-y-2">
-              <div className="p-2 rounded-xl bg-teal-100 text-teal-700 dark:bg-zinc-800 dark:text-teal-400 w-fit">
+              <div className="p-2 rounded-xl bg-sky-100 text-sky-700 dark:bg-zinc-800 dark:text-sky-400 w-fit">
                 <Zap size={20} />
               </div>
               <h3 className="text-base font-bold">React + TypeScript</h3>
@@ -289,7 +289,7 @@ export default function LandingPage() {
 
       {/* GitHub CTA Footer Banner */}
       <section className="py-16 px-4 sm:px-6 max-w-4xl mx-auto w-full text-center space-y-6">
-        <div className="p-8 sm:p-12 rounded-3xl bg-teal-600 dark:bg-zinc-900 border border-teal-700 dark:border-zinc-800 text-white shadow-2xl space-y-4">
+        <div className="p-8 sm:p-12 rounded-3xl bg-zinc-700 dark:bg-zinc-900 border border-sky-700 dark:border-zinc-800 text-white shadow-2xl space-y-4">
           <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight">
             Ready to Build Your Application?
           </h2>
@@ -301,7 +301,7 @@ export default function LandingPage() {
           <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
             <Link
               href="/docs"
-              className="px-6 py-3 rounded-2xl bg-white text-teal-800 dark:text-zinc-900 font-semibold text-xs hover:bg-zinc-100 transition-colors shadow-lg cursor-pointer"
+              className="px-6 py-3 rounded-2xl bg-white text-sky-800 dark:text-zinc-900 font-semibold text-xs hover:bg-zinc-100 transition-colors shadow-lg cursor-pointer"
             >
               Read Documentation
             </Link>
@@ -309,7 +309,7 @@ export default function LandingPage() {
               href="https://github.com/AsimAliMurtaza/simple-components-ui"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-6 py-3 rounded-2xl bg-teal-700 dark:bg-zinc-800 border border-teal-500 dark:border-zinc-700 text-white font-semibold text-xs hover:bg-teal-800 dark:hover:bg-zinc-700 transition-colors flex items-center gap-1.5"
+              className="px-6 py-3 rounded-2xl bg-sky-700 dark:bg-zinc-800 border border-sky-500 dark:border-zinc-700 text-white font-semibold text-xs hover:bg-sky-800 dark:hover:bg-zinc-700 transition-colors flex items-center gap-1.5"
             >
               <Github size={15} />
               GitHub

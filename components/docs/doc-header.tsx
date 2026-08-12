@@ -47,7 +47,7 @@ export function DocHeader({
             </button>
 
             <Link href="/" className="flex items-center gap-2.5 group">
-              <div className="p-2 rounded-xl bg-teal-600 dark:bg-teal-700 text-white shadow-md shadow-teal-500/20 group-hover:scale-105 transition-transform">
+              <div className="p-2 rounded-xl bg-sky-500 dark:bg-sky-600 text-white shadow-md shadow-sky-500/20 group-hover:scale-105 transition-transform">
                 <Sparkles size={18} />
               </div>
               <div className="flex flex-col">

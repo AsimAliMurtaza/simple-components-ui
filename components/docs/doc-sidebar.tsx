@@ -41,13 +41,13 @@ export function DocSidebar({
                     className={cn(
                       "flex items-center justify-between px-3 py-2 rounded-xl transition-all duration-150",
                       isActive
-                        ? "bg-teal-50 text-teal-700 dark:bg-blue-950/60 dark:text-blue-400 font-bold shadow-sm"
+                        ? "bg-sky-50 text-sky-700 dark:bg-sky-950/60 dark:text-sky-300 font-bold shadow-sm"
                         : "text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800/60"
                     )}
                   >
                     <span className="truncate">{item.title}</span>
                     {item.badge && (
-                      <span className="px-1.5 py-0.5 text-[9px] font-mono font-bold rounded-md bg-teal-100 text-teal-800 dark:bg-blue-900/80 dark:text-blue-300">
+                      <span className="px-1.5 py-0.5 text-[9px] font-mono font-bold rounded-md bg-sky-100 text-sky-800 dark:bg-sky-900/80 dark:text-sky-300">
                         {item.badge}
                       </span>
                     )}
@@ -66,7 +66,7 @@ export function DocSidebar({
       {/* Desktop Sidebar */}
       <aside
         className={cn(
-          "hidden lg:block w-64 shrink-0 sticky top-16 h-[calc(100vh-4rem)] overflow-y-auto pt-6 pr-4 border-r border-zinc-200/80 dark:border-zinc-800/80",
+          "hidden lg:block w-64 shrink-0 sticky top-16 h-[calc(100vh-4rem)] overflow-y-auto custom-scrollbar pt-6 pr-4 border-r border-zinc-200/80 dark:border-zinc-800/80",
           className
         )}
       >
@@ -92,7 +92,7 @@ export function DocSidebar({
               animate={{ x: 0 }}
               exit={{ x: "-100%" }}
               transition={{ type: "spring", stiffness: 400, damping: 35 }}
-              className="fixed top-0 bottom-0 left-0 w-4/5 max-w-xs bg-white dark:bg-zinc-950 border-r border-zinc-200 dark:border-zinc-800 p-6 overflow-y-auto z-10 flex flex-col"
+              className="fixed top-0 bottom-0 left-0 w-4/5 max-w-xs bg-white dark:bg-zinc-950 border-r border-zinc-200 dark:border-zinc-800 p-6 overflow-y-auto custom-scrollbar z-10 flex flex-col"
             >
               <div className="flex items-center justify-between pb-4 mb-4 border-b border-zinc-100 dark:border-zinc-800">
                 <span className="text-sm font-bold tracking-tight">Navigation Menu</span>

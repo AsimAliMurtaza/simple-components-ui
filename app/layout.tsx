@@ -12,8 +12,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Simple Components UI - Modern React Component Library",
-    template: "%s - Simple Components UI",
+    default: "Simple Components - Modern React Component Library",
+    template: "%s - Simple Components",
   },
   description:
     "Reusable, highly customizable, typed, dark/light mode compatible React components powered by Tailwind CSS and Framer Motion.",

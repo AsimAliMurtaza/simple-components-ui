@@ -41,7 +41,7 @@ export function DocLayout({ children }: DocLayoutProps) {
             <span className="font-semibold text-zinc-900 dark:text-zinc-100">
               Simple Components
             </span>
-            <span>— Open-source React component library.</span>
+            <span>- Open-source React component library.</span>
           </div>
 
           <div className="flex items-center gap-6 font-medium">
